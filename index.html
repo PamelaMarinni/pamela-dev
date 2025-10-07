@@ -186,7 +186,8 @@ h1.pulsante {
   background: rgba(255,255,255,0.1);
   border-radius: 15px;
   padding: 15px;
-  width: 300px;
+  width: 100%;        /* ocupa 100% do espaço disponível */
+  max-width: 300px;   /* mantém 300px em telas grandes */
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
@@ -194,12 +195,14 @@ h1.pulsante {
 }
 
 .card img {
-  width: 100%;
-  height: 200px;
+  width: 100%;       /* imagem se ajusta à largura do card */
+  height: auto;      /* altura proporcional */
+  max-height: 200px; /* opcional: não deixa muito grande */
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 10px;
 }
+
 
 .card h3 {
   margin: 10px 0 5px 0;
