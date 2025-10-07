@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio Pâmela</title>
+
+    <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0d1b2a, #000000);
+      color: #f1f1f1;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: estrelas 100s linear infinite;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    @keyframes estrelas {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100px); }
+    }
+
+
+    
+
+.banner {
+  position: relative;
+  height: 80vh;
+  background: url('imagens/banner.png') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.banner-text {
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+  margin-top: 10vh;
+}
+
+h1.pulsante {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5em;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  margin-bottom: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.typed-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid white;
+  animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.banner-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-banner {
+  display: inline-block;
+  background-color: #845EC2;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-banner:hover {
+  background-color: #D65DB1;
+  transform: translateY(-3px);
+}
+
+.glow {
+  box-shadow: 0 0 10px #845EC2, 0 0 20px #D65DB1;
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #845EC2, 0 0 20px #D65DB1; }
+  50% { box-shadow: 0 0 20px #D65DB1, 0 0 30px #845EC2; }
+  100% { box-shadow: 0 0 10px #845EC2, 0 0 20px #D65DB1; }
+}
+
+ section {
+      padding: 100px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: #d1b3ff;
+      text-shadow: 0 0 15px #a855f7;
+    }
+
+    .sobre-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      border: 4px solid #d1b3ff;
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+      animation: pulseGlow 3s infinite;
+      object-fit: cover;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+      50% { box-shadow: 0 0 40px rgba(209, 179, 255, 0.9); }
+      100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+    }
+
+    .sobre-text {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+.projetos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0 5px 0;
+  text-align: center;
+}
+
+.card p {
+  font-size: 0.95em;
+  margin-bottom: auto; /* faz o parágrafo ocupar espaço restante */
+  text-align: center;
+}
+
+.btn-ver-projeto {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #6a0dad;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-top: 10px;
+  align-self: stretch; /* faz o botão ocupar toda a largura do card */
+  text-align: center;
+}
+.btn-ver-projeto:hover {
+  background: #520b9e;
+  transform: scale(1.05);
+}
+
+footer {
+  width: 100%;
+  background: rgba(13, 27, 42, 0.95);
+  padding: 10px 20px; /* vertical mais fino */
+  text-align: center;
+  color: #aaa;
+  font-size: 0.8rem; /* fonte menor */
+  box-sizing: border-box;
+  clear: both;
+}
+
+
+
+    .btn-ver-projeto {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #845EC2; /* cor inicial do botão */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn-ver-projeto:hover {
+  background-color: #FFC75F; /* amarelo quando passar o mouse */
+  color: #000; /* opcional: muda a cor do texto para contraste */
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease; /* animação suave */
+  will-change: transform, box-shadow; /* melhora performance */
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02); /* sobe e aumenta levemente */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.5); /* sombra mais intensa */
+}
+
+
+.contatos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.contato-btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.contato-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.email { background-color: #845EC2; }
+.whatsapp { background-color: #25D366; }
+.linkedin { background-color: #0077B5; }
+.github { background-color: #333; /* cor típica do GitHub */}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+
+<section class="banner">
+  <div class="banner-overlay">
+    <div class="banner-text">
+      <h1 class="pulsante">Desenvolvedora Front-end</h1>
+      <p class="typed-text">Transformando ideias em interfaces incríveis</p>
+      <div class="banner-links">
+        <a href="#sobre" class="btn-banner glow">Sobre mim</a>
+        <a href="#projeto" class="btn-banner glow">Projetos</a>
+        <a href="#contatos" class="btn-banner glow">Contato</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+  <section id="sobre">
+    <h2>Sobre mim</h2>
+    <img src="imagens/pam2.png" alt="Foto Pâmela" class="sobre-img">
+    <div class="sobre-text">
+      <p>Sou Pâmela, desenvolvedora front-end com domínio em HTML, CSS e JavaScript. Crio interfaces que unem lógica e estética, e compartilho neste espaço meus projetos e aprendizados.</p>
+    </div>
+  </section>
+
+ <section id="projetos">
+  <h2>Meus Projetos</h2>
+  <div class="projetos">
+
+    <div class="card">
+      <img src="imagens/pagina.png" alt="Arquivo Feminino: Proibido">
+      <h3>Arquivo Feminino: Proibido</h3>
+      <p>Página de livro fictícia com design acolhedor e dedicado à literatura feminina.</p>
+      <a class="btn-ver-projeto" href="projeto-arquivo-feminino/index.html" target="_blank">Ver Projeto</a>
+    </div>
+
+   <div class="card">
+  <img src="imagens/quiz.png" alt="Quiz Anime">
+  <h3>Quiz Anime</h3>
+  <p>Descubra com qual personagem de anime você mais se parece.</p>
+  <a class="btn-ver-projeto" href="quiz/index.html" target="_blank">Ver Projeto</a>
+</div>
+
+    <div class="card">
+  <img src="imagens/quebra2.png" alt="Quebra-Cabeça">
+  <h3>Quebra-Cabeça</h3>
+  <p>Monte as peças e divirta-se!</p>
+  <a class="btn-ver-projeto" href="quebra/index.html" target="_blank">Ver Projeto</a>
+</div>
+
+<div class="card">
+  <img src="imagens/gasto.png" alt="Projeto Controle Financeiro">
+  <h3>Projeto Controle Financeiro</h3>
+  <p>Controle entradas, saídas e saldo diário com praticidade.</p>
+  <a class="btn-ver-projeto" href="financas/index.html" target="_blank">Ver Projeto</a>
+</div>
+
+    
+
+  </div>
+</section>
+
+
+<section id="contatos">
+  <h2>Contato</h2>
+  <div class="contatos">
+    <a href="https://mail.google.com/mail/?view=cm&to=pamelamarinnicreates@gmail.com" target="_blank" class="contato-btn email">
+      📩 Email
+    </a>
+    <a href="https://wa.me/41996450394" target="_blank" class="contato-btn whatsapp">
+      💬 WhatsApp
+    </a>
+    <a href="https://www.linkedin.com/in/pamelamarinni" target="_blank" class="contato-btn linkedin">
+      🔗 LinkedIn
+    </a>
+   <a href="https://github.com/PamelaMarinni" target="_blank" class="contato-btn github">
+  🐙 GitHub
+</a>
+
+</a>
+  </div>
+</section>
+
+  <footer>
+    <p>⭐Design com propósito⭐</p>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", function () {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        nav.classList.add("hide");
+      } else {
+        nav.classList.remove("hide");
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
+  </script>
+
+
+  <!-- Atualizando para GitHub Pages -->
+
+
+</body>
+</html>

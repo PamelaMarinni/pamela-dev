@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Resultados da Busca • Arquivo Feminino: Proibido</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+<style>
+  /* ===== BASE ===== */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  html,body{
+    margin:0;padding:0;font-family:'Roboto',sans-serif;color:#fff;
+    background:linear-gradient(270deg,#F48FB1,#CE93D8,#7E57C2,#42A5F5);
+    background-size:800% 800%;animation:bgShift 8s ease-in-out infinite;
+  }
+  @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+  main{flex:1 0 auto}
+
+  /* ===== HEADER padronizado ===== */
+  header{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem
+  }
+  .titulo-site{
+    font-family:'Great Vibes',cursive;font-size:2.2rem;margin:0;
+    text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)
+  }
+  nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+  /* ===== HERO ===== */
+  .resultado-hero{padding:18px 16px;background:rgba(0,0,0,.12);border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}
+  .resultado-hero .container{max-width:1100px;margin:0 auto;display:grid;gap:6px}
+  .resultado-hero h2{margin:0;font-size:1.6rem;color:#FFD966;font-weight:400}
+  #resumoBusca{margin:0;font-size:.98rem;color:#ffe6f0}
+
+  /* ===== GRID ===== */
+  .area-resultados{max-width:1300px;margin:18px auto 40px;padding:0 16px}
+  #gridResultados{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:24px;
+    max-width:calc(6 * 210px + 5 * 24px);
+    margin:0 auto 60px;padding-bottom:50px;
+  }
+
+  /* ===== CARD (idêntico ao estilo das outras páginas) ===== */
+  #gridResultados .livro-card{
+    position:relative;width:210px;height:320px;padding:12px;border-radius:10px;overflow:hidden;transition:box-shadow .3s ease;
+  }
+  #gridResultados .livro-card img{
+    width:100%;height:100%;object-fit:cover;border:3px solid #FF6F91;border-radius:6px;transition:transform .3s ease,filter .3s ease;display:block;
+  }
+  #gridResultados .livro-card:hover img{transform:scale(1.05);filter:brightness(60%)}
+  #gridResultados .livro-card:hover{box-shadow:0 0 15px #FF6F91}
+
+  /* Overlay em 3 zonas: topo / centro / base */
+  #gridResultados .livro-card .overlay{
+    position:absolute;inset:12px;background:rgba(47,28,46,.85);
+    display:grid;grid-template-rows:auto 1fr auto; /* topo / espaço / base */
+    border-radius:10px;padding:12px;opacity:0;transform:translateY(100%);
+    transition:transform .4s ease,opacity .4s ease;pointer-events:none;
+  }
+  #gridResultados .livro-card:hover .overlay{opacity:1;transform:translateY(0);pointer-events:auto}
+
+  /* TOPO: título + autora */
+  #gridResultados .top{align-self:start;text-align:center}
+  #gridResultados .titulo-livro{
+    margin:0 0 4px 0;font-weight:700;font-size:1.05rem;color:#fff;
+    text-shadow:0 1px 2px rgba(0,0,0,.9),0 0 12px rgba(255,255,255,.2);
+    white-space:normal;overflow-wrap:anywhere;
+  }
+  #gridResultados .autor-livro{margin:0;font-size:.9rem;font-style:italic;color:#f2d7e6}
+
+  /* MEIO: preço no centro geométrico */
+  #gridResultados .valor-livro{
+    place-self:center; /* centro do grid */
+    margin:0;font-size:.95rem;font-weight:700;
+    background:rgba(255,192,203,.95);color:#5A1C2E;
+    padding:6px 12px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.25);backdrop-filter:blur(2px);
+  }
+
+  /* BASE: ações — “um dedo” acima da borda */
+  #gridResultados .acoes{
+    align-self:end;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:12px;
+  }
+  #gridResultados .acoes .detalhes{
+    background:#FF6F91;color:#fff;padding:8px 16px;border-radius:12px;font-size:.95rem;font-weight:700;text-decoration:none;border:0;cursor:pointer;
+    box-shadow:0 6px 14px rgba(255,105,180,.35);transition:background .2s ease,transform .1s ease;
+  }
+  #gridResultados .acoes .detalhes:hover{background:#ff7fa3;transform:translateY(-1px)}
+  /* ícones sem círculo */
+  #gridResultados .acoes .icone{font-size:20px;cursor:pointer;user-select:none;transition:transform .2s ease}
+  #gridResultados .acoes .icone:hover{transform:scale(1.2)}
+
+  #vazioResultados{text-align:center;color:#ffe6f0;font-size:.98rem}
+
+  /* ===== FOOTER fino e grudado ===== */
+  .rodape{background:#5a2a46;color:#e6d6e8;font-size:.9rem;padding:12px 0;border-top:.5px solid #7a4f9a;display:flex;justify-content:center;align-items:center;margin-top:auto}
+  .container-rodape{max-width:1100px;padding:0 16px;text-align:center}
+  .container-rodape p{margin:0}.florzinha{font-size:1.2rem;color:#d4a1e8}
+</style>
+</head>
+<body>
+
+  <!-- HEADER padronizado -->
+  <header>
+    <h1 class="titulo-site">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="resultado-hero">
+    <div class="container">
+      <h2>Resultados da busca</h2>
+      <p id="resumoBusca"></p>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <main class="area-resultados">
+    <div id="gridResultados"></div>
+    <p id="vazioResultados" style="display:none;margin-top:12px;">Nada encontrado.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="rodape">
+    <div class="container-rodape">
+      <p><span class="florzinha">✿</span> Criado e mantido por Pamela Marini <span class="florzinha">✿</span></p>
+    </div>
+  </footer>
+
+  <!-- JS da página (render + fav/pedidos) -->
+  <script>
+  (function(){
+    const $  = s => document.querySelector(s);
+    const norm = s => (s||'').toString().trim();
+    const semAcento = s => (s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const moneyBR = v => {
+      if (v == null || v === '') return '';
+      const n = Number((v+'').replace(/[^\d.,-]/g,'').replace(',','.'));
+      return Number.isFinite(n) ? n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}) : v;
+    };
+
+    /* helpers LS */
+    function readLSArray(key){
+      try{
+        const raw = localStorage.getItem(key);
+        if(!raw) return [];
+        const val = JSON.parse(raw);
+        if(Array.isArray(val)) return val;
+        if(val && typeof val === 'object') return Object.values(val);
+        return [];
+      }catch(e){ return []; }
+    }
+    function writeLSArray(key,arr){ localStorage.setItem(key, JSON.stringify(arr||[])); }
+    const normalizeItem = it => it&&it.id!=null ? ({
+      id:String(it.id),
+      titulo:it.titulo||'',
+      autor:it.autor||'',
+      valor:Number(String(it.valor??'').toString().replace(',','.'))||0,
+      imagem:it.imagem||''
+    }) : null;
+    const hasById = (arr,id) => Array.isArray(arr) && arr.some(x=>String(x.id)===String(id));
+
+    function cardHTML(x){
+      const precoHtml = x.preco ? `<p class="valor-livro">${/^\s*R\$\s*/i.test(x.preco) ? x.preco : moneyBR(x.preco)}</p>` : '';
+      return `
+        <article class="livro-card" data-id="${x.id}" data-titulo="${x.titulo}" data-autor="${x.autor}">
+          <img src="${x.imagem || 'imagem/placeholder.png'}" alt="${x.titulo}">
+          <div class="overlay">
+            <div class="top">
+              <p class="titulo-livro">${x.titulo}</p>
+              <p class="autor-livro">${x.autor}</p>
+            </div>
+            ${precoHtml}
+            <div class="acoes">
+              <a href="livros.html?id=${encodeURIComponent(x.id)}" class="detalhes">Detalhes</a>
+              <span class="icone"
+                data-fav-btn
+                data-id="${x.id}"
+                data-titulo="${x.titulo}"
+                data-autor="${x.autor}"
+                data-imagem="${x.imagem||''}"
+                title="Favoritar">🤍</span>
+              <span class="icone"
+                data-cart-btn
+                data-id="${x.id}"
+                data-titulo="${x.titulo}"
+                data-autor="${x.autor}"
+                data-imagem="${x.imagem||''}"
+                title="Adicionar aos pedidos">🛒</span>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function wireFavAndCart(scope){
+      const root = scope || document;
+      const favs = readLSArray('favoritos');
+
+      root.querySelectorAll('[data-fav-btn]').forEach(btn=>{
+        const id = btn.dataset.id;
+        btn.textContent = hasById(favs,id) ? '❤️' : '🤍';
+        if(btn._bound) return; btn._bound = true;
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          const item = normalizeItem({
+            id: btn.dataset.id, titulo: btn.dataset.titulo, autor: btn.dataset.autor, imagem: btn.dataset.imagem
+          });
+          if(!item) return;
+          let arr = readLSArray('favoritos');
+          if(hasById(arr,item.id)){ arr = arr.filter(x=>String(x.id)!==String(item.id)); btn.textContent='🤍'; }
+          else { arr.push(item); btn.textContent='❤️'; }
+          writeLSArray('favoritos', arr);
+        });
+      });
+
+      root.querySelectorAll('[data-cart-btn]').forEach(btn=>{
+        if(btn._bound) return; btn._bound = true;
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          const item = normalizeItem({
+            id: btn.dataset.id, titulo: btn.dataset.titulo, autor: btn.dataset.autor, imagem: btn.dataset.imagem
+          });
+          if(!item) return;
+          let cart = readLSArray('pedidos');
+          if(!hasById(cart,item.id)){ cart.push(item); writeLSArray('pedidos', cart); }
+        });
+      });
+    }
+
+    function render(){
+      const resumo = document.getElementById('resumoBusca');
+      const grid   = document.getElementById('gridResultados');
+      const vazio  = document.getElementById('vazioResultados');
+      if(!grid || !resumo || !vazio) return;
+
+      const qs = new URLSearchParams(location.search);
+      const q  = (qs.get('q')||'').toString().trim();
+      resumo.textContent = q ? `Você buscou por: “${q}”` : 'Digite um termo na busca da página inicial.';
+
+      const catalogo = JSON.parse(localStorage.getItem('catalogo') || '[]');
+      const termo = q.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+      const resultados = termo
+        ? catalogo.filter(x =>
+            (x.titulo||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(termo) ||
+            (x.autor||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(termo)
+          )
+        : [];
+
+      if(!termo || !resultados.length){
+        vazio.style.display = 'block';
+        vazio.textContent = !termo ? 'Use a busca na página inicial para procurar um livro.' : 'Nenhum livro encontrado para sua busca.';
+        grid.innerHTML = '';
+        return;
+      }
+
+      vazio.style.display = 'none';
+      grid.innerHTML = resultados.map(cardHTML).join('');
+      wireFavAndCart(grid);
+    }
+
+    document.addEventListener('DOMContentLoaded', render);
+  })();
+  </script>
+</body>
+</html>

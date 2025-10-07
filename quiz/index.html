@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Anime</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background: #2b2b2b;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+
+    .start-screen img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 8px;
+      border: 2px solid #444;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4757;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #e84118;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .option {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #444;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option:hover {
+      background: #555;
+    }
+
+    .option.selected {
+      background: #ff4757;
+    }
+
+    .result img {
+      max-width: 200px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <!-- Tela inicial -->
+    <div id="startScreen" class="start-screen">
+      <h1>Qual personagem de anime você é?</h1>
+      <div>
+        <img src="naruto.png" alt="Naruto">
+        <img src="luffy.png" alt="Luffy">
+        <img src="goku.png" alt="Goku">
+        <img src="levi.png" alt="Levi">
+        <img src="ichigo.png" alt="Ichigo">
+        <img src="edward.png" alt="Edward">
+      </div>
+      <button class="btn" onclick="startQuiz()">Começar Quiz</button>
+    </div>
+
+    <!-- Perguntas -->
+    <div id="quiz" class="hidden">
+      <h2 id="question">Pergunta aqui</h2>
+      <div class="options" id="options"></div>
+      <button class="btn hidden" id="nextBtn">Próxima</button>
+    </div>
+
+    <!-- Resultado -->
+    <div id="result" class="result hidden">
+      <h2>Você se parece com:</h2>
+      <img id="resultImg" src="" alt="Resultado">
+      <h3 id="resultName"></h3>
+      <p id="resultDesc"></p>
+      <button class="btn" onclick="restartQuiz()">Refazer Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Se você tivesse um superpoder, qual escolheria?",
+        options: [
+          { text: "Resiliência para nunca desistir", character: "naruto" },
+          { text: "Liberdade total para explorar o mundo", character: "luffy" },
+          { text: "Força ilimitada", character: "goku" },
+          { text: "Estratégia infalível", character: "levi" },
+          { text: "Coragem para enfrentar qualquer inimigo", character: "ichigo" },
+          { text: "Inteligência além do normal", character: "edward" }
+        ]
+      },
+      {
+        question: "Qual ambiente você mais gosta?",
+        options: [
+          { text: "Treinando sem parar", character: "goku" },
+          { text: "Aventuras pelo mar", character: "luffy" },
+          { text: "Estudando alquimia e ciência", character: "edward" },
+          { text: "Em batalha contra titãs", character: "levi" },
+          { text: "Defendendo a cidade de monstros", character: "ichigo" },
+          { text: "Com amigos sonhando com o futuro", character: "naruto" }
+        ]
+      },
+      {
+        question: "Qual defeito combina mais com você?",
+        options: [
+          { text: "Impulsivo", character: "naruto" },
+          { text: "Ingênuo", character: "luffy" },
+          { text: "Competitivo", character: "goku" },
+          { text: "Frio demais", character: "levi" },
+          { text: "Cabeça quente", character: "ichigo" },
+          { text: "Teimoso", character: "edward" }
+        ]
+      },
+      {
+        question: "Qual é o seu maior objetivo?",
+        options: [
+          { text: "Ser reconhecido e amado", character: "naruto" },
+          { text: "Viajar e conquistar liberdade", character: "luffy" },
+          { text: "Ficar mais forte a cada dia", character: "goku" },
+          { text: "Proteger a humanidade", character: "levi" },
+          { text: "Defender quem amo", character: "ichigo" },
+          { text: "Recuperar algo perdido", character: "edward" }
+        ]
+      },
+      {
+        question: "Seus amigos estão em perigo, o que você faz?",
+        options: [
+          { text: "Dou minha vida por eles", character: "naruto" },
+          { text: "Arrisco tudo sem pensar duas vezes", character: "luffy" },
+          { text: "Enfrento o inimigo de frente", character: "goku" },
+          { text: "Crio um plano rápido e preciso", character: "levi" },
+          { text: "Entro na luta sem hesitar", character: "ichigo" },
+          { text: "Uso a cabeça para encontrar saída", character: "edward" }
+        ]
+      }
+    ];
+
+    const characters = {
+      naruto: {
+        name: "Naruto Uzumaki",
+        img: "naruto.png",
+        desc: "Você é determinado, leal e nunca desiste dos seus sonhos."
+      },
+      luffy: {
+        name: "Monkey D. Luffy",
+        img: "luffy.png",
+        desc: "Você é alegre, aventureiro e sempre valoriza a amizade."
+      },
+      goku: {
+        name: "Goku",
+        img: "goku.png",
+        desc: "Você é bondoso, competitivo e adora superar limites."
+      },
+      levi: {
+        name: "Levi Ackerman",
+        img: "levi.png",
+        desc: "Você é sério, disciplinado e estratégico em tudo que faz."
+      },
+      ichigo: {
+        name: "Ichigo Kurosaki",
+        img: "ichigo.png",
+        desc: "Você é corajoso, protetor e luta pelo que acredita."
+      },
+      edward: {
+        name: "Edward Elric",
+        img: "edward.png",
+        desc: "Você é inteligente, persistente e leal aos seus ideais."
+      }
+    };
+
+    let currentQuestion = 0;
+    let scores = { naruto:0, luffy:0, goku:0, levi:0, ichigo:0, edward:0 };
+    let selectedOption = null;
+
+    const startScreen = document.getElementById("startScreen");
+    const quizEl = document.getElementById("quiz");
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("nextBtn");
+    const resultEl = document.getElementById("result");
+    const resultImg = document.getElementById("resultImg");
+    const resultName = document.getElementById("resultName");
+    const resultDesc = document.getElementById("resultDesc");
+
+    function startQuiz() {
+      startScreen.classList.add("hidden");
+      quizEl.classList.remove("hidden");
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+      selectedOption = null;
+      nextBtn.classList.add("hidden");
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.textContent = option.text;
+        btn.classList.add("option");
+        btn.onclick = () => selectOption(btn, option.character);
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function selectOption(btn, character) {
+      document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+      btn.classList.add("selected");
+      selectedOption = character;
+      nextBtn.classList.remove("hidden");
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (!selectedOption) return;
+      scores[selectedOption]++;
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      quizEl.classList.add("hidden");
+      resultEl.classList.remove("hidden");
+
+      const winner = Object.keys(scores).reduce((a, b) =>
+        scores[a] > scores[b] ? a : b
+      );
+
+      resultImg.src = characters[winner].img;
+      resultName.textContent = characters[winner].name;
+      resultDesc.textContent = characters[winner].desc;
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      for (let key in scores) scores[key] = 0;
+      resultEl.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Romântica</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Fundo animado */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: white;
+      background: linear-gradient(270deg, #F48FB1, #CE93D8, #7E57C2, #42A5F5);
+      background-size: 800% 800%;
+      animation: bgColorShift 5s ease infinite;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @keyframes bgColorShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* HEADER padronizado */
+    header{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+      padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem
+    }
+    .titulo-site{
+      font-family:'Great Vibes',cursive;font-size:2.2rem;margin:0;
+      text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)
+    }
+    nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+    /* Título principal com brilho pulsante */
+    .titulo-romantica {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      font-weight: normal;
+      text-align: center;
+      color: #ffffff;
+      background-color: rgba(90, 42, 70, 0.3);
+      backdrop-filter: blur(4px);
+      padding: 12px 24px;
+      border-radius: 16px;
+      width: fit-content;
+      box-shadow: 0 4px 10px rgba(90, 42, 70, 0.2);
+      margin: 40px auto 20px;
+      user-select: none;
+      animation: brilhoPulsante 2.5s infinite ease-in-out;
+      cursor: default;
+    }
+    @keyframes brilhoPulsante {
+      0%, 100% {
+        transform: scale(1);
+        text-shadow: 2px 2px 5px rgba(255,182,193,.8), 0 0 15px rgba(255,105,180,.9);
+        color: #fff;
+      }
+      50% {
+        transform: scale(1.05);
+        text-shadow: 4px 4px 10px rgba(255,182,193,1), 0 0 25px rgba(255,105,180,1);
+        color: #ffe6f0;
+      }
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 0 20px 40px;
+      margin: 20px auto 0;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+      user-select: text;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.7));
+      width: 1300px;
+      max-width: 100%;
+    }
+
+    /* FOOTER */
+    .rodape {
+      background-color: #5a2a46;
+      color: #e6d6e8;
+      font-size: 0.9rem;
+      padding: 16px 0;
+      border-top: 0.5px solid #7a4f9a;
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      user-select: none;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .container-rodape { max-width: 1100px; width: 100%; padding: 0 16px; box-sizing: border-box; text-align: center; }
+    .container-rodape p { margin: 0; }
+    .florzinha { font-size: 1.4rem; line-height: 1; color: #d4a1e8; }
+
+    /* GENEROS */
+    .generos { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+    .conteudo-suspense { padding-top: 20px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .genero img { width: 100px; height: 100px; border-radius: 70%; object-fit: cover; flex-shrink: 0; transition: transform .2s ease, box-shadow .2s ease; }
+    .genero p { margin: 0; font-size: 16px; white-space: normal; overflow-wrap: break-word !important; width: 100%; text-align: center; line-height: 1.2; }
+    .genero img:hover { transform: scale(1.1); box-shadow: 0 0 15px 5px #FF6F91; }
+    .generos a { text-decoration: none; color: inherit; }
+
+    /* LIVROS */
+    .livros-wrapper {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;
+      max-width: calc(6 * 210px + 5 * 24px);
+      margin: 0 auto 60px auto; padding-bottom: 50px;
+    }
+    .livro { flex: 0 0 210px; position: relative; padding: 12px; border-radius: 10px; overflow: hidden; transition: box-shadow 0.3s ease; }
+    .livro img {
+      width: 100%; height: 320px; object-fit: cover; border: 3px solid #FF6F91; border-radius: 6px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .livro:hover img { transform: scale(1.05); filter: brightness(60%); }
+
+    .overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(47, 28, 46, 0.85);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 12px; box-sizing: border-box; opacity: 0; transform: translateY(100%);
+      transition: transform 0.4s ease, opacity 0.4s ease; pointer-events: none; border-radius: 10px;
+    }
+    .livro:hover .overlay { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .livro:hover { box-shadow: 0 0 15px #FF6F91; }
+
+    .titulo-livro {
+      font-family: 'Great Vibes', cursive; font-size: 20px; font-weight: normal; color: #FFEBF0; margin-bottom: 4px; text-shadow: 1px 1px 3px #000;
+      text-align: center; white-space: normal; word-wrap: break-word; overflow-wrap: break-word;
+    }
+    .autor-livro { font-size: 13px; font-style: italic; color: #E0C9D0; text-align: center; }
+    .valor-livro {
+      font-size: 13px; margin-top: 4px; background: #FFC0CB; color: #5A1C2E; padding: 2px 6px; border-radius: 8px;
+      opacity: 0.5; filter: blur(0.5px); transition: opacity 0.3s ease, filter 0.3s ease;
+      text-align: center; display: block; width: fit-content; margin-left: auto; margin-right: auto;
+    }
+    .livro:hover .valor-livro { opacity: 0.7; filter: blur(0.3px); }
+
+    .acoes { display: flex; gap: 10px; margin-top: 6px; align-items: center; justify-content: center; }
+    .icone { font-size: 18px; cursor: pointer; transition: transform 0.2s ease; user-select: none; }
+    .icone:hover { transform: scale(1.3); }
+
+    .acoes .detalhes {
+      background: #FF6F91; color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: bold;
+      text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease;
+    }
+    .acoes .detalhes:hover { background: #B05A6E; }
+
+    /* BOTÃO VOLTAR */
+    .botao-voltar-container { text-align: center; margin-top: -20px; }
+    .botao-voltar {
+      font-family: 'Great Vibes', cursive; background: linear-gradient(135deg, #845EC2, #D65DB1);
+      color: white; padding: 14px 28px; font-size: 1.5rem; font-weight: 500; border: none; border-radius: 30px;
+      text-decoration: none; display: inline-block; box-shadow: 0 6px 12px rgba(132, 94, 194, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .botao-voltar:hover { transform: scale(1.05); box-shadow: 0 8px 16px rgba(132, 94, 194, 0.4); }
+
+    main { flex: 1; }
+
+/* Título principal do site */
+.titulo, .arquivo-titulo {
+  font-size: 1.8rem; /* menor que antes */
+}
+
+/* Título da coleção */
+.colecao h2 {
+  font-size: 2rem; /* antes era 2.5rem */
+}
+
+/* Títulos dos livros */
+.titulo-livro {
+  font-size: 1rem; /* antes 1.2rem */
+}
+
+/* Autor dos livros */
+.autor-livro {
+  font-size: 0.9rem; /* antes 1rem */
+}
+
+/* Valor dos livros */
+.valor-livro {
+  font-size: 0.9rem; /* antes 1rem */
+}
+
+
+  </style>
+</head>
+<body>
+
+   <!-- HEADER padronizado -->
+  <header>
+    <h1 class="titulo-site">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+      </nav>
+  </header>
+
+
+  <h1 class="titulo-romantica">Romântica</h1>
+
+  <!-- GÊNEROS -->
+  <div class="generos">
+    <a href="sombria.html" class="genero"><img src="imagem/sombrio.jpg" alt="Sombria"><p>Sombria</p></a>
+    <a href="mistica.html" class="genero"><img src="imagem/mistica.jpg" alt="Mística"><p>Mística</p></a>
+    <a href="empoderada.html" class="genero"><img src="imagem/brava.jpg" alt="Empoderada"><p>Empoderada</p></a>
+    <a href="criativa.html" class="genero"><img src="imagem/criativa.jpg" alt="Criativa"><p>Criativa</p></a>
+    <a href="visionaria.html" class="genero"><img src="imagem/ficcaocientifica.jpg" alt="Visionária"><p>Visionária</p></a>
+  </div>
+
+  <main>
+    <div class="livros-wrapper">
+
+      <!-- ROSA NÃO PEDE PERDÃO -->
+      <div class="livro">
+        <img src="imagem/livrorosa1.png" alt="Rosa Não Pede Perdão">
+        <div class="overlay">
+          <p class="titulo-livro">✨Rosa Não Pede Perdão✨</p>
+          <p class="autor-livro">Marilia Pessoa</p>
+          <p class="valor-livro">R$ 52,80</p>
+          <div class="acoes">
+            <a href="livros.html?id=rosa-nao-pede-perdao" class="detalhes">Detalhes</a>
+            <!-- FAVORITO -->
+            <span class="icone"
+              data-fav-btn
+              data-id="rosa-nao-pede-perdao"
+              data-titulo="Rosa Não Pede Perdão"
+              data-autor="Marilia Pessoa"
+              data-valor="52.80"
+              data-imagem="imagem/livrorosa1.png">🤍</span>
+            <!-- PEDIDOS -->
+            <span class="icone"
+              data-cart-btn
+              data-id="rosa-nao-pede-perdao"
+              data-titulo="Rosa Não Pede Perdão"
+              data-autor="Marilia Pessoa"
+              data-valor="52.80"
+              data-imagem="imagem/livrorosa1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DE VOLTA PARA O MESMO CORAÇÃO -->
+      <div class="livro">
+        <img src="imagem/livrocoracao1.png" alt="De Volta Para o Mesmo Coração">
+        <div class="overlay">
+          <p class="titulo-livro">✨De Volta Para o Mesmo Coração✨</p>
+          <p class="autor-livro">Cris Rocha</p>
+          <p class="valor-livro">R$ 58,90</p>
+          <div class="acoes">
+            <a href="livros.html?id=volta-coracao" class="detalhes">Detalhes</a>
+            <span class="icone"
+              data-fav-btn
+              data-id="volta-coracao"
+              data-titulo="De Volta Para o Mesmo Coração"
+              data-autor="Cris Rocha"
+              data-valor="58.90"
+              data-imagem="imagem/livrocoracao1.png">🤍</span>
+            <span class="icone"
+              data-cart-btn
+              data-id="volta-coracao"
+              data-titulo="De Volta Para o Mesmo Coração"
+              data-autor="Cris Rocha"
+              data-valor="58.90"
+              data-imagem="imagem/livrocoracao1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENTRE RISOS E ACASOS -->
+      <div class="livro">
+        <img src="imagem/livroriso1.png" alt="Entre Risos e Acasos">
+        <div class="overlay">
+          <p class="titulo-livro">✨Entre Risos e Acasos✨</p>
+          <p class="autor-livro">Meguie Nadia</p>
+          <p class="valor-livro">R$ 52,90</p>
+          <div class="acoes">
+            <a href="livros.html?id=entre-risos-e-acasos" class="detalhes">Detalhes</a>
+            <span class="icone"
+              data-fav-btn
+              data-id="entre-risos-e-acasos"
+              data-titulo="Entre Risos e Acasos"
+              data-autor="Meguie Nadia"
+              data-valor="52.90"
+              data-imagem="imagem/livroriso1.png">🤍</span>
+            <span class="icone"
+              data-cart-btn
+              data-id="entre-risos-e-acasos"
+              data-titulo="Entre Risos e Acasos"
+              data-autor="Meguie Nadia"
+              data-valor="52.90"
+              data-imagem="imagem/livroriso1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A ÚLTIMA CARTA QUEIMEI -->
+      <div class="livro">
+        <img src="imagem/livroqueimei1.png" alt="A Última Carta Queimei">
+        <div class="overlay">
+          <p class="titulo-livro">🩷A Última Carta Queimei🩷</p>
+          <p class="autor-livro">Isadora M.</p>
+          <p class="valor-livro">R$ 42,70</p>
+          <div class="acoes">
+            <a href="livros.html?id=ultima-carta-queimei" class="detalhes">Detalhes</a>
+            <span class="icone"
+              data-fav-btn
+              data-id="ultima-carta-queimei"
+              data-titulo="A Última Carta Queimei"
+              data-autor="Isadora M."
+              data-valor="42.70"
+              data-imagem="imagem/livroqueimei1.png">🤍</span>
+            <span class="icone"
+              data-cart-btn
+              data-id="ultima-carta-queimei"
+              data-titulo="A Última Carta Queimei"
+              data-autor="Isadora M."
+              data-valor="42.70"
+              data-imagem="imagem/livroqueimei1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A CRIATURA DA FLORESTA PROIBIDA -->
+      <div class="livro">
+        <img src="imagem/livroproibido1.png" alt="A Criatura da Floresta Proibida">
+        <div class="overlay">
+          <p class="titulo-livro">🌿A Criatura da Floresta Proibida🌿</p>
+          <p class="autor-livro">Eloá S. Moura</p>
+          <p class="valor-livro">R$ 39,90</p>
+          <div class="acoes">
+            <a href="livros.html?id=criatura-floresta-proibida" class="detalhes">Detalhes</a>
+            <span class="icone"
+              data-fav-btn
+              data-id="criatura-floresta-proibida"
+              data-titulo="A Criatura da Floresta Proibida"
+              data-autor="Eloá S. Moura"
+              data-valor="39.90"
+              data-imagem="imagem/livroproibido1.png">🤍</span>
+            <span class="icone"
+              data-cart-btn
+              data-id="criatura-floresta-proibida"
+              data-titulo="A Criatura da Floresta Proibida"
+              data-autor="Eloá S. Moura"
+              data-valor="39.90"
+              data-imagem="imagem/livroproibido1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="botao-voltar-container">
+      <a href="index.html" class="botao-voltar">Página Inicial</a>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container-rodape">
+  <p><span class="florzinha">✿</span> Criado e mantido por Pamela Marini <span class="florzinha">✿</span></p>
+  </div>
+  </footer>
+
+  <!-- ========= SCRIPTS FAVORITOS/PEDIDOS + TOAST ========= -->
+  <script>
+  // --------- Utils LocalStorage ---------
+  function parseLS(key){try{const raw=localStorage.getItem(key);if(!raw)return null;return JSON.parse(raw);}catch{return null;}}
+  function getLSArrayFlexible(key){const d=parseLS(key);if(Array.isArray(d))return d;if(d&&typeof d==='object')return Object.values(d);return [];}
+  function saveLS(key,val){localStorage.setItem(key,JSON.stringify(val||[]));}
+
+  // Normalização de item
+  function normalizeItem(it){
+    if(!it||it.id==null) return null;
+    return {
+      id:String(it.id),
+      titulo:it.titulo||'',
+      autor:it.autor||'',
+      valor:Number(String(it.valor??'').toString().replace(',','.'))||0,
+      imagem:it.imagem||''
+    };
+  }
+
+  // Favoritos/Pedidos seguros
+  function readFavsSafe(){return getLSArrayFlexible('favoritos').map(normalizeItem).filter(Boolean);}
+  function writeFavsSafe(a){saveLS('favoritos',(a||[]).map(normalizeItem).filter(Boolean));}
+  function readCartSafe(){return getLSArrayFlexible('pedidos').map(normalizeItem).filter(Boolean);}
+  function writeCartSafe(a){saveLS('pedidos',(a||[]).map(normalizeItem).filter(Boolean));}
+  (function migrate(){ writeFavsSafe(readFavsSafe()); writeCartSafe(readCartSafe()); })();
+  function hasById(list,id){const sid=String(id);return Array.isArray(list)&&list.some(x=>String(x.id)===sid);}
+
+  // --------- Toast minimal ---------
+  (function(){
+    const rootId='toast-root'; const q=[]; let showing=false; let currentKey='';
+    function ensure(){let r=document.getElementById(rootId); if(!r){r=document.createElement('div'); r.id=rootId;
+      r.setAttribute('aria-live','polite'); r.setAttribute('aria-atomic','true');
+      Object.assign(r.style,{position:'fixed',zIndex:'9999',top:'16px',right:'16px',display:'flex',flexDirection:'column',gap:'10px',pointerEvents:'none'}); document.body.appendChild(r);} return r;}
+    function makeKey(t,ty){return `${ty}::${t}`.slice(0,200);}
+    function render({text,type='info',duration=2500,icon}){
+      const r=ensure(); const w=document.createElement('div'); w.className=`toast ${type}`; w.setAttribute('role','status');
+      Object.assign(w.style,{pointerEvents:'auto',minWidth:'260px',maxWidth:'min(90vw,380px)',padding:'12px 14px',borderRadius:'12px',color:'#111',background:'#fff',boxShadow:'0 10px 30px rgba(0,0,0,.15)',display:'grid',gridTemplateColumns:'24px 1fr 24px',alignItems:'start',gap:'10px',opacity:'0',transform:'translateY(-10px)',transition:'opacity .18s, transform .18s',borderLeft:'6px solid #3b82f6'});
+      const borders={success:'#22c55e',warning:'#f59e0b',error:'#ef4444',info:'#3b82f6'}; w.style.borderLeftColor=borders[type]||borders.info;
+      const iconMap={success:'✅',warning:'⚠️',error:'❌',info:'ℹ️'}; const ico=icon||iconMap[type]||'ℹ️';
+      const safe = (text==null||String(text).trim()==='') ? 'Ação concluída.' : String(text);
+      w.innerHTML = `
+        <div aria-hidden="true" style="font-size:18px;line-height:1">${ico}</div>
+        <div style="font:500 14px/1.35 system-ui;color:#111;white-space:normal;">${safe}</div>
+        <button type="button" aria-label="Fechar" style="border:0;background:transparent;font-size:18px;cursor:pointer;color:#333">×</button>`;
+      const btn=w.querySelector('button'); let timer=null;
+      const hide=()=>{clearTimeout(timer); w.style.opacity='0'; w.style.transform='translateY(-10px)'; setTimeout(()=>{w.remove(); showing=false; play();},180);};
+      const schedule=()=>{clearTimeout(timer); timer=setTimeout(hide,duration);};
+      btn.addEventListener('click',hide); w.addEventListener('mouseenter',()=>clearTimeout(timer)); w.addEventListener('mouseleave',schedule);
+      r.appendChild(w); requestAnimationFrame(()=>{w.style.opacity='1'; w.style.transform='translateY(0)';}); schedule();
+    }
+    function play(){ if(showing) return; const item=q.shift(); if(!item) return; showing=true; currentKey=item.key; render(item); }
+    window.showToast=function(text,opts={}){ const {type='info',duration=2500,icon}=opts; const safe=(text==null||String(text).trim()==='')?'Ação concluída.':String(text); const key=makeKey(safe,type);
+      if(key===currentKey||q.some(i=>i.key===key)) return; q.push({text:safe,type,duration,icon,key}); play(); };
+  })();
+
+  // --------- Favoritos e Pedidos nos botões ---------
+  document.addEventListener('DOMContentLoaded', ()=>{
+    function isFav(id){ return hasById(readFavsSafe(), id); }
+
+    function toggleFav(btn){
+      const item = normalizeItem({
+        id: btn.dataset.id, titulo: btn.dataset.titulo, autor: btn.dataset.autor,
+        valor: btn.dataset.valor, imagem: btn.dataset.imagem
+      });
+      if(!item) return;
+      let favs = readFavsSafe();
+      if (hasById(favs,item.id)){
+        favs = favs.filter(x=>String(x.id)!==String(item.id));
+        writeFavsSafe(favs);
+        btn.textContent = '🤍';
+        showToast('Removido dos favoritos.', {type:'warning'});
+      } else {
+        favs.push(item);
+        writeFavsSafe(favs);
+        btn.textContent = '❤️';
+        showToast('Adicionado aos favoritos!', {type:'success'});
+      }
+    }
+
+    function addCart(btn){
+      const item = normalizeItem({
+        id: btn.dataset.id, titulo: btn.dataset.titulo, autor: btn.dataset.autor,
+        valor: btn.dataset.valor, imagem: btn.dataset.imagem
+      });
+      if(!item) return;
+      let cart = readCartSafe();
+      if (hasById(cart,item.id)){
+        showToast('⚠️ Este livro já está nos pedidos.', {type:'warning'});
+      } else {
+        cart.push(item);
+        writeCartSafe(cart);
+        showToast('📚 Livro adicionado aos pedidos!', {type:'success'});
+      }
+    }
+
+    // Inicializa corações e eventos
+    document.querySelectorAll('[data-fav-btn]').forEach(btn=>{
+      btn.textContent = isFav(btn.dataset.id) ? '❤️' : '🤍';
+      btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleFav(btn); });
+    });
+    document.querySelectorAll('[data-cart-btn]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{ e.preventDefault(); addCart(btn); });
+    });
+  });
+  </script>
+</body>
+</html>

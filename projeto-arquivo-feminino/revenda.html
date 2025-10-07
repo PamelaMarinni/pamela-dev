@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Revenda • Arquivo Feminino: Proibido</title>
+
+  <!-- Fontes & Ícones (iguais às suas páginas) -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto&family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Roboto',sans-serif;background:linear-gradient(to right,#F48FB1 0%,#CE93D8 45%,#7E57C2 75%,#42A5F5 100%);color:#fff}
+
+    /* HEADER (IDÊNTICO ao seu) */
+    header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem}
+    .titulo{ font-family: 'Great Vibes', cursive; /* Fonte atualizada */font-size:2.2rem;margin:0;text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)}
+    nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+    /* WRAP */
+    .wrap{max-width:1100px;margin:32px auto;padding:0 16px}
+
+    /* HERO */
+    .hero{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:16px 18px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .hero h2{margin:0;font-size:2.1rem;color:#FFD966;font-weight:400}
+    .hero p{margin:6px 0 0;color:#f7d3e6}
+
+    .seller{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+    .seller input{
+      background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#fff
+    }
+    .btn{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(135deg,#845EC2,#D65DB1);border-color:transparent}
+    .pill{display:inline-block;border:1px solid rgba(255,255,255,.28);padding:4px 8px;border-radius:999px;font-size:.82rem;background:rgba(0,0,0,.25)}
+
+    /* PASSOS */
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+    .step{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px}
+
+    /* CATÁLOGO */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:18px}
+    .card{display:flex;gap:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .card img{width:95px;height:140px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.18);flex-shrink:0}
+    .card-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .card-title{margin:0;font-weight:800}
+    .card-author{margin:0;font-size:.95rem;opacity:.9}
+    .price{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .price input{width:120px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:8px;color:#fff}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+
+    /* PAINEL DO REVENDEDOR */
+    .panel{margin-top:22px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px}
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    th,td{padding:10px;text-align:left}
+    tr{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12)}
+    tr td:first-child, tr th:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+    tr td:last-child, tr th:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+    .mini{width:60px;height:85px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,.18)}
+
+    /* AVISO DE OFERTA (quando abrir link com params) */
+    .alert{margin-top:14px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:12px}
+
+    /* FOOTER (IDÊNTICO) */
+    .rodape{background:#5a2a46;color:#e6d6e8;font-size:.9rem;padding:16px 0;border-top:.5px solid #7a4f9a;display:flex;justify-content:center;align-items:center;margin-top:28px}
+    .container-rodape{max-width:1100px;padding:0 16px;text-align:center}
+    .florzinha{font-size:1.4rem;color:#d4a1e8}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="revenda">
+      <h2><span style="font-family:'Great Vibes',cursive">Revenda Oficial</span></h2>
+      <p>Ganhe comissão indicando e revendendo os livros do Arquivo Feminino: Proibido ✨</p>
+
+     <div class="seller">
+  <label for="sellerName" style="font-weight:700">Seu nome de revendedora:</label>
+  <input id="sellerName" placeholder="Ex.: Nome" />
+  <button class="btn primary" id="saveSeller">Salvar</button>
+  <span class="pill" id="sellerStatus">não salvo</span>
+</div>
+
+
+      <div class="steps">
+        <div class="step">1) Escolha os livros abaixo.</div>
+        <div class="step">2) Defina seu preço (ou use o sugerido).</div>
+        <div class="step">3) Gere o link e compartilhe no WhatsApp.</div>
+      </div>
+    </section>
+
+    <!-- AVISO DE OFERTA (se abrir com ?book=...&seller=...&price=...) -->
+    <div id="oferta" class="alert" style="display:none"></div>
+
+    <!-- CATÁLOGO -->
+    <section class="grid" id="catalogo" aria-label="Catálogo para revenda"></section>
+
+    <!-- PAINEL -->
+    <section class="panel" aria-label="Painel do revendedor">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h3 style="margin:0;color:#FFD966">Seus itens para revenda</h3>
+        <div>
+          <button class="btn" id="btnExport">Exportar lista</button>
+          <button class="btn" id="btnClear">Limpar painel</button>
+        </div>
+      </div>
+      <div style="overflow:auto;margin-top:10px">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:80px">Capa</th>
+              <th>Título</th>
+              <th>Autora</th>
+              <th>Preço sugerido</th>
+              <th>Seu preço</th>
+              <th>Link</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tb"></tbody>
+        </table>
+      </div>
+      <p class="pill" id="vazio" style="display:none;margin-top:10px">Nenhum item adicionado ainda.</p>
+    </section>
+
+    <!-- Voltar -->
+    <div style="text-align:center;margin:22px 0 6px">
+      <a href="index.html" class="btn primary" style="font-family:'Great Vibes',cursive;font-size:1.2rem;padding:10px 20px;border-radius:30px;text-decoration:none;display:inline-block;">Página Inicial</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="rodape">
+    <div class="container-rodape">
+      <p><span class="florzinha">✿</span> Criado e mantido por Pâmela Marini <span class="florzinha">✿</span></p>
+    </div>
+  </footer>
+
+  <script>
+    /* ================== DADOS: 24 livros ================== */
+    const BOOKS = [
+      {id:'agulha-e-a-coroa', titulo:'A Agulha e a Coroa', autor:'Marina Duarte', img:'imagem/livroagulha1.png', preco:49.90},
+      {id:'a-coroa-e-a-cura', titulo:'A Coroa e a Cura', autor:'Helena Costa', img:'imagem/livrocura1.png', preco:54.90},
+      {id:'poder-e-resto', titulo:'O Poder e o Resto', autor:'Lívia Nogueira', img:'imagem/livropoder1.png', preco:44.90},
+
+      {id:'meu-nome-e-ana', titulo:'Meu Nome é Ana', autor:'Beatriz Mota', img:'imagem/livroana1.png', preco:39.90},
+      {id:'o-silencio-de-leila', titulo:'O Silêncio de Leila', autor:'Camila Rezende', img:'imagem/livroleila1.png', preco:52.90},
+      {id:'codigos-de-eva', titulo:'Os Códigos de Eva', autor:'Dandara Loures', img:'imagem/livroeva1.png', preco:46.90},
+
+      {id:'de-volta-para-o-mesmo-coracao', titulo:'De Volta Para o Mesmo Coração', autor:'Camila Rocha', img:'imagem/livrocoracao1.png', preco:42.90},
+      {id:'o-riso-e-a-promessa', titulo:'O Riso e a Promessa', autor:'Laura Mendes', img:'imagem/livroriso1.png', preco:41.90},
+
+      {id:'sacerdotisa-taro', titulo:'A Sacerdotisa do Tarô: Sabedoria das Cartas', autor:'Isadora Luna', img:'imagem/livrotarop.png', preco:57.90},
+      {id:'sorriso-que-ela-deixou', titulo:'O Sorriso Que Ela Deixou', autor:'Pam Alves', img:'imagem/livrosorriso1.png', preco:39.90},
+      {id:'o-pulsar-sagrado', titulo:'O Pulsar Sagrado: A Energia Feminina no Universo', autor:'Pam Alves', img:'imagem/livropulsar.png', preco:59.90},
+      {id:'boas-meninas-nao-matam', titulo:'As Boas Meninas Não Matam', autor:'Kimberly Muller', img:'imagem/livrogarotas1.png', preco:49.90},
+      {id:'rosa-nao-pede-perdao', titulo:'Rosa Não Pede Perdão', autor:'Marilia Pessoa', img:'imagem/livrorosa1.png', preco:37.90},
+      {id:'so-eu-voltei', titulo:'Só Eu Voltei', autor:'Victor Lima', img:'imagem/livroeu1.png', preco:45.90},
+      {id:'volta-coracao', titulo:'De Volta Para o Mesmo Coração', autor:'Cris Rocha', img:'imagem/livrocoracao1.png', preco:42.90},
+      {id:'marca-na-pele', titulo:'Marca na Pele', autor:'Anahi Vidal', img:'imagem/livromarca1.png', preco:47.90},
+      {id:'sem-permissao', titulo:'Sem Permissão, Mesmo Assim', autor:'Fernanda Emmanuele', img:'imagem/livropermissao1.png', preco:39.90},
+      {id:'diario-nao-ditas', titulo:'O Diário das Coisas Não Ditas', autor:'Debi Castanho', img:'imagem/livrodiario1.png', preco:35.90},
+      {id:'ultima-carta-queimei', titulo:'A Última Carta Queimei', autor:'Isadora M.', img:'imagem/livroqueimei1.png', preco:43.90},
+      {id:'criatura-floresta-proibida', titulo:'A Criatura da Floresta Proibida', autor:'Eloá S. Moura', img:'imagem/livroproibido1.png', preco:55.90},
+      {id:'menina-monstros', titulo:'A Menina que Sabia Dormir com Monstros', autor:'C. Mirella', img:'imagem/livromenina1.png', preco:48.90},
+      {id:'palavras-que-floriram', titulo:'Palavras que Floriram', autor:'Vitória Campos', img:'imagem/livropalavra1.png', preco:34.90},
+      {id:'porta-sem-nome', titulo:'A Porta Sem Nome', autor:'Helena L. Ruiz', img:'imagem/livroporta1.png', preco:44.90},
+      {id:'casa-das-bonecas-vazias', titulo:'A Casa das Bonecas Vazias', autor:'Isadora Freitas', img:'imagem/livroboneca1.png', preco:46.90}
+    ];
+
+    /* ================== STORAGE ================== */
+    const KEYS = {
+      seller: 'revenda_seller_name',
+      items:  'revenda_items_v1'
+    };
+    const LS = {
+      get(k, def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def }catch(e){ return def } },
+      set(k, v){ localStorage.setItem(k, JSON.stringify(v)); },
+      del(k){ localStorage.removeItem(k); }
+    };
+
+    /* ================== HELPERS ================== */
+    const $ = (s,el=document)=> el.querySelector(s);
+    const $$ = (s,el=document)=> Array.from(el.querySelectorAll(s));
+    const BRL = v => 'R$ ' + (Number(v)||0).toFixed(2).replace('.',',');
+
+    function toast(msg){
+      let r = $('#toast-root');
+      if(!r){ r = document.createElement('div'); r.id='toast-root';
+        Object.assign(r.style,{position:'fixed',right:'16px',bottom:'16px',display:'flex',gap:'10px',flexDirection:'column',zIndex:9999});
+        document.body.appendChild(r);
+      }
+      const el = document.createElement('div'); el.textContent = msg;
+      Object.assign(el.style,{background:'rgba(0,0,0,.85)',color:'#fff',padding:'10px 12px',borderRadius:'12px',boxShadow:'0 10px 24px rgba(0,0,0,.25)'});
+      r.appendChild(el); setTimeout(()=> el.remove(), 2400);
+    }
+
+    function genLink(bookId, price){
+      const seller = (LS.get(KEYS.seller,'') || '').trim();
+      const base = location.origin + location.pathname;
+      const url = `${base}?book=${encodeURIComponent(bookId)}&seller=${encodeURIComponent(seller)}&price=${encodeURIComponent(Number(price||0).toFixed(2))}`;
+      return url;
+    }
+
+    function shareWA(book, price){
+      const link = genLink(book.id, price);
+      const msg = `📚 *${book.titulo}* — ${book.autor}\n`+
+                  `Preço: ${BRL(price)}\n`+
+                  `Revendedora: ${LS.get(KEYS.seller,'')||'-'}\n`+
+                  `Link: ${link}\n\nVem garantir o seu! ✨`;
+      window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+    }
+
+    /* ================== ELEMENTOS ================== */
+    const sellerName = $('#sellerName');
+    const sellerStatus = $('#sellerStatus');
+    $('#saveSeller').addEventListener('click', ()=>{
+      LS.set(KEYS.seller, sellerName.value.trim());
+      sellerStatus.textContent = sellerName.value.trim() ? 'salvo' : 'não salvo';
+      toast('Nome de revendedora salvo ✅');
+      renderPanel();
+    });
+
+    /* ================== CATÁLOGO RENDER ================== */
+    function renderCatalogo(){
+      const wrap = $('#catalogo'); wrap.innerHTML='';
+      BOOKS.forEach(b=>{
+        const card = document.createElement('article');
+        card.className='card';
+        card.innerHTML = `
+          <img src="${b.img}" alt="${b.titulo}">
+          <div class="card-body">
+            <h3 class="card-title">${b.titulo}</h3>
+            <p class="card-author">${b.autor}</p>
+            <div class="price">
+              <span class="pill">Sugerido: <strong>${BRL(b.preco)}</strong></span>
+              <label for="p-${b.id}" style="font-weight:700">Seu preço</label>
+              <input id="p-${b.id}" type="number" min="1" step="0.01" placeholder="${b.preco.toFixed(2)}">
+            </div>
+            <div class="actions">
+              <button class="btn primary" data-add="${b.id}">Adicionar ao painel</button>
+              <button class="btn" data-link="${b.id}">Gerar link</button>
+              <button class="btn" data-wa="${b.id}">WhatsApp</button>
+            </div>
+          </div>
+        `;
+        wrap.appendChild(card);
+      });
+
+      // ações
+      wrap.querySelectorAll('[data-add]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.dataset.add;
+          const book = BOOKS.find(x=> x.id===id);
+          const price = Number(($('#p-'+id).value || book.preco));
+          addToPanel(book, price);
+        });
+      });
+      wrap.querySelectorAll('[data-link]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.dataset.link;
+          const book = BOOKS.find(x=> x.id===id);
+          const price = Number(($('#p-'+id).value || book.preco));
+          const url = genLink(book.id, price);
+          navigator.clipboard.writeText(url).then(()=> toast('Link copiado 📋'));
+        });
+      });
+      wrap.querySelectorAll('[data-wa]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.dataset.wa;
+          const book = BOOKS.find(x=> x.id===id);
+          const price = Number(($('#p-'+id).value || book.preco));
+          shareWA(book, price);
+        });
+      });
+    }
+
+    /* ================== PAINEL (localStorage) ================== */
+    function getPanel(){
+      return LS.get(KEYS.items, []);
+    }
+    function setPanel(v){
+      LS.set(KEYS.items, v);
+    }
+
+    function addToPanel(book, price){
+      if(!(LS.get(KEYS.seller,'')||'').trim()){
+        toast('Salve seu nome de revendedora primeiro.');
+        return;
+      }
+      const db = getPanel();
+      const exists = db.find(x=> x.id===book.id);
+      if(exists){
+        exists.price = Number(price);
+      }else{
+        db.push({
+          id: book.id,
+          titulo: book.titulo,
+          autor: book.autor,
+          img: book.img,
+          precoSugerido: book.preco,
+          price: Number(price)
+        });
+      }
+      setPanel(db);
+      renderPanel();
+      toast('Adicionado ao painel ✅');
+    }
+
+    function removeFromPanel(id){
+      const db = getPanel().filter(x=> x.id!==id);
+      setPanel(db); renderPanel();
+      toast('Removido');
+    }
+
+    function renderPanel(){
+      const tb = $('#tb'); const vazio = $('#vazio'); tb.innerHTML='';
+      const db = getPanel();
+      if(!db.length){ vazio.style.display='block'; return; }
+      vazio.style.display='none';
+
+      db.forEach(it=>{
+        const tr = document.createElement('tr');
+        const url = genLink(it.id, it.price);
+        tr.innerHTML = `
+          <td><img src="${it.img}" class="mini" alt="Capa"></td>
+          <td>${it.titulo}</td>
+          <td>${it.autor}</td>
+          <td>${BRL(it.precoSugerido)}</td>
+          <td><strong>${BRL(it.price)}</strong></td>
+          <td style="max-width:280px;word-break:break-all"><a href="${url}" style="color:#FFD966" target="_blank" rel="noopener">${url}</a></td>
+          <td style="white-space:nowrap">
+            <button class="btn" data-copy="${it.id}">Copiar</button>
+            <button class="btn" data-share="${it.id}">WhatsApp</button>
+            <button class="btn" data-del="${it.id}">Remover</button>
+          </td>
+        `;
+        tb.appendChild(tr);
+      });
+
+      tb.querySelectorAll('[data-copy]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const id = b.dataset.copy;
+          const it = getPanel().find(x=> x.id===id);
+          const link = genLink(it.id, it.price);
+          navigator.clipboard.writeText(link).then(()=> toast('Link copiado 📋'));
+        });
+      });
+      tb.querySelectorAll('[data-share]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const id = b.dataset.share;
+          const it = getPanel().find(x=> x.id===id);
+          shareWA(it, it.price);
+        });
+      });
+      tb.querySelectorAll('[data-del]').forEach(b=>{
+        b.addEventListener('click', ()=> removeFromPanel(b.dataset.del));
+      });
+    }
+
+    $('#btnClear').addEventListener('click', ()=>{
+      setPanel([]); renderPanel();
+    });
+
+    $('#btnExport').addEventListener('click', ()=>{
+      const data = {
+        seller: LS.get(KEYS.seller,''),
+        items: getPanel()
+      };
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'revenda-itens.json';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    /* ================== OFERTA VIA PARAMS ================== */
+    function checkOfferParams(){
+      const params = new URLSearchParams(location.search);
+      const bookId = params.get('book');
+      const seller = params.get('seller');
+      const price  = params.get('price');
+      if(bookId && seller && price){
+        const b = BOOKS.find(x=> x.id===bookId);
+        const box = $('#oferta');
+        if(b){
+          box.style.display='block';
+          box.innerHTML = `
+            <strong>Oferta de ${seller}</strong><br>
+            Livro: <em>${b.titulo}</em> — ${b.autor}<br>
+            Preço: <span class="pill">${BRL(price)}</span><br>
+            <small>Para comprar, fale com a revendedora e combine o pagamento/envio.</small>
+          `;
+        }
+      }
+    }
+
+    /* ================== INIT ================== */
+    function init(){
+      sellerName.value = LS.get(KEYS.seller,'');
+      sellerStatus.textContent = sellerName.value.trim() ? 'salvo' : 'não salvo';
+      renderCatalogo();
+      renderPanel();
+      checkOfferParams();
+    }
+    init();
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const sellerInput = document.getElementById("sellerName");
+  const sellerStatus = document.getElementById("sellerStatus");
+  const saveButton = document.getElementById("saveSeller");
+
+  // limpa o campo toda vez que a página carregar
+  sellerInput.value = "";
+  sellerStatus.textContent = "não salvo";
+
+  saveButton.addEventListener("click", () => {
+    const nome = sellerInput.value.trim();
+
+    if (nome) {
+      localStorage.setItem("sellerName", nome);
+      sellerStatus.textContent = "salvo";
+    } else {
+      sellerStatus.textContent = "não salvo";
+    }
+  });
+});
+  </script>
+</body>
+</html>

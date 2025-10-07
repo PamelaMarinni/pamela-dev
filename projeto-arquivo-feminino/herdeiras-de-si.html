@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coleção Herdeiras de Si - Arquivo Feminino: Proibido</title>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* Reset e box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configurações globais */
+html, body {
+  height: 100%;
+   font-family: 'Great Vibes', cursive; /* Fonte atualizada */
+  background: linear-gradient(to right, #F48FB1 0%, #CE93D8 45%, #7E57C2 75%, #42A5F5 100%);
+  color: white;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4vw;
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  gap: 1rem;
+}
+
+/* Título do site */
+.titulo {
+  font-family: 'Great Vibes', cursive; /* Fonte atualizada */
+  font-size: 2.2rem;
+  margin: 0;
+  white-space: nowrap;
+  text-shadow: 2px 2px 4px rgba(123,31,162,0.8), 0 0 10px rgba(233,30,99,0.8);
+}
+
+/* Navegação */
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.3rem;
+  margin: 0 0.5rem;
+}
+
+/* Seção Coleção */
+.colecao {
+  max-width: 1100px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.colecao h2 {
+  font-size: 2.5rem;
+  color: #FFD966;
+  font-weight: 400;
+  letter-spacing: .5px;
+  line-height: 1.05;
+  margin: 0 0 6px;
+  transition: transform .3s ease;
+}
+
+.colecao h2:hover {
+  transform: scale(1.05);
+}
+
+.colecao h2 .colecao-span {
+  font-family: 'Great Vibes', cursive !important;
+  line-height: inherit;
+}
+
+.colecao p {
+  font-size: 1.2rem;
+  color: #cc3f72;
+  margin: 0 0 18px;
+}
+
+/* Grid de livros */
+.livros-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 260px);
+  justify-content: center;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 32px;
+}
+
+.livro {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.livro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.livro:hover .overlay {
+  opacity: 1;
+}
+
+.titulo-livro { font-size: 1.2rem; margin: 6px 0; }
+.autor-livro { font-size: 1rem; margin: 4px 0; }
+.valor-livro { font-size: 1rem; margin: 6px 0; }
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.acoes .icone {
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: transform 0.2s ease;
+}
+
+.acoes .icone:hover {
+  transform: scale(1.3);
+}
+
+/* Botão detalhes */
+.detalhes {
+  text-decoration: none;
+  background: #7E57C2;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.detalhes:hover {
+  background: #5E35B1;
+}
+
+/* Botão voltar */
+.botao-voltar-container {
+  text-align: center;
+  margin: 16px auto 40px;
+}
+
+.botao-voltar {
+  font-family: 'Great Vibes', cursive;
+  background: linear-gradient(135deg, #845EC2, #D65DB1);
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 6px 12px rgba(132, 94, 194, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.botao-voltar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(132, 94, 194, 0.4);
+}
+
+/* Rodapé */
+.rodape {
+  background-color: #5a2a46;
+  color: #e6d6e8;
+  font-size: 0.9rem;
+  padding: 16px 0;
+  border-top: 0.5px solid #7a4f9a;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container-rodape {
+  max-width: 1100px;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.florzinha {
+  font-size: 1.4rem;
+  color: #d4a1e8;
+}
+
+/* Grid de cards geral */
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+.card-livro {
+  width: 260px;
+}
+
+.arquivo-titulo {
+   font-family: 'Great Vibes', cursive; /* Fonte atualizada */
+  font-size: 2.5rem;                  /* Tamanho igual ao h2 da coleção */
+  color: #FFD966;                     /* Amarelo suave igual à coleção */
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+  text-shadow: 2px 2px 4px rgba(123,31,162,0.8), 0 0 10px rgba(233,30,99,0.8); /* Mantém efeito */
+  margin: 0;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+ <!-- CONTEÚDO COLEÇÃO -->
+<section class="colecao">
+  <h2><span class="colecao-span">Coleção - Herdeiras de Si</span></h2>
+  <p>“Linhagens que escolhem a si mesmas.”</p>
+</section>
+
+  <!-- Aqui ficam apenas os livros -->
+<div class="livros-wrapper">
+  <!-- Livro 1: A Agulha e a Coroa -->
+  <div class="livro">
+    <img src="imagem/livroagulha1.png" alt="A Agulha e a Coroa">
+    <div class="overlay">
+      <p class="titulo-livro">A Agulha e a Coroa</p>
+      <p class="autor-livro">Marina Duarte</p>
+      <p class="valor-livro">R$ 44,90</p>
+
+      <div class="acoes">
+        <a href="livros.html?id=agulha-e-a-coroa" class="detalhes">Detalhes</a>
+
+        <span class="icone" title="Favoritar"
+              data-fav-btn
+              data-id="agulha-e-a-coroa"
+              data-titulo="A Agulha e a Coroa"
+              data-autor="Marina Duarte"
+              data-valor="44.90"
+              data-imagem="imagem/livroagulha1.png">🤍</span>
+
+        <span class="icone" title="Adicionar aos pedidos"
+              data-cart-btn
+              data-id="agulha-e-a-coroa"
+              data-titulo="A Agulha e a Coroa"
+              data-autor="Marina Duarte"
+              data-valor="44.90"
+              data-imagem="imagem/livroagulha1.png">🛒</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Livro 2: A Coroa e a Cura -->
+  <div class="livro">
+    <img src="imagem/livrocura1.png" alt="A Coroa e a Cura">
+    <div class="overlay">
+      <p class="titulo-livro">A Coroa e a Cura</p>
+      <p class="autor-livro">Helena Costa</p>
+      <p class="valor-livro">R$ 46,90</p>
+
+      <div class="acoes">
+        <a href="livros.html?id=a-coroa-e-a-cura" class="detalhes">Detalhes</a>
+
+        <span class="icone" title="Favoritar"
+              data-fav-btn
+              data-id="a-coroa-e-a-cura"
+              data-titulo="A Coroa e a Cura"
+              data-autor="Helena Costa"
+              data-valor="46.90"
+              data-imagem="imagem/livrocura1.png">🤍</span>
+
+        <span class="icone" title="Adicionar aos pedidos"
+              data-cart-btn
+              data-id="a-coroa-e-a-cura"
+              data-titulo="A Coroa e a Cura"
+              data-autor="Helena Costa"
+              data-valor="46.90"
+              data-imagem="imagem/livrocura1.png">🛒</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Livro 3: O Poder e o Resto -->
+  <div class="livro">
+    <img src="imagem/livropoder1.png" alt="O Poder e o Resto">
+    <div class="overlay">
+      <p class="titulo-livro">O Poder e o Resto</p>
+      <p class="autor-livro">Lívia Nogueira</p>
+      <p class="valor-livro">R$ 48,90</p>
+
+      <div class="acoes">
+        <a href="livros.html?id=poder-e-resto" class="detalhes">Detalhes</a>
+
+        <span class="icone" title="Favoritar"
+              data-fav-btn
+              data-id="poder-e-resto"
+              data-titulo="O Poder e o Resto"
+              data-autor="Lívia Nogueira"
+              data-valor="48.90"
+              data-imagem="imagem/livropoder1.png">🤍</span>
+
+        <span class="icone" title="Adicionar aos pedidos"
+              data-cart-btn
+              data-id="poder-e-resto"
+              data-titulo="O Poder e o Resto"
+              data-autor="Lívia Nogueira"
+              data-valor="48.90"
+              data-imagem="imagem/livropoder1.png">🛒</span>
+      </div>
+    </div>
+  </div>
+</div> <!-- FECHA a grid de livros -->
+
+
+  <!-- Botão fora da grid -->
+  <div class="botao-voltar-container">
+    <a href="index.html" class="botao-voltar">Página Inicial</a>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+  <div class="container-rodape">
+    <p><span class="florzinha">✿</span> Criado e mantido por Pamela Marini <span class="florzinha">✿</span></p>
+  </div>
+</footer>
+
+
+
+  <script src="livros.js" defer></script>
+
+<script>
+/* --- shim: só cria showToast se não existir --- */
+(function(){
+  if (typeof window.showToast === 'function') return;
+  const rootId = 'toast-root';
+  function root(){
+    let r = document.getElementById(rootId);
+    if(!r){
+      r = document.createElement('div');
+      r.id = rootId;
+      Object.assign(r.style, {
+        position:'fixed', zIndex:'9999', top:'16px', right:'16px',
+        display:'flex', flexDirection:'column', gap:'10px', pointerEvents:'none'
+      });
+      document.body.appendChild(r);
+    }
+    return r;
+  }
+  window.showToast = function(text, {type='info', duration=2500} = {}){
+    const r = root();
+    const el = document.createElement('div');
+    el.setAttribute('role','status');
+    el.style.pointerEvents = 'auto';
+    el.style.minWidth = '260px';
+    el.style.maxWidth = 'min(90vw,380px)';
+    el.style.padding = '12px 14px';
+    el.style.borderRadius = '12px';
+    el.style.background = '#fff';
+    el.style.color = '#111';
+    el.style.boxShadow = '0 10px 30px rgba(0,0,0,.15)';
+    el.style.borderLeft = '6px solid';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-10px)';
+    el.style.transition = 'opacity .18s ease, transform .18s ease';
+    const colors = {success:'#22c55e', warning:'#f59e0b', error:'#ef4444', info:'#3b82f6'};
+    el.style.borderLeftColor = colors[type] || colors.info;
+    el.textContent = text || 'Ação concluída.';
+    r.appendChild(el);
+    requestAnimationFrame(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; });
+    setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(-10px)'; setTimeout(()=>el.remove(),180); }, duration);
+  };
+})();
+
+/* --- wiring: favoritos e pedidos --- */
+(function(){
+  function parseLS(k){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):[]; }catch{ return []; } }
+  function saveLS(k,v){ localStorage.setItem(k, JSON.stringify(v||[])); }
+  function normalize(it){
+    if(!it) return null;
+    return {
+      id:String(it.id||''),
+      titulo:it.titulo||'',
+      autor:it.autor||'',
+      valor:Number(String(it.valor||'').toString().replace(',', '.'))||0,
+      imagem:it.imagem||''
+    };
+  }
+  function hasById(list,id){ return Array.isArray(list) && list.some(x=>String(x.id)===String(id)); }
+
+  // FAVORITOS
+  document.querySelectorAll('[data-fav-btn]').forEach(btn=>{
+    if(btn.dataset._wiredFav) return;
+    btn.dataset._wiredFav = '1';
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      const item = normalize({
+        id:btn.dataset.id, titulo:btn.dataset.titulo, autor:btn.dataset.autor,
+        valor:btn.dataset.valor, imagem:btn.dataset.imagem
+      });
+      if(!item || !item.id) return;
+      let favs = parseLS('favoritos');
+      if(hasById(favs,item.id)){
+        favs = favs.filter(x=>String(x.id)!==String(item.id));
+        btn.textContent = '🤍';
+        saveLS('favoritos', favs);
+        showToast('Removido dos favoritos.', {type:'warning'});
+      }else{
+        favs.push(item);
+        btn.textContent = '❤️';
+        saveLS('favoritos', favs);
+        showToast('Adicionado aos favoritos!', {type:'success'});
+      }
+    });
+  });
+
+  // PEDIDOS
+  document.querySelectorAll('[data-cart-btn]').forEach(btn=>{
+    if(btn.dataset._wiredCart) return;
+    btn.dataset._wiredCart = '1';
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      const item = normalize({
+        id:btn.dataset.id, titulo:btn.dataset.titulo, autor:btn.dataset.autor,
+        valor:btn.dataset.valor, imagem:btn.dataset.imagem
+      });
+      if(!item || !item.id) return;
+      let cart = parseLS('pedidos');
+      if(hasById(cart,item.id)){
+        showToast('⚠️ Este livro já está nos pedidos.', {type:'warning'});
+      }else{
+        cart.push(item);
+        saveLS('pedidos', cart);
+        showToast('📚 Livro adicionado aos pedidos!', {type:'success'});
+      }
+    });
+  });
+})();
+</script>
+
+
+
+</body>
+</html>

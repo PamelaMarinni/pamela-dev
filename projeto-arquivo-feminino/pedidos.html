@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meus Pedidos — Arquivo Feminino: Proibido</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap">
+  <style>
+    :root{
+      --gradA:#F48FB1; --gradB:#CE93D8; --gradC:#7E57C2; --gradD:#42A5F5;
+      --gap-autor:18px; /* 1,5 “dedo” abaixo do título */
+    }
+    *{ box-sizing:border-box }
+    [hidden]{ display:none !important; }
+
+    
+
+    /* Fundo + layout base */
+    body{
+      margin:0; min-height:100dvh; color:#fff;
+      background: linear-gradient(270deg,var(--gradA),var(--gradB),var(--gradC),var(--gradD));
+      background-size:800% 800%; animation:bgColorShift 5s ease infinite;
+      font-family:'Roboto',sans-serif; display:flex; flex-direction:column;
+    }
+    @keyframes bgColorShift{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    /* HEADER (padrão do site) */
+    header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem}
+    .titulo-site{font-family:'Great Vibes',cursive;font-size:2.2rem;margin:0;text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)}
+    nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+    main{
+      flex:1; padding:0 20px 40px; margin:20px auto 0;
+      width:1300px; max-width:100%;
+      filter:drop-shadow(0 0 2px rgba(0,0,0,.7));
+    }
+    footer.rodape{
+      margin-top:auto; background:#5a2a46; color:#e6d6e8; font-size:.9rem;
+      padding:16px 0; border-top:.5px solid #7a4f9a;
+      width:100%; display:flex; justify-content:center; align-items:center;
+    }
+
+    /* Título da página (fica dentro do main) */
+    .titulo-romantica{
+      font-family:'Great Vibes',cursive; font-size:48px; color:#fff;
+      background-color:rgba(90,42,70,.3); backdrop-filter:blur(4px);
+      padding:12px 24px; border-radius:16px; width:fit-content;
+      box-shadow:0 4px 10px rgba(90,42,70,.2);
+      margin:40px auto 20px; animation:brilhoPulsante 2.5s infinite ease-in-out;
+      text-align:center;
+    }
+    @keyframes brilhoPulsante{
+      0%,100%{ transform:scale(1); text-shadow:2px 2px 5px rgba(255,182,193,.8),0 0 15px rgba(255,105,180,.9); color:#fff;}
+      50%{ transform:scale(1.05); text-shadow:4px 4px 10px rgba(255,182,193,1),0 0 25px rgba(255,105,180,1); color:#ffe6f0;}
+    }
+
+    /* === GRID (210 x 320) igual favoritos === */
+    .livros-wrapper{
+      display:flex; flex-wrap:wrap; justify-content:center; gap:24px;
+      max-width:calc(6 * 210px + 5 * 24px);
+      margin:0 auto 60px auto; padding-bottom:50px;
+    }
+    .livro{
+      flex:0 0 210px; width:210px;
+      position:relative; padding:12px;
+      border-radius:10px; overflow:hidden;
+      transition:box-shadow .3s ease;
+    }
+    .livro img{
+      display:block; width:100%; height:320px;
+      object-fit:cover; background:#fff;
+      border:3px solid #FF6F91; border-radius:6px;
+      transition:transform .3s ease, filter .3s ease;
+    }
+    .livro:hover img{ transform:scale(1.05); filter:brightness(60%); }
+    .livro:hover{ box-shadow:0 0 15px #FF6F91; }
+
+    /* Overlay no hover — igual favoritos */
+    .overlay{
+      position:absolute; inset:0; background:rgba(47,28,46,.85);
+      border-radius:10px; opacity:0; transform:translateY(100%); pointer-events:none;
+      transition: transform .4s ease, opacity .4s ease;
+    }
+    .livro:hover .overlay { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* Bloco do topo fixo: título e autor (1,5 “dedo” abaixo) */
+    .overlay .topo{
+      position:absolute; top:10px; left:12px; right:12px;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    #lista-pedidos .titulo-livro {
+      font-weight: bold; font-size: 13px !important; color: white !important; text-align: center; font-family: Arial, sans-serif;
+      text-shadow: 0 0 4px #000; margin: 0; display: block;
+    }
+    #lista-pedidos .autor-livro {
+      margin-top: var(--gap-autor);
+      font-size: 12px; font-style: italic; text-align: center; display: block;
+    }
+
+    /* Valor CENTRAL absoluto no card */
+    #lista-pedidos .valor-livro{
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      font-size:14px; background:#FFC0CB; color:#5A1C2E; padding:2px 6px; border-radius:8px;
+      text-align:center; display:block; opacity:.5; filter:blur(.5px);
+      transition: opacity .3s ease, filter .3s ease;
+    }
+    #lista-pedidos .livro:hover .valor-livro { opacity: 0.7; }
+
+    /* Ações no rodapé da overlay (Detalhes + Lixeira) */
+    .acoes{
+      position:absolute; left:0; right:0; bottom:12px;
+      display:flex; gap:10px; align-items:center; justify-content:center;
+      padding:0 12px;
+    }
+    .icone{
+      font-size:18px; cursor:pointer; transition:transform .2s ease; user-select:none;
+      background:transparent; border:0; padding:0;
+    }
+    .icone:hover{ transform:scale(1.3); }
+    .acoes .detalhes{
+      background:#FF6F91; color:#fff; padding:6px 12px; border-radius:6px; font-size:14px; font-weight:bold;
+      text-decoration:none; border:0; cursor:pointer; transition:background .3s ease;
+    }
+    .acoes .detalhes:hover{ background:#B05A6E; }
+
+    .msg{
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.18);
+      padding: 10px 12px; border-radius: 10px; font-size: .9rem; color:#fff;
+      text-align:center; width:fit-content; margin:20px auto;
+    }
+
+    /* Barra de resumo (Total + Finalizar) */
+    .resumo-carrinho{
+      max-width:1100px; margin:10px auto 40px;
+      padding:16px 20px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .resumo-info{
+      display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+      font-size:1rem;
+    }
+    .resumo-info b{ color:#FFE3ED; }
+    .btn-finalizar{
+      background: linear-gradient(135deg,#FF6F91,#D65DB1);
+      color:#fff; font-weight:700; font-size:1.05rem;
+      padding:12px 22px; border:0; border-radius:12px; cursor:pointer;
+      box-shadow:0 8px 18px rgba(214,93,177,.35);
+      transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .btn-finalizar:hover{ transform:translateY(-1px); box-shadow:0 10px 22px rgba(214,93,177,.45); filter:brightness(1.05); }
+
+    /* Botão voltar (abaixo do resumo) */
+    .botao-voltar-container{ text-align:center; margin:0 auto 24px; }
+    .botao-voltar{
+      font-family:'Great Vibes', cursive;
+      background: linear-gradient(135deg, #845EC2, #D65DB1);
+      color:#fff; padding:14px 28px; font-size:1.5rem; font-weight:500;
+      border:0; border-radius:30px; text-decoration:none; display:inline-block;
+      box-shadow:0 6px 12px rgba(132,94,194,.3);
+      transition: transform .2s ease, box-shadow .3s ease;
+    }
+    .botao-voltar:hover{ transform:scale(1.05); box-shadow:0 8px 16px rgba(132,94,194,.4); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER padronizado -->
+  <header>
+    <h1 class="titulo-site">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+      </nav>
+  </header>
+
+  <main>
+    <h2 class="titulo-romantica">Meus Pedidos</h2>
+
+    <!-- Lista dos livros -->
+    <div id="lista-pedidos" class="livros-wrapper"></div>
+
+    <!-- Resumo (Total + Finalizar) -->
+    <section class="resumo-carrinho" id="resumo" hidden>
+      <div class="resumo-info">
+        <div><b>Itens:</b> <span id="resumo-itens">0</span></div>
+        <div><b>Total:</b> <span id="resumo-total">R$ 0,00</span></div>
+      </div>
+      <button class="btn-finalizar" id="btnFinalizar">Finalizar compra</button>
+    </section>
+
+    <!-- Botão voltar -->
+    <div class="botao-voltar-container">
+      <a href="index.html" class="botao-voltar">Página Inicial</a>
+    </div>
+  </main>
+
+  <footer class="rodape">
+  <p><span class="florzinha">✿</span> Criado e mantido por Pâmela Marini <span class="florzinha">✿</span></p>
+</footer>
+
+  <script>
+  (function () {
+    const KEY = 'pedidos';
+
+    /* Toast (fallback simples) */
+    (function ensureToast(){
+      if (typeof window.showToast === 'function') return;
+      const rootId = 'toast-root';
+      window.showToast = function (text, opts = {}) {
+        const { type = 'info', duration = 2600 } = opts;
+        const msg = (text == null || String(text).trim() === '') ? 'Ação concluída.' : String(text);
+        let root = document.getElementById(rootId);
+        if (!root) {
+          root = document.createElement('div'); root.id = rootId;
+          Object.assign(root.style,{position:'fixed',zIndex:'9999',top:'16px',right:'16px',display:'flex',flexDirection:'column',gap:'10px',pointerEvents:'none'});
+          document.body.appendChild(root);
+        }
+        const wrap = document.createElement('div');
+        Object.assign(wrap.style,{
+          pointerEvents:'auto',minWidth:'260px',maxWidth:'min(90vw,380px)',padding:'12px 14px',borderRadius:'12px',color:'#111',background:'#fff',
+          boxShadow:'0 10px 30px rgba(0,0,0,.15)',display:'grid',gridTemplateColumns:'24px 1fr 24px',alignItems:'start',gap:'10px',
+          opacity:'0',transform:'translateY(-10px)',transition:'opacity .18s ease, transform .18s ease',borderLeft:'6px solid #3b82f6'
+        });
+        wrap.innerHTML = `
+          <div style="font-size:18px;line-height:1">ℹ️</div>
+          <div style="font:500 14px/1.35 system-ui;color:#111;">${msg}</div>
+          <button type="button" aria-label="Fechar" style="border:0;background:transparent;font-size:18px;cursor:pointer;color:#333">×</button>
+        `;
+        const btnClose = wrap.querySelector('button');
+        const close = () => { wrap.style.opacity='0'; wrap.style.transform='translateY(-10px)'; setTimeout(() => wrap.remove(), 180); };
+        btnClose.addEventListener('click', close);
+        root.appendChild(wrap);
+        requestAnimationFrame(() => { wrap.style.opacity='1'; wrap.style.transform='translateY(0)'; });
+        setTimeout(close, duration);
+      };
+    })();
+
+    /* Helpers de storage */
+    function readPedidos() {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return [];
+      try {
+        const data = JSON.parse(raw);
+        return Array.isArray(data) ? data : [];
+      } catch { return []; }
+    }
+    function writePedidos(arr) {
+      localStorage.setItem(KEY, JSON.stringify(Array.isArray(arr) ? arr : []));
+    }
+    function money(v){
+      const n = Number(String(v ?? '').replace(',', '.')) || 0;
+      return 'R$ ' + n.toFixed(2).replace('.', ',');
+    }
+
+    /* Render */
+    function renderPedidos() {
+      const box = document.querySelector('#lista-pedidos');
+      const resumo = document.getElementById('resumo');
+      const spanItens = document.getElementById('resumo-itens');
+      const spanTotal = document.getElementById('resumo-total');
+      if (!box) return;
+
+      const pedidos = readPedidos();
+
+      // controla a visibilidade do resumo pelo estado do carrinho
+      const hasItems = pedidos.length > 0;
+      if (resumo){
+        resumo.hidden = !hasItems;
+        resumo.style.display = hasItems ? '' : 'none';
+      }
+
+      if (!hasItems) {
+        box.innerHTML = `<div class="msg">Nenhum pedido feito ainda.</div>`;
+        return;
+      }
+
+      const totalItens = pedidos.reduce((sum, item) => sum + (Number(item.quantidade) || 1), 0);
+      const totalValor = pedidos.reduce((sum, item) => {
+        const q = Number(item.quantidade) || 1;
+        const v = Number(String(item.valor ?? '').replace(',', '.')) || 0;
+        return sum + v * q;
+      }, 0);
+
+      box.innerHTML =
+        pedidos.map(item => `
+          <div class="livro" data-id="${String(item.id)}">
+            <img src="${item.imagem}" alt="${item.titulo}">
+            <div class="overlay">
+              <div class="topo">
+                <span class="titulo-livro">${item.titulo}</span>
+                ${item.autor ? `<span class="autor-livro">${item.autor}</span>` : ''}
+              </div>
+
+              <span class="valor-livro">${money(item.valor)}</span>
+
+              <div class="acoes">
+                <a class="detalhes" href="livros.html?id=${encodeURIComponent(item.id)}">Detalhes</a>
+                <button class="icone botao-excluir" data-id="${String(item.id)}" title="Remover do carrinho">🗑️</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+      // Atualiza resumo
+      if (spanItens) spanItens.textContent = String(totalItens);
+      if (spanTotal) spanTotal.textContent = money(totalValor);
+
+      // Excluir item
+      box.querySelectorAll('.botao-excluir').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = String(btn.dataset.id);
+          const nova = readPedidos().filter(it => String(it.id) !== id);
+          writePedidos(nova);
+          showToast('Removido dos pedidos.');
+          renderPedidos();
+        });
+      });
+
+      // Finalizar compra
+      document.getElementById('btnFinalizar')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cart = readPedidos();
+        if (!cart.length) {
+          showToast('Seu carrinho está vazio.');
+          return;
+        }
+        showToast('🎉 Compra finalizada com sucesso! 💖', { duration: 4000 });
+        writePedidos([]);
+        renderPedidos();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderPedidos);
+    window.renderPedidos = renderPedidos;
+  })();
+  </script>
+</body>
+</html>

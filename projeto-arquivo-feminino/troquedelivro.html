@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Troque de Livro • Arquivo Feminino: Proibido</title>
+
+  <!-- Fontes e ícones (iguais às suas páginas) -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto&family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Roboto',sans-serif;background:linear-gradient(to right,#F48FB1 0%,#CE93D8 45%,#7E57C2 75%,#42A5F5 100%);color:#fff}
+
+    /* HEADER (IDÊNTICO ao seu) */
+    header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem}
+    .titulo{ font-family: 'Great Vibes', cursive; /* Fonte atualizada */font-size:2.2rem;margin:0;text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)}
+    nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+    /* WRAP */
+    .wrap{max-width:1100px;margin:32px auto;padding:0 16px}
+
+    /* HERO */
+    .hero{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:16px 18px;box-shadow:0 6px 16px rgba(0,0,0,.25);text-align:center}
+    .hero h2{margin:0;font-size:2.1rem;color:#FFD966;font-weight:400}
+    .hero p{margin:6px 0 0;color:#f7d3e6}
+
+    /* FORM */
+    .form-card{margin-top:18px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:16px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    label{font-weight:700;font-size:.95rem;margin-top:4px;display:block}
+    input,select,textarea{
+      width:100%;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
+      border-radius:10px;padding:10px;color:#fff
+    }
+    textarea{min-height:90px;resize:vertical}
+    .hint{font-size:.85rem;color:#f7d3e6;opacity:.9}
+
+    .btn{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(135deg,#845EC2,#D65DB1);border-color:transparent}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+
+    /* PREVIEW FOTOS */
+    .previews{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .thumb{width:90px;height:120px;border-radius:10px;border:1px solid rgba(255,255,255,.25);object-fit:cover;box-shadow:0 6px 12px rgba(0,0,0,.25)}
+
+    /* FILTROS DE LISTA */
+    .filters{margin-top:22px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .chip{border:1px solid rgba(255,255,255,.45);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:.95rem;user-select:none}
+    .chip.active{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6)}
+    .filters .field{display:flex;gap:8px;align-items:center}
+
+    /* LISTA DE ANÚNCIOS */
+    .lista{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:16px}
+    .anuncio{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:12px;box-shadow:0 6px 16px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+    .galeria{display:flex;gap:8px;overflow:auto}
+    .galeria img{width:90px;height:120px;border-radius:10px;border:1px solid rgba(255,255,255,.18);object-fit:cover;flex:0 0 auto}
+    .titulo-livro{margin:0;font-weight:800}
+    .autor{margin:0;font-size:.95rem;opacity:.9}
+    .meta{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{display:inline-block;border:1px solid rgba(255,255,255,.28);padding:4px 8px;border-radius:999px;font-size:.82rem;background:rgba(0,0,0,.25)}
+    .acoes{display:flex;gap:8px;flex-wrap:wrap}
+    .fav{cursor:pointer}
+
+    /* FOOTER (IDÊNTICO) */
+    .rodape{background:#5a2a46;color:#e6d6e8;font-size:.9rem;padding:16px 0;border-top:.5px solid #7a4f9a;display:flex;justify-content:center;align-items:center;margin-top:28px}
+    .container-rodape{max-width:1100px;padding:0 16px;text-align:center}
+    .florzinha{font-size:1.4rem;color:#d4a1e8}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <h2><span style="font-family:'Great Vibes',cursive">Troque de Livro</span></h2>
+      <p>Coloque seu livro aqui para troca 📚✨</p>
+    </section>
+
+    <!-- FORMULÁRIO DE TROCA -->
+    <section class="form-card" aria-label="Formulário de troca">
+      <form id="formTroca">
+        <div class="grid-2">
+          <div>
+            <label for="titulo">Título do livro</label>
+            <input id="titulo" required placeholder="Ex.: A Porta Sem Nome">
+          </div>
+          <div>
+            <label for="autor">Autora/Autor</label>
+            <input id="autor" required placeholder="Ex.: Helena L. Ruiz">
+          </div>
+        </div>
+
+        <div class="grid-3" style="margin-top:8px">
+          <div>
+            <label for="estado">Estado do livro</label>
+            <select id="estado" required>
+              <option value="">Selecione…</option>
+              <option>Novo</option>
+              <option>Como novo</option>
+              <option>Bom</option>
+              <option>Uso moderado</option>
+              <option>Gastinho, mas legível</option>
+            </select>
+          </div>
+          <div>
+            <label for="cidade">Cidade/UF (opcional)</label>
+            <input id="cidade" placeholder="Ex.: Recife/PE">
+          </div>
+          <div>
+            <label for="contato">Contato (WhatsApp ou e-mail)</label>
+            <input id="contato" required placeholder="Ex.: (81) 9 9999-0000 ou nome@email.com">
+          </div>
+        </div>
+
+        <div style="margin-top:8px">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" placeholder="Fale do livro e do estado (ex.: sem marcações, leve amassado na capa…)"></textarea>
+        </div>
+
+        <div style="margin-top:8px">
+          <label for="fotos">Fotos do livro (até 6)</label>
+          <input id="fotos" type="file" accept="image/*" multiple>
+          <div class="hint">Dica: adicione pelo menos a capa e a lombada. As imagens ficam só no seu navegador.</div>
+          <div id="previews" class="previews"></div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn primary" id="btnPublicar" type="submit">Publicar anúncio</button>
+          <button class="btn" type="reset" id="btnLimpar">Limpar</button>
+        </div>
+      </form>
+    </section>
+
+   
+
+    <!-- LISTA DE ANÚNCIOS -->
+    <section class="lista" id="listaAnuncios" aria-label="Resultados"></section>
+
+    <!-- Voltar -->
+    <div style="text-align:center;margin:22px 0 6px">
+      <a href="index.html" class="btn primary" style="font-family:'Great Vibes',cursive;font-size:1.2rem;padding:10px 20px;border-radius:30px;text-decoration:none;display:inline-block;">Página Inicial</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="rodape">
+    <div class="container-rodape">
+      <p><span class="florzinha">✿</span> Criado e mantido por Pâmela Marini <span class="florzinha">✿</span></p>
+    </div>
+  </footer>
+
+  <script>
+    /* ======= Storage ======= */
+    const LS_KEY = 'trocas_afp_v1';    // anúncios
+    const FAV_KEY = 'trocas_afp_fav';  // favoritos
+
+    const store = {
+      get(k, def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def } catch(e){ return def } },
+      set(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
+    };
+
+    /* ======= Helpers ======= */
+    const $ = (s,el=document)=> el.querySelector(s);
+    const $$ = (s,el=document)=> Array.from(el.querySelectorAll(s));
+    function toast(msg){
+      let r = $('#toast-root');
+      if(!r){ r = document.createElement('div'); r.id='toast-root';
+        Object.assign(r.style,{position:'fixed',right:'16px',bottom:'16px',display:'flex',flexDirection:'column',gap:'10px',zIndex:9999});
+        document.body.appendChild(r);
+      }
+      const el = document.createElement('div'); el.textContent = msg;
+      Object.assign(el.style,{background:'rgba(0,0,0,.85)',color:'#fff',padding:'10px 12px',borderRadius:'12px',boxShadow:'0 10px 24px rgba(0,0,0,.25)'});
+      r.appendChild(el); setTimeout(()=> el.remove(), 2400);
+    }
+    function getUFFromCity(str=''){
+      const m = (str||'').match(/\b([A-Z]{2})\b/); return m ? m[1] : null;
+    }
+    function toDataURLs(files, limit=6){
+      return new Promise((resolve)=>{
+        const f = Array.from(files||[]).slice(0,limit);
+        if(f.length===0) return resolve([]);
+        const res = []; let i=0;
+        const read = ()=>{
+          const fr = new FileReader();
+          fr.onload = e=>{ res.push(e.target.result); i++; if(i<f.length) read(); else resolve(res); };
+          fr.readAsDataURL(f[i]);
+        };
+        read();
+      });
+    }
+
+    /* ======= Form & Preview ======= */
+    const form = $('#formTroca');
+    const fotos = $('#fotos');
+    const previews = $('#previews');
+
+    fotos.addEventListener('change', async ()=>{
+      previews.innerHTML = '';
+      const urls = await toDataURLs(fotos.files);
+      urls.forEach(u=>{
+        const img = new Image(); img.src = u; img.className='thumb';
+        previews.appendChild(img);
+      });
+    });
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const btn = $('#btnPublicar'); btn.disabled = true;
+
+      const anuncio = {
+        id: 'a'+Date.now()+Math.random().toString(16).slice(2),
+        titulo: $('#titulo').value.trim(),
+        autor: $('#autor').value.trim(),
+        estado: $('#estado').value,
+        cidade: $('#cidade').value.trim(),
+        uf: getUFFromCity($('#cidade').value.trim()) || '—',
+        contato: $('#contato').value.trim(),
+        descricao: $('#descricao').value.trim(),
+        fotos: await toDataURLs(fotos.files),
+        quando: new Date().toISOString(),
+        fav: false
+      };
+
+      if(!anuncio.titulo || !anuncio.autor || !anuncio.estado || !anuncio.contato){
+        toast('Preencha os campos obrigatórios.'); btn.disabled=false; return;
+      }
+      const db = store.get(LS_KEY,[]);
+      db.push(anuncio); store.set(LS_KEY, db);
+      form.reset(); previews.innerHTML='';
+
+      toast('Anúncio publicado ✅');
+      renderList();
+      btn.disabled = false;
+      window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
+    });
+
+    $('#btnLimpar').addEventListener('click', ()=> previews.innerHTML='');
+
+    /* ======= Lista, Filtros e Ações ======= */
+    const listEl = $('#listaAnuncios');
+    const chips = $$('.chip');
+    const fEstado = $('#fEstado');
+    const busca = $('#busca');
+
+    chips.forEach(c=> c.addEventListener('click', ()=>{
+      chips.forEach(x=> x.classList.remove('active'));
+      c.classList.add('active');
+      renderList();
+    }));
+    fEstado.addEventListener('change', renderList);
+    busca.addEventListener('input', renderList);
+
+    function renderList(){
+      const db = store.get(LS_KEY,[]);
+      const uf = $('.chip.active')?.dataset.uf || 'todos';
+      const est = fEstado.value || 'todos';
+      const q = (busca.value||'').toLowerCase();
+
+      let items = db.slice().reverse(); // mais recente primeiro
+      if(uf!=='todos') items = items.filter(a=> a.uf === uf);
+      if(est!=='todos') items = items.filter(a=> a.estado === est);
+      if(q) items = items.filter(a=>
+        a.titulo.toLowerCase().includes(q) ||
+        a.autor.toLowerCase().includes(q) ||
+        a.descricao.toLowerCase().includes(q) ||
+        (a.cidade||'').toLowerCase().includes(q)
+      );
+
+      listEl.innerHTML = '';
+      if(items.length===0){
+        listEl.innerHTML = `<p class="pill" style="grid-column:1/-1">Nenhum anúncio encontrado. Publique o seu acima ✨</p>`;
+        return;
+      }
+
+      const favDb = store.get(FAV_KEY, {});
+      items.forEach(a=>{
+        const card = document.createElement('article');
+        card.className='anuncio';
+        card.innerHTML = `
+          <div class="galeria">${(a.fotos?.slice(0,4) || []).map(src=>`<img src="${src}" alt="Foto do livro">`).join('')}</div>
+          <div>
+            <h3 class="titulo-livro">${a.titulo}</h3>
+            <p class="autor">${a.autor}</p>
+          </div>
+          <div class="meta">
+            <span class="pill">${a.estado}</span>
+            <span class="pill">${a.cidade || 'Sem localização'}</span>
+            <span class="pill">${new Date(a.quando).toLocaleString()}</span>
+          </div>
+          <p style="margin:0">${a.descricao || ''}</p>
+          <div class="acoes">
+            <a class="btn" href="${waLink(a)}" target="_blank" rel="noopener">WhatsApp</a>
+            <button class="btn fav" data-fav="${a.id}">${favDb[a.id]?'★ Favorito':'☆ Favorito'}</button>
+            <button class="btn" data-share="${a.id}">Copiar link</button>
+            <button class="btn" data-remove="${a.id}" title="Remover (local)">Remover</button>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+
+      // ações
+      listEl.querySelectorAll('[data-fav]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const id = b.dataset.fav;
+          const favDb = store.get(FAV_KEY,{});
+          favDb[id] = !favDb[id];
+          store.set(FAV_KEY, favDb);
+          renderList();
+        });
+      });
+      listEl.querySelectorAll('[data-share]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const id = b.dataset.share;
+          const url = location.origin + location.pathname + '#anuncio=' + id;
+          navigator.clipboard.writeText(url).then(()=> toast('Link copiado 📋'));
+        });
+      });
+      listEl.querySelectorAll('[data-remove]').forEach(b=>{
+        b.addEventListener('click', ()=>{
+          const id = b.dataset.remove;
+          const db = store.get(LS_KEY,[]);
+          const novo = db.filter(x=> x.id!==id);
+          store.set(LS_KEY, novo);
+          renderList();
+        });
+      });
+    }
+
+    function waLink(a){
+      const msg = `Olá! Vi seu anúncio em *Troque de Livro*:\n`+
+                  `• Título: ${a.titulo}\n• Autora/Autor: ${a.autor}\n`+
+                  `• Estado: ${a.estado}\n• Cidade: ${a.cidade||'-'}\n\n`+
+                  `Tenho interesse em trocar. Podemos conversar?`;
+      // tenta extrair número simples do contato
+      const raw = (a.contato||'').replace(/\D/g,'');
+      const phone = raw.length>=10 ? raw : ''; // se não der, só abre com texto
+      const base = 'https://wa.me/' + phone + (phone ? '?' : '?') + 'text=' + encodeURIComponent(msg);
+      return base;
+    }
+
+    /* ======= Deep-link de anúncio (#anuncio=ID) ======= */
+    function checkHash(){
+      const m = location.hash.match(/#anuncio=([^&]+)/);
+      if(!m) return;
+      const id = decodeURIComponent(m[1]);
+      const db = store.get(LS_KEY,[]);
+      const a = db.find(x=> x.id===id);
+      if(!a) return;
+      busca.value = a.titulo;
+      renderList();
+      // destaca
+      const card = Array.from(document.querySelectorAll('.anuncio')).find(el => el.innerText.includes(a.titulo));
+      if(card){ card.style.outline='2px solid #FFD966'; card.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(()=> card.style.outline='none', 2000); }
+    }
+
+    /* ======= Init ======= */
+    renderList();
+    checkHash();
+  </script>
+</body>
+</html>

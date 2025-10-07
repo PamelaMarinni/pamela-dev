@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle Financeiro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("financas.png") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      text-shadow: 0 0 10px #000;
+    }
+
+    #comoUsarBtn {
+      background: #8000ff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      margin: 10px 0 20px 0;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 20px auto;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .saldo {
+      font-size: 20px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .saldo.negativo {
+      background: rgba(255,0,0,0.2);
+      color: #ff4444;
+    }
+
+    form {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    form input {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      flex: 1 1 120px;
+    }
+
+    form button {
+      padding: 8px 15px;
+      border-radius: 5px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    form button:hover {
+      background: #45a049;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: rgba(255,255,255,0.1);
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pendente { color: #ffaaaa; }
+    .paga { color: #aaffaa; text-decoration: line-through; }
+
+    .btn-pagar {
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .btn-remover {
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .resumo {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .resumo p {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+
+    .erro {
+      color: #ff4444;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Modal "Como Usar" */
+    #comoUsarModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.95);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      width: 320px;
+      max-width: 90%;
+      text-align: left;
+      z-index: 1000;
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    }
+
+    #comoUsarModal h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+      text-align: center;
+      text-decoration: underline;
+    }
+
+    #comoUsarModal ul {
+      padding-left: 20px;
+    }
+
+    #comoUsarModal button {
+      display: block;
+      margin: 10px auto 0 auto;
+      background: #8000ff;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Controle Financeiro</h1>
+    <button id="comoUsarBtn">Como Usar</button>
+    <div id="saldo" class="saldo">💰 Saldo: R$ 0,00</div>
+    <div id="erro" class="erro"></div>
+
+    <h3>Adicionar Entrada (Dinheiro)</h3>
+    <form id="formEntrada">
+      <input type="number" id="valorEntrada" placeholder="Valor" required>
+      <button type="submit">Adicionar</button>
+    </form>
+
+    <h3>Adicionar Conta</h3>
+    <form id="formConta">
+      <input type="text" id="nomeConta" placeholder="Nome da Conta" required>
+      <input type="number" id="valorConta" placeholder="Valor" required>
+      <button type="submit">Salvar Conta</button>
+    </form>
+
+    <h3>Contas</h3>
+    <ul id="listaContas"></ul>
+
+    <div class="resumo">
+      <p>💰 Total no Caixa: <span id="totalCaixa">R$ 0,00</span></p>
+      <p>📄 Contas a Pagar: <span id="totalPagar">R$ 0,00</span></p>
+      <p>✅ Contas Pagas: <span id="totalPagas">R$ 0,00</span></p>
+      <p>⚠️ Total Faltante: <span id="totalFaltante">R$ 0,00</span></p>
+    </div>
+  </div>
+
+  <!-- Modal Como Usar -->
+  <div id="comoUsarModal">
+    <h3>Como Usar</h3>
+    <p>1️⃣ Adicione entradas sempre que receber dinheiro.</p>
+    <p>2️⃣ Adicione contas a pagar (água, luz, aluguel, etc.).</p>
+    <p>3️⃣ Clique em "Pagar" para quitar uma conta. Ela ficará riscada.</p>
+    <p>4️⃣ O resumo mostra:</p>
+    <ul>
+      <li>💰 Total no Caixa: saldo disponível</li>
+      <li>📄 Contas a Pagar: soma das contas pendentes</li>
+      <li>✅ Contas Pagas: soma das contas já pagas</li>
+      <li>⚠️ Total Faltante: quanto ainda falta pagar</li>
+    </ul>
+    <p>5️⃣ Ao final do mês, o saldo final pode ser usado como saldo inicial do próximo mês.</p>
+    <button id="fecharModal">Fechar</button>
+  </div>
+
+  <script>
+    let saldo = 0;
+    let contas = [];
+
+    const saldoEl = document.getElementById("saldo");
+    const erroEl = document.getElementById("erro");
+    const listaContasEl = document.getElementById("listaContas");
+    const totalCaixaEl = document.getElementById("totalCaixa");
+    const totalPagarEl = document.getElementById("totalPagar");
+    const totalPagasEl = document.getElementById("totalPagas");
+    const totalFaltanteEl = document.getElementById("totalFaltante");
+
+    function atualizarSaldo() {
+      saldoEl.textContent = "💰 Saldo: R$ " + saldo.toFixed(2);
+      saldoEl.classList.toggle("negativo", saldo < 0);
+    }
+
+    function atualizarResumo() {
+      const totalPagar = contas.filter(c => !c.paga).reduce((sum, c) => sum + c.valor, 0);
+      const totalPagas = contas.filter(c => c.paga).reduce((sum, c) => sum + c.valor, 0);
+      totalCaixaEl.textContent = `R$ ${saldo.toFixed(2)}`;
+      totalPagarEl.textContent = `R$ ${totalPagar.toFixed(2)}`;
+      totalPagasEl.textContent = `R$ ${totalPagas.toFixed(2)}`;
+      totalFaltanteEl.textContent = `R$ ${(totalPagar - saldo < 0 ? 0 : totalPagar - saldo).toFixed(2)}`;
+    }
+
+    function renderizarContas() {
+      listaContasEl.innerHTML = "";
+      contas.forEach((conta, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="${conta.paga ? "paga" : "pendente"}">
+            ${conta.nome} - R$ ${conta.valor.toFixed(2)}
+          </span>
+          <div>
+            <button class="btn-pagar">${conta.paga ? "Desfazer" : "Pagar"}</button>
+            <button class="btn-remover">X</button>
+          </div>
+        `;
+        li.querySelector(".btn-pagar").addEventListener("click", () => {
+          if (!conta.paga) {
+            if (saldo >= conta.valor) {
+              saldo -= conta.valor;
+              conta.paga = true;
+              erroEl.textContent = "";
+            } else {
+              erroEl.textContent = "❌ Saldo insuficiente!";
+              return;
+            }
+          } else {
+            saldo += conta.valor;
+            conta.paga = false;
+          }
+          atualizarSaldo();
+          renderizarContas();
+        });
+        li.querySelector(".btn-remover").addEventListener("click", () => {
+          if (conta.paga) saldo += conta.valor;
+          contas.splice(index, 1);
+          atualizarSaldo();
+          renderizarContas();
+        });
+        listaContasEl.appendChild(li);
+      });
+      atualizarResumo();
+    }
+
+    document.getElementById("formEntrada").addEventListener("submit", e => {
+      e.preventDefault();
+      const valor = parseFloat(document.getElementById("valorEntrada").value);
+      if (valor > 0) {
+        saldo += valor;
+        atualizarSaldo();
+        erroEl.textContent = "";
+      }
+      e.target.reset();
+      atualizarResumo();
+    });
+
+    document.getElementById("formConta").addEventListener("submit", e => {
+      e.preventDefault();
+      const nome = document.getElementById("nomeConta").value;
+      const valor = parseFloat(document.getElementById("valorConta").value);
+      contas.push({ nome, valor, paga: false });
+      renderizarContas();
+      e.target.reset();
+    });
+
+    // Modal funcionalidade
+    const btnComoUsar = document.getElementById("comoUsarBtn");
+    const modal = document.getElementById("comoUsarModal");
+    const fecharModal = document.getElementById("fecharModal");
+
+    btnComoUsar.addEventListener("click", () => { modal.style.display = "block"; });
+    fecharModal.addEventListener("click", () => { modal.style.display = "none"; });
+    window.addEventListener("click", (e) => { if(e.target == modal) modal.style.display = "none"; });
+
+    atualizarSaldo();
+    atualizarResumo();
+  </script>
+</body>
+</html>

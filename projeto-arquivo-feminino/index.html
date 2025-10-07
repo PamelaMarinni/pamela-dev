@@ -1,0 +1,3151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arquivo Feminino: Proibido</title>
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==========================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(
+    to right,
+    #F48FB1 0%,
+    #CE93D8 45%,
+    #7E57C2 75%,
+    #42A5F5 100%
+  );
+  color: white;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+/* ==========================
+   HEADER
+   ========================== */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4vw;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  gap: 1rem;
+}
+
+.titulo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  margin: 0;
+  white-space: nowrap;
+  text-shadow:
+    2px 2px 4px rgba(123, 31, 162, 0.8),
+    0 0 10px rgba(233, 30, 99, 0.8);
+}
+
+
+
+/* ==========================
+   ACESSO E ÍCONES
+   ========================== */
+.acesso {
+  display: flex;
+  align-items: center;
+  font-family: 'Parisienne', cursive;
+  font-size: 1.5rem;
+  color: #FFDDEE;
+  white-space: nowrap;
+  margin-left: 1rem;
+  text-shadow:
+    0 0 6px rgba(123, 31, 162, 0.7),
+    0 0 10px rgba(214, 93, 177, 0.8);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.acesso:hover {
+  color: #FFBEE3;
+  transform: scale(1.05);
+}
+
+.acesso .cadeado {
+  margin-left: 0.4rem;
+  font-size: 1.1rem;
+}
+
+/* ==========================
+   ÍCONES GERAIS
+   ========================== */
+.icone {
+  cursor: pointer;
+  font-size: 1.28rem;
+  position: relative;
+  white-space: nowrap;
+  transition: transform 0.2s;
+}
+
+.icone:hover {
+  transform: scale(1.15);
+}
+
+.icone::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  color: #fff;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.icone:hover::after {
+  opacity: 1;
+}
+
+/* ==========================
+   NAV
+   ========================== */
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-family: 'Parisienne', cursive;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(60, 0, 90, 0.6);
+  color: #FFDDEE;
+  text-decoration: none;
+  margin: 0 1.8rem;
+  font-size: 1.3rem;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: #FF6F91;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: #FF6F91;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* ==========================
+   RESPONSIVO
+   ========================== */
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 4vw;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+    white-space: normal;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .linha {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .busca {
+    max-width: 100%;
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .busca input {
+    font-size: 1rem;
+    min-width: auto;
+    max-width: 100%;
+  }
+
+  .acesso {
+    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
+  nav {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  nav a {
+    margin: 0.4rem 0;
+    font-size: 1.2rem;
+  }
+}
+
+/* ROLETA BANNER */
+#roleta-container {
+  position: relative;
+  text-align: center;
+  margin: 40px 0;
+}
+
+#banner {
+  width: 100%;
+  max-width: 1400px;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4.2rem;
+  color: #8C3A4F;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, color 0.3s;
+  z-index: 10;
+}
+
+#btn-voltar {
+  left: 15px;
+}
+
+#btn-avancar {
+  right: 15px;
+}
+
+#btn-voltar:hover {
+  color: #B05A6E;
+  transform: translateY(-50%) translateX(-5px);
+}
+
+#btn-avancar:hover {
+  color: #B05A6E;
+  transform: translateY(-50%) translateX(5px);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .seta {
+    font-size: 3rem;
+  }
+  #btn-voltar {
+    left: 5px;
+  }
+  #btn-avancar {
+    right: 5px;
+  }
+}
+
+
+/* ==========================
+   GÊNEROS
+   ========================== */
+.generos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.genero {
+  width: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.genero img {
+  width: 100px;
+  height: 100px;
+  border-radius: 70%;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.genero img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px 5px #FF6F91;
+}
+
+.genero p {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  width: 100%;
+  font-size: 22px;
+  color: white;
+  font-family: 'Parisienne', cursive;
+  margin: 0;
+}
+
+.generos a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titulo-generos {
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  font-family: 'Parisienne', cursive;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+
+/* ==========================
+   CARROSSEIS DE LIVROS
+   ========================== */
+.roleta {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.titulo-roleta {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+  font-family: 'Parisienne', cursive;
+  font-size: 2.4rem;
+  color: #5a2a46;
+}
+
+.roleta-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.livros-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 5px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.livros-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.livro {
+  position: relative;
+  width: 190px;
+  height: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.livro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid #FF6F91;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.livro:hover img {
+  transform: scale(1.05);
+  filter: brightness(60%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(47,28,46,0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.livro:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.livro:hover {
+  box-shadow: 0 0 15px #FF6F91;
+}
+
+.titulo-livro {
+  font-weight: bold;
+  font-size: 13px !important;
+  color: white !important;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 4px #000;
+  margin: 0 auto 6px;
+  display: block;
+}
+
+.autor-livro {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  display: block;
+}
+
+.valor-livro {
+  font-size: 14px;
+  margin-top: 4px;
+  background: #FFC0CB;
+  color: #5A1C2E;
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.5;
+  filter: blur(0.5px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.livro:hover .valor-livro {
+  opacity: 0.7;
+}
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  align-items: center;
+}
+
+.icone {
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+.icone:hover {
+  transform: scale(1.3);
+}
+
+.acoes .detalhes {
+  background: #FF6F91;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.acoes .detalhes:hover {
+  background: #B05A6E;
+}
+
+.seta {
+  background-color: #FF6F91;
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.seta:hover {
+  background-color: #B05A6E;
+}
+
+.seta.esquerda {
+  position: absolute;
+  left: 0;
+}
+
+.seta.direita {
+  position: absolute;
+  right: 0;
+}
+
+.fundo-unico {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 40px 20px;
+  margin: 120px auto 40px auto;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  max-width: 1300px;
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.fundo-unico .roleta {
+  margin-bottom: 60px;
+}
+
+.espaco-entre-secoes {
+  height: 80px;
+}
+
+section.roleta {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.titulo-roleta {
+  margin-top: 0 !important;
+  margin-bottom: 20px;
+}
+
+/* ==========================
+   ANIMAÇÃO PULSO
+   ========================== */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(255, 111, 145, 0.7),
+                 0 0 20px rgba(255, 111, 145, 0.5),
+                 0 0 30px rgba(255, 111, 145, 0.3);
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px rgba(255, 111, 145, 1),
+                 0 0 40px rgba(255, 111, 145, 0.8),
+                 0 0 60px rgba(255, 111, 145, 0.5);
+  }
+}
+
+/* ==========================
+   SANGUE E SEGREDO / CARROSSEL SIMPLES
+   ========================== */
+.frase-sangue-segredo {
+  font-size: 2.2rem;
+  color: #5A2A46;
+  font-weight: 900;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin: 3rem auto 2rem;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  animation: pulsarCor 2.5s infinite ease-in-out;
+}
+
+.frase-sangue-segredo::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 12px auto 0;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+
+@keyframes pulsarCor {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.secao-carrossel {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: transparent;
+}
+
+.carrossel-livros {
+  display: flex;
+  gap: 1.8rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  justify-content: center;
+}
+
+.carrossel-livros::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carrossel-livros::-webkit-scrollbar-thumb {
+  background-color: #FF6F91;
+  border-radius: 8px;
+}
+
+.card-livro {
+  flex: 0 0 220px;
+  background: #E2C9DF;
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(90, 42, 70, 0.2);
+  padding: 1rem;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-livro:hover {
+  box-shadow: 0 0 25px 8px rgba(255, 111, 145, 0.7);
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.card-livro img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.card-livro .titulo-livro {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: white;
+  text-align: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.botao-detalhes {
+  background: #FF6F91;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.botao-detalhes:hover {
+  background: #5A2A46;
+}
+
+/* ==========================
+   FORMULÁRIO / NEWSLETTER
+   ========================== */
+.cadastro-newsletter {
+  position: relative;
+  width: 100%;
+  padding: 20px 20px 80px;
+  background: url('imagem/livro49.png') no-repeat center center/cover fixed;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.cadastro-newsletter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(47, 28, 46, 0.75);
+  z-index: 0;
+}
+
+.form-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  width: 100%;
+  margin: -30px auto 0;
+  text-align: center;
+  font-family: 'Parisienne', cursive;
+  padding: 20px 0;
+}
+
+.titulo-cadastro {
+  font-size: 2.5rem;
+  color: #FF8BA7;
+  font-family: 'Parisienne', cursive;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+
+/* ==========================
+   NEWSLETTER / FORMULÁRIO
+   ========================== */
+.cadastro-newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.cadastro-newsletter form input[type="text"],
+.cadastro-newsletter form input[type="email"] {
+  width: 100%;
+  max-width: 400px;
+  height: 45px;
+  padding: 0 15px;
+  font-size: 1.5rem;
+  border-radius: 18px;
+  border: 1.5px solid #FF6F91;
+  font-family: 'Parisienne', cursive;
+  color: #5A2A46;
+  background-color: #fff;
+}
+
+.cadastro-newsletter form input::placeholder {
+  color: #A0728F;
+}
+
+.checkbox-label {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFC0CB;
+  font-family: 'Roboto', sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+form button {
+  background-color: #FF6F91;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
+}
+
+form button:hover {
+  background-color: #FFC0CB;
+  color: #5A1C2E;
+}
+
+
+/* ==========================
+   DÚVIDAS / FOOTER
+   ========================== */
+.duvidas-secao {
+  padding: 60px 20px;
+  background: #2f1c2e;
+  color: #FFC0CB;
+  font-family: sans-serif;
+}
+
+.container-duvidas {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.info-colunas {
+  display: flex;
+  flex: 1 1 700px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.coluna {
+  flex: 1 1 200px;
+  min-width: 180px;
+}
+
+.coluna h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #FF6F91;
+}
+
+.coluna ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coluna ul li {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #FFC0CB;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.coluna ul li:hover {
+  color: #FF6F91;
+  text-shadow: 0 0 5px rgba(255, 192, 203, 0.7);
+}
+
+/* ==========================
+   ÍCONES DE PAGAMENTO
+   ========================== */
+.pagamentos-link {
+  display: flex;
+  justify-content: flex-start; /* alinha à esquerda */
+  align-items: center;
+  text-decoration: none;
+  margin-left: 0;
+  pointer-events: none; /* evita tooltip */
+}
+
+.icones-pagamento {
+  display: flex;
+  gap: 15px;
+  font-size: 2rem;
+  color: #FFC0CB;
+  flex-wrap: nowrap;
+}
+
+/* ==========================
+   REDES SOCIAIS
+   ========================== */
+.icones-redes {
+  display: flex;
+  gap: 15px;
+  font-size: 1.8rem;
+  color: #FFC0CB;
+  flex-wrap: wrap;
+}
+
+.icones-redes a {
+  color: #FFC0CB;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.icones-redes a:hover {
+  color: #FF6F91;
+}
+
+/* ==========================
+   IMAGEM DE DESTAQUE
+   ========================== */
+.imagem-destaque {
+  flex: 0 0 100px;
+  margin-right: 60px;
+  margin-left: auto;
+  text-align: center;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.imagem-destaque img {
+  width: 180px;
+  height: 190px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(255, 111, 145, 0.6);
+  margin-bottom: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.imagem-destaque img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 111, 145, 0.9),
+              0 0 60px rgba(255, 192, 203, 0.7),
+              0 0 80px rgba(255, 111, 145, 0.6);
+}
+
+.imagem-destaque p {
+  font-size: 1.2rem;
+  color: #FF6F91;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+/* ==========================
+   RESPONSIVO
+   ========================== */
+@media (max-width: 768px) {
+  .container-duvidas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .info-colunas {
+    flex-direction: column;
+    align-items: center;
+  }
+  .coluna {
+    text-align: center;
+  }
+  .imagem-destaque {
+    margin-left: 0;
+  }
+}
+
+/* ==========================
+   FOOTER
+   ========================== */
+.rodape {
+  background-color: #5A2A46;
+  color: #E6D6E8;
+  font-size: 0.9rem;
+  padding: 16px 0;
+  border-top: 0.5px solid #7A4F9A;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.container-rodape {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.container-rodape p {
+  margin: 0;
+}
+
+.florzinha {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #D4A1E8;
+}
+
+/* ==========================
+   CHAT
+   ========================== */
+.voltar-chat-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 9999;
+  gap: 12px;
+}
+
+.btn-topo {
+  all: unset; /* limpa estilos padrões */
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6F91, #FF2D55, #FF9EC4);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.8),
+              0 0 24px rgba(255, 20, 147, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-topo:hover {
+  transform: scale(1.2) rotate(10deg);
+  box-shadow: 0 0 18px rgba(255, 20, 147, 1),
+              0 0 36px rgba(255, 105, 180, 0.8);
+}
+
+.bolinha-chat {
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 0;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 0 15px #FF6F91;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.bolinha-chat:hover { transform: scale(1.1); }
+
+.bolinha-chat img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+}
+
+.chat-popup {
+  position: fixed;
+  bottom: 140px;
+  right: 30px;
+  width: 320px;
+  background: #fff;
+  border: 2px solid #5A2A46;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(90, 42, 70, 0.5);
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  background: #5A2A46;
+  color: white;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.chat-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chat-header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.chat-header p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.fechar-chat {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.chat-body {
+  padding: 16px;
+}
+
+.chat-body p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.chat-body textarea {
+  width: 100%;
+  height: 70px;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 8px;
+  font-family: 'Poppins', sans-serif;
+  resize: none;
+  border: 1px solid #ccc;
+}
+
+.chat-body button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #FF6F91;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-body button:hover {
+  background-color: #B05A6E;
+}
+
+/* ==========================
+   ACESSO DROPDOWN
+   ========================== */
+:root {
+  --grad: linear-gradient(to right, #F48FB1 0%, #CE93D8 45%, #7E57C2 75%, #42A5F5 100%);
+  --text: #fff;
+  --text-dim: rgba(255,255,255,.92);
+  --border: rgba(255,255,255,.22);
+  --inner: rgba(0,0,0,.14);
+  --radius: 12px;
+  --shadow: 0 10px 24px rgba(0,0,0,.22);
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.acesso span:first-child {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.acesso-container { position: relative; width: fit-content; font-family: var(--font); }
+
+.acesso {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+  background: var(--grad);
+  font-size: .9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  transition: filter .12s, transform .12s;
+  user-select: none;
+}
+
+.acesso:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+.painel-acesso {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-47%);
+  z-index: 999;
+  display: none;
+  width: 280px;
+  max-width: 92vw;
+  max-height: 320px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--grad);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#painelInner {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+}
+
+#painelInner h3,
+#painelInner p { margin: 0 0 8px; line-height: 1.25; }
+
+#painelInner p { color: var(--text-dim); font-size: .88rem; }
+
+.linha-ou { text-align: center; opacity: .9; font-size: .8rem; margin: 6px 0; }
+
+.btn-grad {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .9rem;
+  color: #fff;
+  background: rgba(255,255,255,.14);
+  transition: transform .1s, background .1s, filter .1s;
+}
+
+.btn-grad:hover { background: rgba(255,255,255,.2); filter: brightness(1.03); }
+.btn-grad:active { transform: scale(.99); }
+
+.btn-link {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 600;
+  padding: 6px 0;
+  font-size: .86rem;
+  cursor: pointer;
+}
+
+.form { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+
+.form input {
+  width: 60%;
+  height: 14px;
+  padding: 0 3px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: .45rem;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 14px;
+}
+
+.form input:focus { outline: none; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.18); }
+
+.msg {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.18);
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: .78rem;
+  color: #fff;
+}
+
+/* Ajustes dentro do painel */
+.painel-acesso .form input {
+  width: 80% !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 0 8px !important;
+  font-size: .9rem !important;
+  text-align: center !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  box-sizing: border-box !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.painel-acesso .form input:focus {
+  outline: none !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  background: rgba(255,255,255,0.18) !important;
+}
+
+.ico-link { all: unset; cursor: pointer; font-size: 1.28rem; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+.ico-link:hover { transform: scale(1.15); }
+
+.acoes-icones {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 30px;
+  z-index: 9999;
+  position: relative;
+}
+
+.acoes-icones a,
+.acoes-icones button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none !important;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: inherit;
+  padding: 5px;
+}
+
+/* Tooltip */
+[data-tooltip] { position: relative; }
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: .75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 1000;
+}
+[data-tooltip]:hover::after { opacity: 1; }
+
+
+/* ====== QUADRADO DE GÊNEROS E COLEÇÕES ====== */
+
+/* Contêiner dos menus */
+.menu-generos,
+.menu-colecoes {
+  position: relative;
+  display: inline-block;
+}
+
+/* Quadrado de gêneros */
+.quadro-generos,
+#quadroColecoes {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;           /* o JS alterna entre none/flex */
+  flex-direction: column;
+  width: 180px;            /* largura fixa estreita */
+  padding: 10px;
+  border-radius: 16px;
+  z-index: 1000;
+  background: rgba(132, 94, 194, 0.8); /* roxo transparente */
+  color: white;
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+}
+
+/* Opções internas */
+.quadro-generos .opcao,
+.quadro-colecoes .opcao {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  letter-spacing: 0.3px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: transform 0.12s ease, background 0.18s ease, box-shadow 0.18s ease;
+  font-family: 'Great Vibes', cursive;
+}
+
+/* Hover das opções */
+.quadro-generos .opcao:hover,
+.quadro-colecoes .opcao:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2), 0 0 18px rgba(126, 87, 194, 0.45);
+}
+
+/* Quebra de linha para coleções longas */
+.quadro-colecoes .opcao {
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* Efeito de estrelas animadas */
+.quadro-generos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  background:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent 60%),
+    radial-gradient(1.5px 1.5px at 80% 20%, #fff, transparent 60%),
+    radial-gradient(1.8px 1.8px at 65% 70%, #fff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 35% 65%, #fff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 10% 80%, #fff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 90% 55%, #fff, transparent 60%);
+  filter: drop-shadow(0 0 6px #fff);
+  animation: twinkle 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.55; transform: translateY(0); }
+  100% { opacity: 0.9; transform: translateY(-1px); }
+}
+
+/* Espaçamento entre ícones e saudação */
+.acoes-icones {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===== SEARCHBAR ===== */
+.searchbar {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 500px;          /* largura padrão */
+  margin-left: 4px;      /* ajusta distância do título */
+}
+
+.searchbar input {
+  width: 100%;
+  height: 40px;           /* altura fina */
+  line-height: 32px;
+  padding: 0 42px 0 14px; /* espaço para a lupa */
+  border-radius: 18px;
+  border: 2px solid #D65DB1;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  outline: none;          /* remove contorno padrão */
+  -webkit-appearance: none;
+  appearance: none;
+  background-clip: padding-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* foco / hover */
+.searchbar input:focus,
+header .searchbar input:focus,
+header .searchbar input:hover,
+header .searchbar input:active {
+  border-color: #FF6F91;                 /* borda rosa */
+  box-shadow: 0 0 10px #FF6F91;          /* brilho rosa */
+  background-color: rgba(255, 111, 145, 0.15) !important; /* rosa translúcido */
+  color: #fff !important;
+  caret-color: #fff !important;
+}
+
+/* botão da lupa */
+.searchbar button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  .searchbar {
+    width: min(92vw, 560px);
+    margin-left: 0;
+  }
+}
+
+/* ====== Searchbar principal ====== */
+.searchbar {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 500px;       /* comprimento padrão */
+  margin-left: 4px;   /* ajuste de distância do título */
+}
+
+.searchbar input {
+  width: 100%;
+  height: 40px;
+  line-height: 32px;
+  padding: 0 42px 0 14px;  /* espaço para o botão/lupa */
+  border-radius: 18px;
+  border: 2px solid #D65DB1;
+  background: rgba(255,111,145,0.15); /* rosa translúcido */
+  color: #fff;
+  font-size: .95rem;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-clip: padding-box;
+  caret-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchbar input:focus {
+  border-color: #FF6F91;                 /* borda rosa no foco */
+  box-shadow: 0 0 10px #FF6F91;          /* brilho rosa */
+}
+
+.searchbar button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .searchbar { width: min(92vw, 560px); margin-left: 0; }
+}
+
+/* ====== Autofill (Chrome/Edge/Safari) ====== */
+header .searchbar input:-webkit-autofill,
+header .searchbar input:-webkit-autofill:hover,
+header .searchbar input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255,111,145,0.15) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255,111,145,0.15) inset !important;
+  background-color: transparent !important;
+  background-clip: padding-box !important;
+  transition: background-color 9999s ease 0s !important; /* Safari/iOS fix */
+}
+
+/* ====== Autofill (Firefox) ====== */
+header .searchbar input:-moz-autofill {
+  box-shadow: 0 0 0 1000px rgba(255,111,145,0.15) inset !important;
+  -moz-text-fill-color: #fff !important;
+  caret-color: #fff !important;
+  background-color: transparent !important;
+  background-clip: padding-box !important;
+}
+
+
+/* ====== Lupa: força a cor do ícone (não herdar branco) ====== */
+header .searchbar button svg {
+  fill: #D65DB1 !important;          /* cor padrão da lupa */
+}
+
+header .searchbar button:hover svg {
+  fill: #FF6F91 !important;          /* cor da lupa ao passar o mouse */
+}
+
+/* ====== DÚVIDAS: links com hover suave (sem brilho) ====== */
+.duvidas-secao .lista-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.duvidas-secao .lista-links li {
+  margin: 8px 0;
+}
+
+/* zera qualquer brilho herdado */
+.duvidas-secao .lista-links a,
+.duvidas-secao .coluna ul li {
+  text-shadow: none !important;
+}
+
+/* estado padrão mais calmo */
+.duvidas-secao .lista-links a {
+  color: #ffd6e0;                      /* rosa clarinho */
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;  /* sublinhado invisível no normal */
+  text-underline-offset: 3px;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: 
+    color 0.2s ease, 
+    text-decoration-color 0.2s ease, 
+    background-color 0.2s ease;
+}
+
+/* efeito hover suave (opcional) */
+.duvidas-secao .lista-links a:hover {
+  color: #ff6f91;                      /* rosa mais intenso ao passar o mouse */
+  text-decoration-color: #ff6f91;      /* sublinhado aparece no hover */
+  background-color: rgba(255,111,145,0.1); /* leve destaque de fundo */
+}
+
+/* ====== DÚVIDAS: hover discreto e acessibilidade ====== */
+
+/* hover discreto (sem neon) */
+.duvidas-secao .lista-links a:hover {
+  color: #ffc0cb;                       /* tom suave, não berrante */
+  text-decoration-color: #ffc0cb;       /* sublinhado aparece suave */
+  background-color: rgba(255,255,255,0.08); /* leve “pill” de fundo */
+}
+
+/* acessibilidade no teclado */
+.duvidas-secao .lista-links a:focus-visible {
+  outline: 2px solid #ff9ab3;
+  outline-offset: 2px;
+  background-color: rgba(255,255,255,0.10);
+}
+
+/* garante que nada brilhe nos itens da coluna */
+.duvidas-secao .coluna ul li:hover {
+  text-shadow: none !important;
+}
+
+/*margem acesso privado*/
+.painel-acesso input,
+.painel-acesso input:focus,
+.painel-acesso input:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: rgba(255,255,255,0.25); /* mantém borda normal sem foco */
+}
+
+/* tirou a linha azul da forma de pagamento*/
+.pagamentos-link {
+  text-decoration: none; /* remove o sublinhado */
+}
+
+.pagamentos-link:focus,
+.pagamentos-link:hover {
+  text-decoration: none; /* garante que não apareça no hover ou foco */
+}
+
+</style>
+</head>
+
+<body id="topo">
+<header>
+  <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+  <div class="linha">
+  <!-- HEADER: barra de busca alinhada -->
+<form id="formBuscaSite" class="searchbar" action="resultado.html" method="get">
+  <input 
+    id="campoBuscaSite"
+    name="q"
+    type="text" 
+    placeholder="Encontre sua próxima leitura…" 
+    autocomplete="off" 
+    autocapitalize="off" 
+    autocorrect="off" 
+    spellcheck="false"
+  />
+  <button type="submit" aria-label="Buscar">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M10.5 3a7.5 7.5 0 0 1 5.97 12.06l4.24 4.24-1.42 1.42-4.24-4.24A7.5 7.5 0 1 1 10.5 3zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/>
+    </svg>
+  </button>
+</form>
+
+
+</div>
+
+    <div class="acesso-container">
+      <div class="acesso" onclick="toggleAcesso()">
+        <span>Acesse o Arquivo Secreto</span>
+        <span class="cadeado">🔒</span>
+      </div>
+      <div class="painel-acesso" id="painelAcesso">
+        <div id="painelInner"></div>
+      </div>
+    </div>
+
+    <div class="acoes-icones">
+      <a href="favoritos.html" class="icone" title="Favoritos" aria-label="Favoritos">❤️</a>
+      <a href="pedidos.html" class="ico-link" title="Pedidos" aria-label="Pedidos">🛒</a>
+      <a href="contato.html" class="ico-link" title="Contato" aria-label="Contato">📞</a>
+     </div>
+  </div>
+</header>
+
+<nav>
+  <div class="menu-generos">
+    <a href="#generos" id="btnGeneros">Gêneros</a>
+    <div id="quadroGeneros" class="quadro-generos" style="display:none;">
+      <a href="sombria.html#cards" class="opcao">Sombria</a>
+      <a href="romantica.html#cards" class="opcao">Romântica</a>
+      <a href="mistica.html#cards" class="opcao">Mística</a>
+      <a href="empoderada.html#cards" class="opcao">Empoderada</a>
+      <a href="visionaria.html#cards" class="opcao">Visionária</a>
+    </div>
+  </div>
+
+  <div class="menu-colecoes">
+  <a href="#colecoes" id="btnColecoes">Coleções</a>
+  <div id="quadroColecoes" class="quadro-generos" style="display:none;">
+    <a href="herdeiras-de-si.html#cards" class="opcao">Herdeiras de<br>Si Mesmas</a>
+    <a href="alem-do-beijo.html#cards" class="opcao">Além do Beijo</a>
+    <a href="sobre-elas.html#cards" class="opcao">Sobre Elas</a>
+  </div>
+</div>
+
+  <a href="resenhas.html">Resenhas</a>
+  <a href="troquedelivro.html">Troque de livro</a>
+  <a href="publiqueaqui.html">Publique Aqui</a>
+  <a href="revenda.html">Revenda</a>
+  </nav>
+
+
+<!-- ROLETA DE BANNER -->
+<div id="roleta-container">
+  <span id="btn-voltar" class="seta" aria-label="Voltar">❮</span>
+  <img id="banner" src="imagem/banner1.png" alt="Banner 1" />
+  <span id="btn-avancar" class="seta" aria-label="Avançar">❯</span>
+</div>
+
+<h2 id="generos" class="titulo-generos">Como você esta hoje?</h2>
+<div class="generos">
+  <a href="sombria.html" class="genero"><img src="imagem/sombrio.jpg" alt="Sombria"><p>Sombria</p></a>
+  <a href="romantica.html" class="genero"><img src="imagem/cicatriz.jpg" alt="Romântica"><p>Romântica</p></a>
+  <a href="mistica.html" class="genero"><img src="imagem/mistica.jpg" alt="Mística"><p>Mística</p></a>
+  <a href="empoderada.html" class="genero"><img src="imagem/brava.jpg" alt="Empoderada"><p>Empoderada</p></a>
+  <a href="criativa.html" class="genero"><img src="imagem/criativa.jpg" alt="Criativa"><p>Criativa</p></a>
+  <a href="visionaria.html" class="genero"><img src="imagem/ficcaocientifica.jpg" alt="Visionária"><p>Visionária</p></a>
+</div>
+
+<!-- espaço -->
+<div class="espaco-entre-secoes"></div>
+
+<!-- PRIMEIRA ROLETA -->
+<section class="faixa-fundo continue">
+  <h2 class="titulo-roleta">Continue Descobrindo</h2>
+  <div class="roleta-container">
+    <button class="seta esquerda" onclick="scrollEsquerda('livrosWrapperContinue')">❮</button>
+    <button class="seta direita"  onclick="scrollDireita('livrosWrapperContinue')">❯</button>
+    <div class="livros-wrapper" id="livrosWrapperContinue">
+      <!-- (cards) -->
+      <!-- ... seus cards exatamente como você enviou ... -->
+      <div class="livro">
+        <img src="imagem/livrotarop.png" alt="A Sacerdotisa do Tarô">
+        <div class="overlay">
+          <p class="titulo-livro">A Sacerdotisa do Tarô: Sabedoria das Cartas</p>
+          <p class="autor-livro">Isadora Luna</p>
+          <p class="valor-livro">R$ 49,90</p>
+          <div class="acoes">
+            <a href="livros.html?id=sacerdotisa-taro" class="detalhes">Detalhes</a>
+            <span class="icone" data-fav-btn data-id="sacerdotisa-taro" data-titulo="A Sacerdotisa do Tarô: Sabedoria das Cartas" data-autor="Isadora Luna" data-valor="49.90" data-imagem="imagem/livrotarop.png">🤍</span>
+            <span class="icone" data-cart-btn data-id="sacerdotisa-taro" data-titulo="A Sacerdotisa do Tarô: Sabedoria das Cartas" data-autor="Isadora Luna" data-valor="49.90" data-imagem="imagem/livrotarop.png">🛒</span>
+          </div>
+        </div>
+      </div>
+
+     <div class="livro">
+  <img src="imagem/livrosorriso1.png" alt="O Sorriso Que Ela Deixou">
+  <div class="overlay">
+    <p class="titulo-livro">✨O Sorriso Que Ela Deixou✨</p>
+    <p class="autor-livro">Pam Alves</p>
+    <p class="valor-livro">R$ 46,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=sorriso-que-ela-deixou" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="sorriso-que-ela-deixou"
+        data-titulo="O Sorriso Que Ela Deixou"
+        data-autor="Pam Alves"
+        data-valor="46.90"
+        data-imagem="imagem/livrosorriso1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="sorriso-que-ela-deixou"
+        data-titulo="O Sorriso Que Ela Deixou"
+        data-autor="Pam Alves"
+        data-valor="46.90"
+        data-imagem="imagem/livrosorriso1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livropulsar.png" alt="Livro O Pulsar Sagrado">
+  <div class="overlay">
+    <p class="titulo-livro">✨O Pulsar Sagrado: A Energia Feminina no Universo✨</p>
+    <p class="autor-livro">Pam Alves</p>
+    <p class="valor-livro">R$ 49,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=o-pulsar-sagrado" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="o-pulsar-sagrado"
+        data-titulo="O Pulsar Sagrado: A Energia Feminina no Universo"
+        data-autor="Pam Alves"
+        data-valor="49.90"
+        data-imagem="imagem/livropulsar.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="o-pulsar-sagrado"
+        data-titulo="O Pulsar Sagrado: A Energia Feminina no Universo"
+        data-autor="Pam Alves"
+        data-valor="49.90"
+        data-imagem="imagem/livropulsar.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livrogarotas1.png" alt="As Boas Meninas Não Matam">
+  <div class="overlay">
+    <p class="titulo-livro">✨As Boas Meninas Não Matam✨</p>
+    <p class="autor-livro">Kimberly Muller</p>
+    <p class="valor-livro">R$ 44,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=boas-meninas-nao-matam" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="boas-meninas-nao-matam"
+        data-titulo="As Boas Meninas Não Matam"
+        data-autor="Kimberly Muller"
+        data-valor="44.90"
+        data-imagem="imagem/livrogarotas1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="boas-meninas-nao-matam"
+        data-titulo="As Boas Meninas Não Matam"
+        data-autor="Kimberly Muller"
+        data-valor="44.90"
+        data-imagem="imagem/livrogarotas1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+<div class="livro">
+  <img src="imagem/livrorosa1.png" alt="Livro Rosa Não Pede Perdão">
+  <div class="overlay">
+    <p class="titulo-livro">✨Rosa Não Pede Perdão✨</p>
+    <p class="autor-livro">Marilia Pessoa</p>
+    <p class="valor-livro">R$ 52,80</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=rosa-nao-pede-perdao" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="rosa-nao-pede-perdao"
+        data-titulo="Rosa Não Pede Perdão"
+        data-autor="Marilia Pessoa"
+        data-valor="52.80"
+        data-imagem="imagem/livrorosa1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="rosa-nao-pede-perdao"
+        data-titulo="Rosa Não Pede Perdão"
+        data-autor="Marilia Pessoa"
+        data-valor="52.80"
+        data-imagem="imagem/livrorosa1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livroeu1.png" alt="Livro Só Eu Voltei">
+  <div class="overlay">
+    <p class="titulo-livro">🩸 Só Eu Voltei 🩸</p>
+    <p class="autor-livro">Victor Lima</p>
+    <p class="valor-livro">R$ 49,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=so-eu-voltei" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="so-eu-voltei"
+        data-titulo="Só Eu Voltei"
+        data-autor="Victor Lima"
+        data-valor="49.90"
+        data-imagem="imagem/livroeu1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="so-eu-voltei"
+        data-titulo="Só Eu Voltei"
+        data-autor="Victor Lima"
+        data-valor="49.90"
+        data-imagem="imagem/livroeu1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livrocoracao1.png" alt="Livro De Volta Para o Mesmo Coração">
+  <div class="overlay">
+    <p class="titulo-livro">✨De Volta Para o Mesmo Coração✨</p>
+    <p class="autor-livro">Cris Rocha</p>
+    <p class="valor-livro">R$ 58,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=volta-coracao" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="volta-coracao"
+        data-titulo="De Volta Para o Mesmo Coração"
+        data-autor="Cris Rocha"
+        data-valor="58.90"
+        data-imagem="imagem/livrocoracao1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="volta-coracao"
+        data-titulo="De Volta Para o Mesmo Coração"
+        data-autor="Cris Rocha"
+        data-valor="58.90"
+        data-imagem="imagem/livrocoracao1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livromarca1.png" alt="Livro Marca na Pele">
+  <div class="overlay">
+    <p class="titulo-livro">🩸Marca na Pele🩸</p>
+    <p class="autor-livro">Anahi Vidal</p>
+    <p class="valor-livro">R$ 58,90</p>
+
+    <div class="acoes">
+      <a href="livros.html?id=marca-na-pele" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="marca-na-pele"
+        data-titulo="Marca na Pele"
+        data-autor="Anahi Vidal"
+        data-valor="58.90"
+        data-imagem="imagem/livromarca1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="marca-na-pele"
+        data-titulo="Marca na Pele"
+        data-autor="Anahi Vidal"
+        data-valor="58.90"
+        data-imagem="imagem/livromarca1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="livro">
+  <img src="imagem/livropermissao1.png" alt="Sem Permissão, Mesmo Assim">
+  <div class="overlay">
+    <p class="titulo-livro">💪 Sem Permissão, Mesmo Assim 💪</p>
+    <p class="autor-livro">Fernanda Emmanuele</p>
+    <p class="valor-livro">R$ 49,90</p>
+    <div class="acoes">
+      <a href="livros.html?id=sem-permissao" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="sem-permissao"
+        data-titulo="Sem Permissão, Mesmo Assim"
+        data-autor="Fernanda Emmanuele"
+        data-valor="49.90"
+        data-imagem="imagem/livropermissao1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="sem-permissao"
+        data-titulo="Sem Permissão, Mesmo Assim"
+        data-autor="Fernanda Emmanuele"
+        data-valor="49.90"
+        data-imagem="imagem/livropermissao1.png">🛒</span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUNDA ROLETA -->
+<section class="faixa-fundo segredo">
+  <h2 class="titulo-roleta">Segredos da Estante</h2>
+  <div class="roleta-container">
+    <button class="seta esquerda" onclick="scrollEsquerda('livrosWrapperSegredos')">❮</button>
+    <button class="seta direita"  onclick="scrollDireita('livrosWrapperSegredos')">❯</button>
+    <div class="livros-wrapper" id="livrosWrapperSegredos">
+      <!-- (cards) -->
+      <!-- ... mantidos como você enviou ... -->
+      <div class="livro">
+        <img src="imagem/livrodiario1.png" alt="O Diário das Coisas Não Ditas">
+        <div class="overlay">
+          <p class="titulo-livro">✨O Diário das Coisas Não Ditas✨</p>
+          <p class="autor-livro">Debi Castanho</p>
+          <p class="valor-livro">R$ 47,80</p>
+          <div class="acoes">
+            <a href="livros.html?id=diario-nao-ditas" class="detalhes">Detalhes</a>
+            <span class="icone" data-fav-btn data-id="diario-nao-ditas" data-titulo="O Diário das Coisas Não Ditas" data-autor="Debi Castanho" data-valor="47.80" data-imagem="imagem/livrodiario1.png">🤍</span>
+            <span class="icone" data-cart-btn data-id="diario-nao-ditas" data-titulo="O Diário das Coisas Não Ditas" data-autor="Debi Castanho" data-valor="47.80" data-imagem="imagem/livrodiario1.png">🛒</span>
+          </div>
+        </div>
+      </div>
+      <div class="livro">
+  <img src="imagem/livroqueimei1.png" alt="A Última Carta Queimei">
+  <div class="overlay">
+    <p class="titulo-livro">🩷A Última Carta Queimei🩷</p>
+    <p class="autor-livro">Isadora M.</p>
+    <p class="valor-livro">R$ 42,70</p>
+    <div class="acoes">
+      <a href="livros.html?id=ultima-carta-queimei" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="ultima-carta-queimei"
+        data-titulo="A Última Carta Queimei"
+        data-autor="Isadora M."
+        data-valor="42.70"
+        data-imagem="imagem/livroqueimei1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="ultima-carta-queimei"
+        data-titulo="A Última Carta Queimei"
+        data-autor="Isadora M."
+        data-valor="42.70"
+        data-imagem="imagem/livroqueimei1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livroproibido1.png" alt="A Criatura da Floresta Proibida">
+  <div class="overlay">
+    <p class="titulo-livro">🌿A Criatura da Floresta Proibida🌿</p>
+    <p class="autor-livro">Eloá S. Moura</p>
+    <p class="valor-livro">R$ 39,90</p>
+    <div class="acoes">
+      <a href="livros.html?id=criatura-floresta-proibida" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="criatura-floresta-proibida"
+        data-titulo="A Criatura da Floresta Proibida"
+        data-autor="Eloá S. Moura"
+        data-valor="39.90"
+        data-imagem="imagem/livroproibido1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="criatura-floresta-proibida"
+        data-titulo="A Criatura da Floresta Proibida"
+        data-autor="Eloá S. Moura"
+        data-valor="39.90"
+        data-imagem="imagem/livroproibido1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="livro">
+  <img src="imagem/livromenina1.png" alt="A Menina que Sabia Dormir com Monstros">
+  <div class="overlay">
+    <p class="titulo-livro">🌑A Menina que Sabia Dormir com Monstros🌑</p>
+    <p class="autor-livro">C. Mirella</p>
+    <p class="valor-livro">R$ 44,40</p>
+    <div class="acoes">
+      <a href="livros.html?id=menina-monstros" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="menina-monstros"
+        data-titulo="A Menina que Sabia Dormir com Monstros"
+        data-autor="C. Mirella"
+        data-valor="44.40"
+        data-imagem="imagem/livromenina1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="menina-monstros"
+        data-titulo="A Menina que Sabia Dormir com Monstros"
+        data-autor="C. Mirella"
+        data-valor="44.40"
+        data-imagem="imagem/livromenina1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+ <div class="livro">
+  <img src="imagem/livroleila1.png" alt="O Silêncio de Leila">
+  <div class="overlay">
+    <p class="titulo-livro">🌙O Silêncio de Leila🌙</p>
+    <p class="autor-livro">Yara D. Bakkar</p>
+    <p class="valor-livro">R$ 49,90</p>
+    <div class="acoes">
+      <a href="livros.html?id=silencio-leila" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="silencio-leila"
+        data-titulo="O Silêncio de Leila"
+        data-autor="Yara D. Bakkar"
+        data-valor="49.90"
+        data-imagem="imagem/livroleila1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="silencio-leila"
+        data-titulo="O Silêncio de Leila"
+        data-autor="Yara D. Bakkar"
+        data-valor="49.90"
+        data-imagem="imagem/livroleila1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="livro">
+  <img src="imagem/livropalavra1.png" alt="Palavras que Floriram">
+  <div class="overlay">
+    <p class="titulo-livro">🌸Palavras que Floriram🌸</p>
+    <p class="autor-livro">Vitória Campos</p>
+    <p class="valor-livro">R$ 38,90</p>
+    <div class="acoes">
+      <a href="livros.html?id=palavras-que-floriram" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="palavras-que-floriram"
+        data-titulo="Palavras que Floriram"
+        data-autor="Vitória Campos"
+        data-valor="38.90"
+        data-imagem="imagem/livropalavra1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="palavras-que-floriram"
+        data-titulo="Palavras que Floriram"
+        data-autor="Vitória Campos"
+        data-valor="38.90"
+        data-imagem="imagem/livropalavra1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="livro">
+  <img src="imagem/livroporta1.png" alt="A Porta Sem Nome">
+  <div class="overlay">
+    <p class="titulo-livro">🩸A Porta Sem Nome🩸</p>
+    <p class="autor-livro">Helena L. Ruiz</p>
+    <p class="valor-livro">R$ 45,90</p>
+    <div class="acoes">
+      <a href="livros.html?id=porta-sem-nome" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="porta-sem-nome"
+        data-titulo="A Porta Sem Nome"
+        data-autor="Helena L. Ruiz"
+        data-valor="45.90"
+        data-imagem="imagem/livroporta1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="porta-sem-nome"
+        data-titulo="A Porta Sem Nome"
+        data-autor="Helena L. Ruiz"
+        data-valor="45.90"
+        data-imagem="imagem/livroporta1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="livro">
+  <img src="imagem/livroana1.png" alt="Meu Nome é Ana">
+  <div class="overlay">
+    <p class="titulo-livro">🪖Meu Nome é Ana🪖</p>
+    <p class="autor-livro">Vitoria Lemos</p>
+    <p class="valor-livro">R$ 46,80</p>
+    <div class="acoes">
+      <a href="livros.html?id=meu-nome-e-ana" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="meu-nome-e-ana"
+        data-titulo="Meu Nome é Ana"
+        data-autor="Vitoria Lemos"
+        data-valor="46.80"
+        data-imagem="imagem/livroana1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="meu-nome-e-ana"
+        data-titulo="Meu Nome é Ana"
+        data-autor="Vitoria Lemos"
+        data-valor="46.80"
+        data-imagem="imagem/livroana1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="livro">
+  <img src="imagem/livroboneca1.png" alt="A Casa das Bonecas Vazias">
+  <div class="overlay">
+    <p class="titulo-livro">🕯️A Casa das Bonecas Vazias🕯️</p>
+    <p class="autor-livro">Isadora Freitas</p>
+    <p class="valor-livro">R$ 41,80</p>
+    <div class="acoes">
+      <a href="livros.html?id=casa-das-bonecas-vazias" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="casa-das-bonecas-vazias"
+        data-titulo="A Casa das Bonecas Vazias"
+        data-autor="Isadora Freitas"
+        data-valor="41.80"
+        data-imagem="imagem/livroboneca1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="casa-das-bonecas-vazias"
+        data-titulo="A Casa das Bonecas Vazias"
+        data-autor="Isadora Freitas"
+        data-valor="41.80"
+        data-imagem="imagem/livroboneca1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="livro">
+  <img src="imagem/livroeva1.png" alt="Os Códigos de Eva">
+  <div class="overlay">
+    <p class="titulo-livro">🧬Os Códigos de Eva🧬</p>
+    <p class="autor-livro">Dandara Loures</p>
+    <p class="valor-livro">R$ 49,70</p>
+    <div class="acoes">
+      <a href="livros.html?id=codigos-de-eva" class="detalhes">Detalhes</a>
+
+      <!-- botão de favoritos -->
+      <span class="icone"
+        data-fav-btn
+        data-id="codigos-de-eva"
+        data-titulo="Os Códigos de Eva"
+        data-autor="Dandara Loures"
+        data-valor="49.70"
+        data-imagem="imagem/livroeva1.png">🤍</span>
+
+      <!-- botão de pedidos -->
+      <span class="icone"
+        data-cart-btn
+        data-id="codigos-de-eva"
+        data-titulo="Os Códigos de Eva"
+        data-autor="Dandara Loures"
+        data-valor="49.70"
+        data-imagem="imagem/livroeva1.png">🛒</span>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Vítimas ou Vilãs? -->
+<section class="secao-carrossel">
+  <h2 class="frase-sangue-segredo">Herdeiras de Si Mesmas</h2>
+  <div class="carrossel-livros">
+    <div class="card-livro">
+      <img src="imagem/livroagulha1.png" alt="A Agulha e a Coroa" />
+      <p class="titulo-livro">A Agulha e a Coroa</p>
+      <a href="livros.html?id=agulha-e-a-coroa" class="botao-detalhes">Detalhes</a>
+    </div>
+    <div class="card-livro">
+      <img src="imagem/livrocura1.png" alt="A Coroa e a Cura" />
+      <p class="titulo-livro">A Coroa e a Cura</p>
+      <a href="livros.html?id=a-coroa-e-a-cura" class="botao-detalhes">Detalhes</a>
+    </div>
+    <div class="card-livro">
+      <img src="imagem/livropoder1.png" alt="O Poder e o Resto" />
+      <p class="titulo-livro">O Poder e o Resto</p>
+      <a href="livros.html?id=poder-e-resto" class="botao-detalhes">Detalhes</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULÁRIO -->
+<section class="cadastro-newsletter">
+  <div class="form-wrapper">
+    <h2 class="titulo-cadastro">Cadastre-se e fique por dentro, receba as novidades e promoções.</h2>
+
+    <!-- note o onsubmit abaixo -->
+    <form id="formCadastro" onsubmit="return cadastrarNewsletter(event)" action="javascript:void(0)">
+      <input type="text" name="nome" placeholder="Digite seu nome" required />
+      <input type="email" name="email" placeholder="Digite seu e-mail" required />
+      <label class="checkbox-label">
+        <input type="checkbox" name="privacidade" required />
+        Ao cadastrar, eu concordo com a Política de Privacidade
+      </label>
+      <button type="submit">Cadastrar</button>
+
+      <!-- onde a mensagem aparece -->
+      <p id="formMsg" class="form-msg" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- DÚVIDAS / FOOTER -->
+<section class="duvidas-secao">
+  <div class="container-duvidas">
+
+    <!-- Imagem e destaque -->
+    <div class="imagem-destaque">
+      <img src="imagem/livro50.png" alt="Livro 50">
+      <p>Tire suas dúvidas</p>
+    </div>
+
+    <!-- Colunas de informações -->
+    <div class="info-colunas">
+
+      <!-- Coluna 1: Links -->
+      <div class="coluna">
+        <h3>Privacidade e Termos</h3>
+        <ul class="lista-links">
+          <li><a href="politica-de-pagamentos.html">Política de pagamentos</a></li>
+          <li><a href="trocas-e-devolucoes.html">Troca e devoluções</a></li>
+          <li><a href="rastreio-pedidos.html">Encontre seu pedido</a></li>
+        </ul>
+      </div>
+
+      <!-- Coluna 2: Ícones de pagamento (somente visual) -->
+      <div class="coluna">
+        <h3>Formas de pagamento</h3>
+        <div class="pagamentos-link" aria-label="Ver todas as formas de pagamento">
+          <div class="icones-pagamento">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fas fa-credit-card"></i>
+            <i class="fas fa-qrcode"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna 3: Redes sociais -->
+      <div class="coluna">
+        <h3>Siga-nos</h3>
+        <div class="icones-redes social-real">
+
+        <a class="insta"
+       href="https://instagram.com/arquivo.feminino?utm_source=site&utm_medium=duvidas&utm_campaign=social_follow"
+      target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+      </a>
+
+
+          <a class="twitter"
+             href="https://twitter.com/SEU_USUARIO?utm_source=site&utm_medium=duvidas&utm_campaign=social_follow"
+             target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="facebook"
+             href="https://facebook.com/SEU_USUARIO?utm_source=site&utm_medium=duvidas&utm_campaign=social_follow"
+             target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="tiktok"
+             href="https://www.tiktok.com/@SEU_USUARIO?utm_source=site&utm_medium=duvidas&utm_campaign=social_follow"
+             target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a class="pinterest"
+             href="https://pinterest.com/SEU_USUARIO?utm_source=site&utm_medium=duvidas&utm_campaign=social_follow"
+             target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <i class="fab fa-pinterest-p"></i>
+          </a>
+        </div>
+      </div>
+
+    </div> <!-- fim info-colunas -->
+
+  </div> <!-- fim container-duvidas -->
+</section>
+
+
+<!-- Overlay + Modais (coloque logo após a seção acima) -->
+<div class="duv-overlay" id="duvOverlay" hidden></div>
+
+<div class="duv-modal" id="modal-pagamentos" hidden role="dialog" aria-modal="true" aria-labelledby="tit-pag">
+  <button class="duv-close" aria-label="Fechar">×</button>
+  <h3 id="tit-pag">Política de pagamentos</h3>
+  <ul>
+    <li>Cartão de crédito em até <b>6x sem juros</b> (parcela mínima R$ 20).</li>
+    <li><b>Pix</b> com aprovação imediata e desconto quando disponível.</li>
+    <li><b>Boleto</b> compensa em até 2 dias úteis.</li>
+    <li>Reembolso no mesmo meio de pagamento.</li>
+  </ul>
+</div>
+
+<div class="duv-modal" id="modal-trocas" hidden role="dialog" aria-modal="true" aria-labelledby="tit-trocas">
+  <button class="duv-close" aria-label="Fechar">×</button>
+  <h3 id="tit-trocas">Troca e devoluções</h3>
+  <ol>
+    <li>Solicite em até <b>7 dias</b> após o recebimento (arrependimento) ou <b>30 dias</b> (defeito).</li>
+    <li>Envie o número do pedido e fotos (se houver) no <b>contato</b>.</li>
+    <li>Vamos aprovar e mandar a etiqueta de postagem.</li>
+    <li>Reembolso ou troca liberados após conferência.</li>
+  </ol>
+</div>
+
+<div class="duv-modal" id="modal-pedidos" hidden role="dialog" aria-modal="true" aria-labelledby="tit-pedidos">
+  <button class="duv-close" aria-label="Fechar">×</button>
+  <h3 id="tit-pedidos">Encontre seu pedido</h3>
+  <p>Para ver status e histórico:</p>
+  <ul>
+    <li>Acesse <a href="pedidos.html">Pedidos</a> e informe seu e-mail.</li>
+    <li>Ou use o código de rastreio enviado por e-mail.</li>
+    <li>Se precisar, chame no <a href="contato.html">Contato</a>.</li>
+  </ul>
+</div>
+
+<footer class="rodape">
+  <div class="container-rodape">
+<p><span class="florzinha">✿</span> Criado e mantido por Pâmela Marini <span class="florzinha">✿</span></p>
+</div>
+</footer>
+
+<!-- VOLTAR AO TOPO + CENTRAL DE SEGREDOS -->
+<div class="voltar-chat-container">
+  <button class="btn-topo" title="Voltar ao topo">⬆</button>
+  <div class="bolinha-chat" id="abrirChat" title="Central de Segredos">
+    <img src="imagem/livro50.png" alt="Central de Segredos" />
+  </div>
+</div>
+
+<!-- POPUP DO CHAT -->
+<div class="chat-popup">
+  <div class="chat-header">
+    <img src="imagem/livro50.png" alt="Central de Segredos" />
+    <div>
+      <h2>Central de Segredos 💬</h2>
+      <p>Fale com a Isis</p>
+    </div>
+    <div class="fechar-chat" title="Fechar chat">&times;</div>
+  </div>
+  <div class="chat-body">
+    <p>Em que posso te ajudar hoje?</p>
+    <textarea placeholder="Digite sua dúvida aqui..."></textarea>
+    <button>Enviar</button>
+  </div>
+</div>
+
+<!-- ======= SCRIPTS ======= -->
+<script src="livros.js"></script>
+
+<script>
+// =======================
+// UTILIDADES GERAIS
+// =======================
+function parseLS(key){try{const raw=localStorage.getItem(key);if(!raw)return null;return JSON.parse(raw);}catch{return null;}}
+function getLSArrayFlexible(key){const data=parseLS(key);if(Array.isArray(data))return data;if(data&&typeof data==='object')return Object.values(data);return [];}
+function saveLS(key,list){localStorage.setItem(key,JSON.stringify(list||[]));}
+
+// =======================
+// TOAST
+// =======================
+(()=>{const rootId='toast-root';const queue=[];let showing=false;let currentKey='';
+  function ensureRoot(){let root=document.getElementById(rootId);if(!root){root=document.createElement('div');root.id=rootId;root.setAttribute('aria-live','polite');root.setAttribute('aria-atomic','true');
+    Object.assign(root.style,{position:'fixed',zIndex:'9999',top:'16px',right:'16px',display:'flex',flexDirection:'column',gap:'10px',pointerEvents:'none'});document.body.appendChild(root);}return root;}
+  function makeKey(text,type){return`${type}::${text}`.slice(0,200);}
+  function renderToast({text,type='info',duration=2500,icon}){const root=ensureRoot();const wrap=document.createElement('div');wrap.className=`toast ${type}`;wrap.setAttribute('role','status');
+    Object.assign(wrap.style,{pointerEvents:'auto',minWidth:'260px',maxWidth:'min(90vw,380px)',padding:'12px 14px',borderRadius:'12px',color:'#111',background:'#fff',boxShadow:'0 10px 30px rgba(0,0,0,.15)',display:'grid',gridTemplateColumns:'24px 1fr 24px',alignItems:'start',gap:'10px',opacity:'0',transform:'translateY(-10px)',transition:'opacity .18s ease, transform .18s ease',borderLeft:'6px solid #3b82f6'});
+    const borders={success:'#22c55e',warning:'#f59e0b',error:'#ef4444',info:'#3b82f6'};wrap.style.borderLeftColor=borders[type]||borders.info;
+    const iconMap={success:'✅',warning:'⚠️',error:'❌',info:'ℹ️'};const ico=icon||iconMap[type]||'ℹ️';
+    const safeText=(text==null||String(text).trim()==='')?'Ação concluída.':String(text);
+    wrap.innerHTML=`<div class="icon" aria-hidden="true" style="font-size:18px;line-height:1">${ico}</div>
+      <div class="msg" style="font:500 14px/1.35 system-ui;color:#111;white-space:normal;">${safeText}</div>
+      <button class="close" type="button" aria-label="Fechar" style="border:0;background:transparent;font-size:18px;cursor:pointer;color:#333">×</button>`;
+    const btnClose=wrap.querySelector('.close');let hideTimer=null;
+    const scheduleHide=()=>{clearTimeout(hideTimer);hideTimer=setTimeout(()=>{wrap.style.opacity='0';wrap.style.transform='translateY(-10px)';setTimeout(()=>{wrap.remove();showing=false;playNext();},180);},duration);};
+    btnClose.addEventListener('click',()=>{clearTimeout(hideTimer);wrap.style.opacity='0';wrap.style.transform='translateY(-10px)';setTimeout(()=>{wrap.remove();showing=false;playNext();},180);});
+    wrap.addEventListener('mouseenter',()=>clearTimeout(hideTimer));wrap.addEventListener('mouseleave',scheduleHide);
+    root.appendChild(wrap);requestAnimationFrame(()=>{wrap.style.opacity='1';wrap.style.transform='translateY(0)';});scheduleHide();}
+  function playNext(){if(showing)return;const item=queue.shift();if(!item)return;showing=true;currentKey=item.key;renderToast(item);}
+  function showToast(text,opts={}){const{type='info',duration=2500,icon}=opts;const safeText=(text==null||String(text).trim()==='')?'Ação concluída.':String(text);
+    const key=makeKey(safeText,type);if(key===currentKey||queue.some(q=>q.key===key))return;queue.push({text:safeText,type,duration,icon,key});playNext();}
+  window.showToast=showToast;})();
+
+window.alert=function(msg){const text=(msg==null||String(msg).trim()==='')?'Ação concluída.':String(msg);showToast(text,{type:'info',duration:2800});};
+
+// =======================
+// FAVORITOS / PEDIDOS helpers
+// =======================
+function normalizeItem(it){ if(!it||it.id==null) return null; return { id:String(it.id), titulo:it.titulo||'', autor:it.autor||'', valor:Number(String(it.valor??'').toString().replace(',', '.'))||0, imagem:it.imagem||'' }; }
+function readFavsSafe(){ return getLSArrayFlexible('favoritos').map(normalizeItem).filter(Boolean); }
+function writeFavsSafe(arr){ saveLS('favoritos',(arr||[]).map(normalizeItem).filter(Boolean)); }
+function readCartSafe(){ return getLSArrayFlexible('pedidos').map(normalizeItem).filter(Boolean); }
+function writeCartSafe(arr){ saveLS('pedidos',(arr||[]).map(normalizeItem).filter(Boolean)); }
+(function migrateOnce(){ writeFavsSafe(readFavsSafe()); writeCartSafe(readCartSafe()); })();
+function hasById(list,id){ const sid=String(id); return Array.isArray(list)&&list.some(x=>String(x.id)===sid); }
+
+// =======================
+// SCROLL setas
+// =======================
+window.scrollEsquerda=function(id){ const c=document.getElementById(id); if(c) c.scrollLeft-=300; };
+window.scrollDireita=function(id){ const c=document.getElementById(id); if(c) c.scrollLeft+=300; };
+
+// =======================
+// DOM READY
+// =======================
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Banner SOMENTE com botões (sem autoplay)
+(function(){
+  const bannerImg = document.getElementById('banner');
+  const btnVoltar = document.getElementById('btn-voltar');
+  const btnAvancar = document.getElementById('btn-avancar');
+  if (!bannerImg) return;
+
+  // se existir algum timer antigo, cancela
+  if (window.bannerTimer) { clearInterval(window.bannerTimer); window.bannerTimer = null; }
+
+  const banners = ['imagem/banner1.png','imagem/banner2.png'];
+  let i = 0;
+
+  function show(idx){
+    i = (idx + banners.length) % banners.length;
+    bannerImg.src = banners[i];
+    bannerImg.alt = `Banner ${i+1}`;
+  }
+
+  // inicia mantendo a imagem atual, se estiver na lista; senão, começa na 0
+  const atual = bannerImg.getAttribute('src');
+  i = Math.max(0, banners.findIndex(src => src === atual));
+  if (i === -1) i = 0;
+  show(i);
+
+  // botões
+  if (btnVoltar)  btnVoltar .addEventListener('click', () => show(i-1));
+  if (btnAvancar) btnAvancar.addEventListener('click', () => show(i+1));
+
+  // NADA de autoplay aqui :)
+})();
+  // 2) Voltar ao topo
+  (function(){
+    const btnTopo = document.querySelector('.btn-topo');
+    if (btnTopo) btnTopo.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
+  })();
+
+  // 3) Chat popup
+  (function(){
+    const abrirChatBtn = document.getElementById('abrirChat');
+    const chatPopup = document.querySelector('.chat-popup');
+    const fecharChatBtn = document.querySelector('.fechar-chat');
+    if (abrirChatBtn && chatPopup && fecharChatBtn) {
+      abrirChatBtn.addEventListener('click', ()=> { chatPopup.style.display='flex'; });
+      fecharChatBtn.addEventListener('click', ()=> { chatPopup.style.display='none'; });
+    }
+  })();
+
+  // 4) Painel de acesso (dropdown)
+(function(){
+  const painel = document.getElementById('painelAcesso');
+  const painelInner = document.getElementById('painelInner');
+  if (!painel || !painelInner) return;
+
+  window.toggleAcesso = function(){
+    const vis = getComputedStyle(painel).display !== 'none';
+    painel.style.display = vis ? 'none' : 'block';
+    if (!vis) renderView('menu');
+
+    // remove foco imediatamente após abrir/fechar
+    const btn = document.querySelector('.acesso');
+    btn.blur();
+    // remove foco adicional com timeout para Chrome
+    setTimeout(() => btn.blur(), 10);
+  };
+
+  function renderView(view){
+    const views = {
+      menu: `
+        <p>Escolha uma das opções para entrar:</p>
+        <button class="btn-grad" data-view="codigo">Receber código de acesso</button>
+        <button class="btn-grad" data-view="email">Entrar com e-mail</button>
+        <div class="linha-ou">ou</div>
+        <button class="btn-grad" data-view="google">Entrar com Google</button>
+        <button class="btn-grad" data-view="facebook">Entrar com Facebook</button>
+      `,
+      codigo: `
+        <h3>Receber código</h3>
+        <form id="formCodigo" class="form">
+          <label for="codigoEmail">Seu e-mail</label>
+          <input id="codigoEmail" type="email" name="email" placeholder="voce@exemplo.com" required>
+          <button class="btn-grad" type="submit">Enviar código</button>
+          <button class="btn-link" type="button" data-view="menu">Voltar</button>
+        </form>
+      `,
+      email: `
+        <h3>Entrar com e-mail</h3>
+        <form id="formEmail" class="form">
+          <label for="loginEmail">E-mail</label>
+          <input id="loginEmail" type="email" name="email" required>
+          <label for="loginSenha">Senha</label>
+          <input id="loginSenha" type="password" name="senha" required minlength="6">
+          <button class="btn-grad" type="submit">Entrar</button>
+          <button class="btn-link" type="button" data-view="menu">Voltar</button>
+        </form>
+      `,
+      google: `
+        <h3>Entrar com Google</h3>
+        <p class="msg">Exemplo visual. Integração real entra aqui.</p>
+        <button class="btn-grad" type="button">Continuar</button>
+        <button class="btn-link" type="button" data-view="menu">Voltar</button>
+      `,
+      facebook: `
+        <h3>Entrar com Facebook</h3>
+        <p class="msg">Exemplo visual. Integração real entra aqui.</p>
+        <button class="btn-grad" type="button">Continuar</button>
+        <button class="btn-link" type="button" data-view="menu">Voltar</button>
+      `
+    };
+
+    painelInner.innerHTML = views[view] || views.menu;
+
+    // ✅ CORREÇÃO: não focar no input para evitar borda preta
+    // requestAnimationFrame(()=>{ const f=painelInner.querySelector('input,button'); if(f) f.focus(); });
+  }
+
+  painelInner.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-view]');
+    if(btn) renderView(btn.dataset.view);
+  });
+
+  painelInner.addEventListener('submit', (e) => {
+    e.preventDefault();
+    showToast('Ação simulada com sucesso!', {type:'success'});
+    renderView('menu');
+  });
+})();
+
+
+  // 5) Favoritos
+  (function(){
+    function isFav(id){ return readFavsSafe().some(x=>String(x.id)===String(id)); }
+    function toggleFav(btn){
+      const item = normalizeItem({ id: btn.dataset.id, titulo: btn.dataset.titulo, autor: btn.dataset.autor, valor: btn.dataset.valor, imagem: btn.dataset.imagem });
+      if (!item) return;
+      let favs = readFavsSafe();
+      if (hasById(favs,item.id)){ favs = favs.filter(x=>String(x.id)!==item.id); btn.textContent='🤍'; showToast('Removido dos favoritos.',{type:'warning'}); }
+      else { favs.push(item); btn.textContent='❤️'; showToast('Adicionado aos favoritos!',{type:'success'}); }
+      writeFavsSafe(favs);
+    }
+    document.querySelectorAll('[data-fav-btn]').forEach(btn=>{
+      btn.textContent = isFav(btn.dataset.id) ? '❤️' : '🤍';
+      btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleFav(btn); });
+    });
+  })();
+
+  // 6) Pedidos
+  (function(){
+    function toggleCart(btn){
+      const item = normalizeItem({ id: btn?.dataset?.id, titulo: btn?.dataset?.titulo, autor: btn?.dataset?.autor, valor: btn?.dataset?.valor, imagem: btn?.dataset?.imagem });
+      if(!item) return;
+      let cart = readCartSafe();
+      if (hasById(cart,item.id)) showToast('⚠️ Este livro já está nos pedidos.',{type:'warning'});
+      else { cart.push(item); writeCartSafe(cart); showToast('📚 Livro adicionado aos pedidos!',{type:'success'}); }
+    }
+    document.querySelectorAll('[data-cart-btn]').forEach(btn=> btn.addEventListener('click', (e)=>{ e.preventDefault(); toggleCart(btn); }) );
+    function finalizarCompra(){
+      const cart = readCartSafe();
+      if(!cart.length) return showToast('Seu carrinho está vazio.',{type:'warning'});
+      saveLS('pedidos',[]); try{ if(typeof atualizarListaPedidos==='function') atualizarListaPedidos(); }catch{}
+      showToast('🎉 Pedido finalizado com sucesso!',{type:'success',duration:4000});
+    }
+    const btnFinalizar = document.getElementById('btnFinalizar');
+    if (btnFinalizar) btnFinalizar.addEventListener('click', (e)=>{ e.preventDefault(); finalizarCompra(); });
+    document.querySelectorAll('.btn-finalizar').forEach(el=> el.addEventListener('click', (e)=>{ e.preventDefault(); finalizarCompra(); }) );
+    window.finalizarCompra = finalizarCompra;
+  })();
+
+ // Abrir/fechar o quadrado de gêneros
+// --- DROPDOWNS: GÊNEROS x COLEÇÕES (apenas 1 aberto por vez) ---
+const btnGeneros     = document.getElementById("btnGeneros");
+const quadroGeneros  = document.getElementById("quadroGeneros");
+const btnColecoes    = document.getElementById("btnColecoes");
+const quadroColecoes = document.getElementById("quadroColecoes");
+
+if (btnGeneros && quadroGeneros && btnColecoes && quadroColecoes) {
+  const openG  = () => { quadroColecoes.style.display = "none"; quadroGeneros.style.display = "flex"; };
+  const closeG = () => { quadroGeneros.style.display = "none"; };
+  const isOpenG = () => getComputedStyle(quadroGeneros).display !== "none";
+
+  const openC  = () => { quadroGeneros.style.display = "none"; quadroColecoes.style.display = "flex"; };
+  const closeC = () => { quadroColecoes.style.display = "none"; };
+  const isOpenC = () => getComputedStyle(quadroColecoes).display !== "none";
+
+  // Botões
+  btnGeneros.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    isOpenG() ? closeG() : openG();
+  });
+  btnColecoes.addEventListener("click", (e) => {
+    e.preventDefault(); e.stopPropagation();
+    isOpenC() ? closeC() : openC();
+  });
+
+  // Cliques dentro não fecham
+  quadroGeneros.addEventListener("click", (e) => e.stopPropagation());
+  quadroColecoes.addEventListener("click", (e) => e.stopPropagation());
+
+  // Clique fora fecha ambos
+  document.addEventListener("click", () => { closeG(); closeC(); });
+
+  // ESC fecha ambos
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { closeG(); closeC(); }
+  });
+}
+
+
+
+//formulário sem recarregar e com feedback local
+ (function(){
+    const form = document.getElementById('formCadastro');
+    if (!form) return;
+
+    let msg = form.querySelector('.form-msg');
+    if (!msg){
+      msg = document.createElement('p');
+      msg.className = 'form-msg';
+      msg.setAttribute('aria-live', 'polite');
+      msg.style.marginTop = '10px';
+      form.appendChild(msg);
+    }
+
+    function showMsg(texto, ok){
+      msg.textContent = texto;
+      msg.style.color = ok ? '#1f8f4e' : '#c0392b';
+      msg.style.opacity = '1';
+
+      // faz a mensagem sumir depois de 4s
+      if (ok) {
+        setTimeout(() => {
+          msg.style.transition = 'opacity 0.6s ease';
+          msg.style.opacity = '0';
+        }, 4000);
+      }
+    }
+
+    form.onsubmit = function(e){
+      e.preventDefault();
+
+      const nome = (form.nome?.value || '').trim();
+      const email = (form.email?.value || '').trim();
+      const priv  = !!form.privacidade?.checked;
+
+      if (nome.length < 2) return showMsg('Informe seu nome completo.', false);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return showMsg('Digite um e-mail válido.', false);
+      if (!priv) return showMsg('Você precisa aceitar a Política de Privacidade.', false);
+
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Cadastrando...'; }
+
+      setTimeout(() => {
+        form.reset();
+        if (btn) { btn.disabled = false; btn.textContent = 'Cadastrar'; }
+        showMsg(`Obrigada, ${nome}! Cadastro realizado com sucesso. 💌`, true);
+      }, 400);
+      return false;
+    };
+  })();
+
+
+
+
+  
+
+
+/* input */
+
+/* ========================================================================
+   BUSCA GLOBAL DO SITE + RENDER DE RESULTADOS + SNAPSHOT DO CATÁLOGO
+   Cole este arquivo como seu index.js (ou equivalente).
+   Requisitos de HTML:
+   - Header com <form id="formBuscaSite"> e <input id="campoBuscaSite">
+   - Em resultado.html: #resumoBusca, #gridResultados, #vazioResultados
+   - Cards nas páginas devem usar classes/atributos que o snapshot reconhece
+   ======================================================================== */
+
+(function SiteSearchAllInOne(){
+  /* ========= Helpers ========= */
+  const semAcento = s => (s||'')
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase();
+
+  const norm = s => (s||'').toString().trim();
+
+  function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; }
+
+  function moneyBR(v){
+    if (v == null || v === '') return '';
+    const n = Number((v+'').replace(/[^\d.,-]/g,'').replace(',','.'));
+    if (Number.isFinite(n)) return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+    return v;
+  }
+
+  /* ========= 1) Header → resultado.html?q=... ========= */
+  (function attachHeaderSearch(){
+    const form  = document.getElementById('formBuscaSite');
+    const campo = document.getElementById('campoBuscaSite');
+
+    if (form && campo){
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const q = norm(campo.value);
+        if (q) window.location.href = `resultado.html?q=${encodeURIComponent(q)}`;
+      });
+    } else {
+      // fallback: captura Enter no input do header (se não tiver form)
+      const headerInput = document.querySelector('header input[placeholder*="Buscar"], header input#campoBuscaSite');
+      if (headerInput){
+        headerInput.addEventListener('keydown', (e)=>{
+          if (e.key === 'Enter'){
+            e.preventDefault();
+            const q = norm(headerInput.value);
+            if (q) window.location.href = `resultado.html?q=${encodeURIComponent(q)}`;
+          }
+        });
+      }
+    }
+  })();
+
+  /* ========= 2) Snapshot do catálogo (rodar em qualquer página com livros) =========
+     Lê os cards visíveis e monta/atualiza localStorage.catalogo
+     Seletores reconhecidos:
+     - Card: .livro-card, .resenha, .livro
+     - Título: data-titulo OU .titulo-livro, .r-titulo, h3, .title
+     - Autor:  data-autor  OU .autor-livro, .r-autor, .autor, .author
+     - Imagem: primeiro <img>
+     - Preço:  .valor-livro, .preco, .price  (texto)
+  */
+  (function snapshotCatalogo(){
+    const cards = Array.from(document.querySelectorAll('.livro-card, .resenha, .livro'));
+    if (!cards.length) return;
+
+    const lista = [];
+    for (const card of cards){
+      // ID
+      let id = card.getAttribute('data-id');
+      if (!id){
+        const aDetalhe = card.querySelector('a[href*="livros.html?id="], a[href*="livro.html?id="]');
+        if (aDetalhe){
+          try { id = new URL(aDetalhe.href, location.href).searchParams.get('id') || ''; } catch(e){}
+        }
+      }
+
+      // Título
+      const titulo = card.getAttribute('data-titulo')
+        || card.querySelector('.titulo-livro, .r-titulo, h3, .title')?.textContent
+        || '';
+
+      // Autor
+      let autor = card.getAttribute('data-autor')
+        || card.querySelector('.autor-livro, .r-autor, .autor, .author')?.textContent
+        || '';
+      autor = autor.replace(/•.*$/,'').trim();
+
+      // Imagem
+      const imagem = card.querySelector('img')?.getAttribute('src') || '';
+
+      // Preço (se existir)
+      const precoTxt = card.querySelector('.valor-livro, .preco, .price')?.textContent?.trim() || '';
+      const preco = precoTxt || '';
+
+      if (!norm(titulo)) continue;
+
+      lista.push({
+        id: norm(id) || semAcento(titulo).replace(/\s+/g,'-'),
+        titulo: norm(titulo),
+        autor: norm(autor),
+        imagem,
+        preco
+      });
+    }
+
+    if (!lista.length) return;
+
+    const antigo = JSON.parse(localStorage.getItem('catalogo') || '[]');
+    const map = new Map(antigo.map(x=>[x.id, x]));
+    lista.forEach(x => map.set(x.id, x));
+    localStorage.setItem('catalogo', JSON.stringify([...map.values()]));
+  })();
+
+  /* ========= 3) Página de resultados: render se existir o container ========= */
+  (function renderResultadosSeExistir(){
+    const resumo = document.getElementById('resumoBusca');
+    const grid   = document.getElementById('gridResultados');
+    const vazio  = document.getElementById('vazioResultados');
+
+    if (!grid || !resumo || !vazio) return; // não é a página de resultados
+
+    const qs = new URLSearchParams(location.search);
+    const q  = norm(qs.get('q') || '');
+    resumo.textContent = q ? `Você buscou por: “${q}”` : 'Digite um termo na busca do topo.';
+
+    const cat = JSON.parse(localStorage.getItem('catalogo') || '[]');
+    const termo = semAcento(q);
+    const resultados = termo
+      ? cat.filter(x => semAcento(x.titulo).includes(termo) || semAcento(x.autor).includes(termo))
+      : [];
+
+    function cardHTML(x){
+      const precoHtml = x.preco ? `<p class="valor-livro">${/^\s*R\$\s*/.test(x.preco) ? x.preco : moneyBR(x.preco)}</p>` : '';
+      return `
+        <article class="livro-card" data-id="${x.id}" data-titulo="${x.titulo}" data-autor="${x.autor}">
+          <img src="${x.imagem}" alt="${x.titulo}">
+          <div class="overlay">
+            <p class="titulo-livro">${x.titulo}</p>
+            <p class="autor-livro">${x.autor}</p>
+            ${precoHtml}
+            <div class="acoes">
+              <a href="livros.html?id=${encodeURIComponent(x.id)}" class="detalhes">Detalhes</a>
+              <span class="icone"
+                    title="Favoritar"
+                    data-fav-btn
+                    data-id="${x.id}"
+                    data-titulo="${x.titulo}"
+                    data-autor="${x.autor}"
+                    data-imagem="${x.imagem}">🤍</span>
+              <span class="icone"
+                    title="Adicionar aos pedidos"
+                    data-cart-btn
+                    data-id="${x.id}"
+                    data-titulo="${x.titulo}"
+                    data-autor="${x.autor}"
+                    data-imagem="${x.imagem}">🛒</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    if (!termo){
+      vazio.hidden = false;
+      vazio.textContent = 'Use a busca no topo do site para procurar um livro.';
+      return;
+    }
+
+    if (!resultados.length){
+      vazio.hidden = false;
+      vazio.textContent = 'Nenhum livro encontrado para sua busca.';
+      return;
+    }
+
+    vazio.hidden = true;
+    grid.innerHTML = resultados.map(cardHTML).join('');
+
+    // Se você tiver funções globais para ligar favoritos/pedidos, chame aqui:
+    // if (window.inicializarFavEPedidos) window.inicializarFavEPedidos();
+  })();
+
+  /* ========= 4) (Opcional) Filtro local na própria página =========
+     Ativa automaticamente se existir um input com id="campoBusca".
+     Ele filtra os cards da página atual em tempo real. */
+  (function attachLocalFilterIfAny(){
+    const input = document.getElementById('campoBusca');
+    if (!input) return;
+
+    const cards = Array.from(document.querySelectorAll('.livro-card, .resenha, .livro'));
+    if (!cards.length) return;
+
+    let empty = document.getElementById('buscaVazia');
+    if (!empty){
+      empty = document.createElement('p');
+      empty.id = 'buscaVazia';
+      empty.textContent = 'Nenhum livro encontrado.';
+      empty.style.display = 'none';
+      empty.style.marginTop = '8px';
+      input.parentElement.appendChild(empty);
+    }
+
+    const run = ()=>{
+      const termo = semAcento(norm(input.value));
+      let visiveis = 0;
+
+      cards.forEach(card=>{
+        const titulo = card.getAttribute('data-titulo')
+          || card.querySelector('.titulo-livro, .r-titulo, h3')?.textContent || '';
+        const autor  = card.getAttribute('data-autor')
+          || card.querySelector('.autor-livro, .r-autor')?.textContent || '';
+
+        const show = !termo
+          || semAcento(titulo).includes(termo)
+          || semAcento(autor).includes(termo);
+
+        card.style.display = show ? '' : 'none';
+        if (show) visiveis++;
+      });
+
+      empty.style.display = visiveis ? 'none' : 'block';
+    };
+
+    input.addEventListener('input', debounce(run, 250));
+  })();
+
+})(); // fim do SiteSearchAllInOne
+ 
+ (function(){
+    const overlay = document.getElementById('duvOverlay');
+
+    function openModal(id){
+      const m = document.getElementById(id);
+      if(!m) return;
+      overlay.hidden = false;
+      m.hidden = false;
+
+      // foco e ESC
+      const onEsc = (e)=>{ if(e.key==='Escape') closeModal(m, onEsc); };
+      document.addEventListener('keydown', onEsc, {once:true});
+      overlay.onclick = ()=> closeModal(m, onEsc);
+      m.querySelector('.duv-close')?.addEventListener('click', ()=> closeModal(m, onEsc), {once:true});
+
+      // acessibilidade
+      (m.querySelector('.duv-close') || m).focus?.();
+    }
+    function closeModal(m, onEsc){
+      overlay.hidden = true;
+      m.hidden = true;
+      overlay.onclick = null;
+      onEsc && document.removeEventListener('keydown', onEsc);
+    }
+
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.duv-link');
+      if(!btn) return;
+      e.preventDefault();
+      openModal(btn.dataset.modal);
+    });
+  })();
+
+
+  document.querySelectorAll('.pagamentos-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault(); // não segue o link
+    link.classList.add('ativo'); // opcional: adiciona classe para animação
+    setTimeout(() => link.classList.remove('ativo'), 200); // remove depois de 200ms
+  });
+});
+
+
+});
+</script>
+</body>
+</html>

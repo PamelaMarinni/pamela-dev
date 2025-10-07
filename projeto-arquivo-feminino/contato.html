@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - Arquivo Feminino: Proibido</title>
+  
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Fonte Great Vibes -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+  <style>
+ /* Aplica box-sizing para todos os elementos */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configurações globais do body e html */
+html, body {
+  height: 100%; /* Garante que o body ocupe toda a altura da tela */
+  font-family: 'Great Vibes', cursive; /* Fonte principal atualizada */
+  background: linear-gradient(to right, #F48FB1 0%, #CE93D8 45%, #7E57C2 75%, #42A5F5 100%);
+  color: white;
+  line-height: 1.6;
+}
+
+
+    header {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      padding: 1.5rem 4vw; background: rgba(0,0,0,0.25); 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4); gap: 1rem;
+    }
+
+    /* 🌸 Nome da página igual ao inicial */
+   .titulo { 
+  font-family: 'Great Vibes', cursive; /* Fonte atualizada */
+  font-size: 2.2rem;                   /* Tamanho do texto */
+  margin: 0;                            /* Remove margens padrão */
+  white-space: nowrap;                  /* Evita quebra de linha */
+  text-shadow: 2px 2px 4px rgba(123,31,162,0.8), 0 0 10px rgba(233,30,99,0.8); /* Sombra */
+  font-weight: 700;                     /* Negrito consistente */
+  line-height: 1.2;                     /* Altura da linha */
+}
+
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.3rem;
+      margin: 0 0.5rem;
+    }
+
+    .contato {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .contato h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .avatar {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 20px;
+    }
+
+    .redes a {
+      display: inline-block;
+      margin: 10px;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .redes a:hover {
+      transform: scale(1.2);
+      color: #FFD700;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #7E57C2;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #5E35B1;
+    }
+
+    /* Mensagem de feedback (opcional: pode customizar) */
+    #feedback{
+      display:none; 
+      margin-top:12px; 
+      font-weight:bold; 
+      color:#fff; 
+      text-shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO CONTATO -->
+  <section class="contato">
+    <img src="imagem/livro50.png" alt="Avatar" class="avatar">
+
+    <h2>💌 Entre em Contato</h2>
+    <p>Fale comigo pelas redes sociais ou envie uma mensagem:</p>
+
+    <div class="redes">
+      <a href="https://instagram.com/arquivo.feminino.proibido" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/arquivo.feminino.proibido" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/5599999999999" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <form id="formContato">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu e-mail" required>
+      <textarea rows="5" placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+
+    <!-- ✅ Feedback que será mostrado pelo JS -->
+    <p id="feedback" role="status" aria-live="polite">💌 Sua mensagem foi enviada!</p>
+  </section>
+
+  <script>
+    // Pega o form correto (id="formContato") e o feedback
+    const form = document.getElementById("formContato");
+    const feedback = document.getElementById("feedback");
+
+    form.addEventListener("submit", function(event){
+      event.preventDefault(); // não envia de verdade
+      form.reset();           // limpa campos
+      feedback.style.display = "block"; // mostra a frase
+
+      // some depois de 4s (opcional)
+      setTimeout(() => {
+        feedback.style.display = "none";
+      }, 4000);
+    });
+  </script>
+
+</body>
+</html>

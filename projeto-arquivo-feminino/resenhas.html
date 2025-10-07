@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Resenhas - Arquivo Feminino: Proibido</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto&family=Poppins:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:'Roboto',sans-serif;background:linear-gradient(to right,#F48FB1 0%,#CE93D8 45%,#7E57C2 75%,#42A5F5 100%);color:#fff}
+
+    /* Header */
+    header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:1.5rem 4vw;background:rgba(0,0,0,.25);box-shadow:0 4px 20px rgba(0,0,0,.4);gap:1rem}
+    .titulo{ font-family: 'Great Vibes', cursive,cursive;font-size:2.2rem;margin:0;text-shadow:2px 2px 4px rgba(123,31,162,.8),0 0 10px rgba(233,30,99,.8)}
+    nav a{text-decoration:none;color:#fff;font-size:1.3rem;margin:0 .5rem}
+
+    /* Título da página */
+    .wrap{max-width:1100px;margin:32px auto;padding:0 16px}
+    .head-resenhas{text-align:center;margin-bottom:18px}
+    .head-resenhas h2{margin:0;font-size:2.4rem;color:#FFD966;font-weight:400;transition:transform .3s ease}
+    .head-resenhas h2:hover{transform:scale(1.03)}
+    .head-resenhas p{margin:8px 0 0;font-size:1.1rem;color:#cc3f72}
+
+    /* Filtros */
+    .filtros{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0 26px}
+    .chip{border:1px solid rgba(255,255,255,.45);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:.95rem;user-select:none;transition:background .2s ease,transform .2s ease}
+    .chip:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+    .chip.active{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6)}
+
+    /* Lista de resenhas */
+    .lista-resenhas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .resenha{display:flex;gap:14px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .resenha img{width:100px;height:145px;object-fit:cover;border-radius:10px;flex-shrink:0;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+    .r-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .r-titulo{margin:0;font-weight:700}
+    .r-titulo a{color:#fff;text-decoration:none}
+    .r-autor{margin:0;font-size:.95rem;opacity:.9}
+    .r-nota{color:#FFD966;letter-spacing:1px}
+    .r-citacao{margin:0;font-style:italic;color:#f7d3e6}
+    .r-texto{margin:0;color:#f6f1f8}
+    .r-texto .mais{display:none}
+    .r-actions{margin-top:6px}
+    .link-toggle{color:#FFD966;text-decoration:none;font-weight:600;cursor:pointer}
+    .link-toggle:hover{text-decoration:underline}
+
+    /* Botão voltar */
+    .botao-voltar-container{text-align:center;margin:26px auto 42px}
+    .botao-voltar{font-family:'Great Vibes',cursive;background:linear-gradient(135deg,#845EC2,#D65DB1);color:#fff;padding:14px 28px;font-size:1.5rem;border-radius:30px;text-decoration:none;display:inline-block;box-shadow:0 6px 12px rgba(132,94,194,.3);transition:transform .2s ease, box-shadow .3s ease}
+    .botao-voltar:hover{transform:scale(1.05);box-shadow:0 8px 16px rgba(132,94,194,.4)}
+
+    /* Rodapé */
+    .rodape{background:#5a2a46;color:#e6d6e8;font-size:.9rem;padding:16px 0;border-top:.5px solid #7a4f9a;display:flex;justify-content:center;align-items:center}
+    .container-rodape{max-width:1100px;padding:0 16px;text-align:center}
+    .florzinha{font-size:1.4rem;color:#d4a1e8}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- Título -->
+    <div class="head-resenhas">
+      <h2><span style="font-family:'Great Vibes',cursive">Resenhas</span></h2>
+      <p>Opiniões sinceras para ajudar você a escolher seu próximo livro 💖</p>
+    </div>
+
+    <!-- Filtros simples -->
+    <div class="filtros" aria-label="Filtros de resenhas">
+      <button class="chip active" data-filter="todos">Todos</button>
+      <button class="chip" data-filter="herdeiras">Herdeiras de Si</button>
+      <button class="chip" data-filter="sobre-elas">Sobre Elas</button>
+      <button class="chip" data-filter="alem-do-beijo">Além do Beijo</button>
+    </div>
+
+    <!-- Lista -->
+    <section class="lista-resenhas" id="cards">
+      <!-- Herdeiras de Si -->
+      <article class="resenha" data-colecao="herdeiras">
+        <img src="imagem/livroagulha1.png" alt="A Agulha e a Coroa">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=agulha-e-a-coroa">A Agulha e a Coroa</a></h3>
+          <p class="r-autor">Marina Duarte • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+          <p class="r-citacao">“Uma jornada de escolhas afiadas e coragem herdada.”</p>
+          <p class="r-texto">
+            Com uma escrita elegante, o livro costura destino e identidade em uma trama
+            que equilibra poder e afeto. <span class="mais">Os personagens são bem construídos e a ambientação é detalhada sem cansar. Indico para quem ama romance histórico com força feminina.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <article class="resenha" data-colecao="herdeiras">
+        <img src="imagem/livrocura1.png" alt="A Coroa e a Cura">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=a-coroa-e-a-cura">A Coroa e a Cura</a></h3>
+          <p class="r-autor">Helena Costa • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+          <p class="r-citacao">“Curar também é reinar sobre si.”</p>
+          <p class="r-texto">
+            Sensível e potente, a narrativa explora cicatrizes como mapas de superação,
+            com ritmo envolvente. <span class="mais">O final entrega emoção sem apelar, e a trilha de símbolos dá vontade de reler.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <article class="resenha" data-colecao="herdeiras">
+        <img src="imagem/livropoder1.png" alt="O Poder e o Resto">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=poder-e-resto">O Poder e o Resto</a></h3>
+          <p class="r-autor">Lívia Nogueira • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+          <p class="r-citacao">“Nem todo poder é coroa — às vezes é escolha.”</p>
+          <p class="r-texto">
+            Um romance sobre limites e pertencimento, com diálogos afiados e ótimos
+            momentos de respiro. <span class="mais">A protagonista é inesquecível e a química dos coadjuvantes funciona.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <!-- Sobre Elas -->
+      <article class="resenha" data-colecao="sobre-elas">
+        <img src="imagem/livroana1.png" alt="Meu Nome é Ana">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=meu-nome-e-ana">Meu Nome é Ana</a></h3>
+          <p class="r-autor">Beatriz Mota • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+          <p class="r-citacao">“Dizer o próprio nome é voltar a existir.”</p>
+          <p class="r-texto">
+            Com ternura e firmeza, a autora narra um florescer íntimo e político.
+            <span class="mais">Os capítulos curtos dão ritmo, e o desfecho abraça sem simplificar dores.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <article class="resenha" data-colecao="sobre-elas">
+        <img src="imagem/livroleila1.png" alt="O Silêncio de Leila">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=o-silencio-de-leila">O Silêncio de Leila</a></h3>
+          <p class="r-autor">Camila Rezende • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+          <p class="r-citacao">“Silenciar também é gritar por dentro.”</p>
+          <p class="r-texto">
+            Impactante e delicado, alterna dor e esperança com maestria.
+            <span class="mais">As metáforas são bonitas na medida certa e os personagens secundários brilham.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <article class="resenha" data-colecao="sobre-elas">
+        <img src="imagem/livroeva1.png" alt="Os Códigos de Eva">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=codigos-de-eva">Os Códigos de Eva</a></h3>
+          <p class="r-autor">Dandara Loures • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+          <p class="r-citacao">“Somos linguagens que aprendem a dizer ‘eu’.”</p>
+          <p class="r-texto">
+            Mistura de ciência e afeto, com imaginação potente.
+            <span class="mais">Ótimo para quem curte ficção com coração e perguntas grandes.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <!-- Além do Beijo (Romântica) -->
+      <article class="resenha" data-colecao="alem-do-beijo">
+        <img src="imagem/livrocoracao1.png" alt="De Volta Para o Mesmo Coração">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=de-volta-para-o-mesmo-coracao">De Volta Para o Mesmo Coração</a></h3>
+          <p class="r-autor">Camila Rocha • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+          <p class="r-citacao">“Alguns encontros são promessas que o tempo cumpre.”</p>
+          <p class="r-texto">
+            Doce, intenso e com aquele quê de destino.
+            <span class="mais">A narrativa alterna passado e presente sem confundir e entrega um final quentinho.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+      <article class="resenha" data-colecao="alem-do-beijo">
+        <img src="imagem/livroriso1.png" alt="O Riso e a Promessa">
+        <div class="r-body">
+          <h3 class="r-titulo"><a href="livros.html?id=o-riso-e-a-promessa">O Riso e a Promessa</a></h3>
+          <p class="r-autor">Laura Mendes • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+          <p class="r-citacao">“Quando o amor chega rindo, fica.”</p>
+          <p class="r-texto">
+            Leve e divertido, com cenas que viram lembrança gostosa.
+            <span class="mais">Ideal para quem quer romance sem peso, mas com sentimento verdadeiro.</span>
+          </p>
+          <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+        </div>
+      </article>
+
+  <!-- A Sacerdotisa do Tarô -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrotarop.png" alt="A Sacerdotisa do Tarô: Sabedoria das Cartas">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=sacerdotisa-taro">A Sacerdotisa do Tarô: Sabedoria das Cartas</a></h3>
+      <p class="r-autor">Isadora Luna • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Intuição é linguagem — aprenda a escutar.”</p>
+      <p class="r-texto">Guia sensível e prático para iniciantes.
+        <span class="mais">Mistura mística e cotidiano de um jeito acessível e poético.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- O Sorriso Que Ela Deixou -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrosorriso1.png" alt="O Sorriso Que Ela Deixou">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=sorriso-que-ela-deixou">O Sorriso Que Ela Deixou</a></h3>
+      <p class="r-autor">Pam Alves • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Há sorrisos que costuram o que o tempo rasgou.”</p>
+      <p class="r-texto">Romance doce sobre luto e recomeço.
+        <span class="mais">Química crescente, humor sutil e um final quentinho.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- O Pulsar Sagrado -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livropulsar.png" alt="O Pulsar Sagrado: A Energia Feminina no Universo">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=o-pulsar-sagrado">O Pulsar Sagrado</a></h3>
+      <p class="r-autor">Pam Alves • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+      <p class="r-citacao">“Quando ela pulsa, o mundo aprende o compasso.”</p>
+      <p class="r-texto">Ensaio inspirador sobre força e sensibilidade.
+        <span class="mais">Texto lírico, potente e cheio de imagens bonitas.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- As Boas Meninas Não Matam -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrogarotas1.png" alt="As Boas Meninas Não Matam">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=boas-meninas-nao-matam">As Boas Meninas Não Matam</a></h3>
+      <p class="r-autor">Kimberly Muller • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Ser boazinha nunca foi blindagem.”</p>
+      <p class="r-texto">Thriller de virada rápida e personagem afiada.
+        <span class="mais">Segredos, dilemas morais e final de roer as unhas.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- Rosa Não Pede Perdão -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrorosa1.png" alt="Rosa Não Pede Perdão">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=rosa-nao-pede-perdao">Rosa Não Pede Perdão</a></h3>
+      <p class="r-autor">Marilia Pessoa • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+      <p class="r-citacao">“Ser flor é também ter espinhos.”</p>
+      <p class="r-texto">Prosa poética sobre autodefesa e ternura.
+        <span class="mais">Capítulos curtinhos e citações que grudam.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- Só Eu Voltei -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livroeu1.png" alt="Só Eu Voltei">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=so-eu-voltei">Só Eu Voltei</a></h3>
+      <p class="r-autor">Victor Lima • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Algumas guerras só a gente vê.”</p>
+      <p class="r-texto">Drama íntimo sobre trauma e silêncio.
+        <span class="mais">Narrativa pausada, final catártico.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- De Volta Para o Mesmo Coração -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrocoracao1.png" alt="De Volta Para o Mesmo Coração">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=volta-coracao">De Volta Para o Mesmo Coração</a></h3>
+      <p class="r-autor">Cris Rocha • <span class="r-nota">⭐⭐⭐⭐⭐</span></p>
+      <p class="r-citacao">“Tem amores que sabem o caminho de volta.”</p>
+      <p class="r-texto">Reencontro romântico com química e maturidade.
+        <span class="mais">Conforto, conversa boa e calorzinho no peito.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- Marca na Pele -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livromarca1.png" alt="Marca na Pele">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=marca-na-pele">Marca na Pele</a></h3>
+      <p class="r-autor">Anahi Vidal • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Cicatriz também é mapa de volta.”</p>
+      <p class="r-texto">Romance visceral sobre cura e confiança.
+        <span class="mais">Personagens complexas e cenas intensas.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- Sem Permissão, Mesmo Assim -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livropermissao1.png" alt="Sem Permissão, Mesmo Assim">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=sem-permissao">Sem Permissão, Mesmo Assim</a></h3>
+      <p class="r-autor">Fernanda Emmanuele • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“O ‘não’ dos outros não define o seu ‘sim’.”</p>
+      <p class="r-texto">Empoderamento com humor e ternura.
+        <span class="mais">Capítulos ágeis e mensagens fortes.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- O Diário das Coisas Não Ditas -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livrodiario1.png" alt="O Diário das Coisas Não Ditas">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=diario-nao-ditas">O Diário das Coisas Não Ditas</a></h3>
+      <p class="r-autor">Debi Castanho • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Escrever é falar com quem a gente foi.”</p>
+      <p class="r-texto">Crônicas íntimas, leves e identificáveis.
+        <span class="mais">Ótimo pra ler picadinho e marcar páginas.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- A Última Carta Queimei -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livroqueimei1.png" alt="A Última Carta Queimei">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=ultima-carta-queimei">A Última Carta Queimei</a></h3>
+      <p class="r-autor">Isadora M. • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Queimar foi só o jeito de guardar.”</p>
+      <p class="r-texto">Cartas, memórias e um amor que amadurece.
+        <span class="mais">Formato epistolar gostoso e honesto.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- A Criatura da Floresta Proibida -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livroproibido1.png" alt="A Criatura da Floresta Proibida">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=criatura-floresta-proibida">A Criatura da Floresta Proibida</a></h3>
+      <p class="r-autor">Eloá S. Moura • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Entre lendas e promessas, o coração escolhe.”</p>
+      <p class="r-texto">Romance com fantasia e tensão certa.
+        <span class="mais">Cenários vívidos e par inesquecível.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- A Menina que Sabia Dormir com Monstros -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livromenina1.png" alt="A Menina que Sabia Dormir com Monstros">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=menina-monstros">A Menina que Sabia Dormir com Monstros</a></h3>
+      <p class="r-autor">C. Mirella • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“O medo sempre dorme com um olho aberto.”</p>
+      <p class="r-texto">Dark, psicológico e lírico.
+        <span class="mais">Leitura que arrepia e encanta.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  
+  <!-- Palavras que Floriram -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livropalavra1.png" alt="Palavras que Floriram">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=palavras-que-floriram">Palavras que Floriram</a></h3>
+      <p class="r-autor">Vitória Campos • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Toda flor começou na sombra.”</p>
+      <p class="r-texto">Poemas de cura e delicadeza.
+        <span class="mais">Ótimo para ler devagar e reler.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+  <!-- A Porta Sem Nome -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livroporta1.png" alt="A Porta Sem Nome">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=porta-sem-nome">A Porta Sem Nome</a></h3>
+      <p class="r-autor">Helena L. Ruiz • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“Algumas portas abrem por dentro.”</p>
+      <p class="r-texto">Mistério com camadas existenciais.
+        <span class="mais">Cresce aos poucos e recompensa no fim.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+
+
+  <!-- A Casa das Bonecas Vazias -->
+  <article class="resenha" data-colecao="todos">
+    <img src="imagem/livroboneca1.png" alt="A Casa das Bonecas Vazias">
+    <div class="r-body">
+      <h3 class="r-titulo"><a href="livros.html?id=casa-das-bonecas-vazias">A Casa das Bonecas Vazias</a></h3>
+      <p class="r-autor">Isadora Freitas • <span class="r-nota">⭐⭐⭐⭐☆</span></p>
+      <p class="r-citacao">“O vazio também tem voz.”</p>
+      <p class="r-texto">Clima de suspense com crítica social.
+        <span class="mais">Ambientação ótima e metáforas afiadas.</span>
+      </p>
+      <div class="r-actions"><a class="link-toggle" href="#">Ler mais</a></div>
+    </div>
+  </article>
+</section>
+
+
+    <!-- Botão voltar -->
+    <div class="botao-voltar-container">
+      <a href="index.html" class="botao-voltar">Página Inicial</a>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+    <div class="container-rodape">
+      <p><span class="florzinha">✿</span>Criado e mantido por Pamela Marini<span class="florzinha">✿</span></p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle Ler mais / Ler menos
+    document.querySelectorAll('.resenha').forEach(card=>{
+      const link = card.querySelector('.link-toggle');
+      const mais = card.querySelector('.r-texto .mais');
+      if(!link || !mais) return;
+      link.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const aberto = mais.style.display==='inline';
+        mais.style.display = aberto ? 'none' : 'inline';
+        link.textContent = aberto ? 'Ler mais' : 'Ler menos';
+      });
+    });
+
+    // Filtros por coleção
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.resenha');
+    chips.forEach(ch=>{
+      ch.addEventListener('click', ()=>{
+        chips.forEach(x=>x.classList.remove('active'));
+        ch.classList.add('active');
+        const f = ch.dataset.filter;
+        cards.forEach(c=>{
+          const col = c.getAttribute('data-colecao');
+          const show = (f==='todos') || (f===col);
+          c.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

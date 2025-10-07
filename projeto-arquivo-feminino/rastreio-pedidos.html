@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encontre seu Pedido - Arquivo Feminino: Proibido</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #F48FB1 0%, #CE93D8 45%, #7E57C2 75%, #42A5F5 100%);
+      color: white;
+      line-height: 1.6;
+    }
+
+    main {
+      flex: 1 0 auto;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4vw;
+      background: rgba(0,0,0,0.25);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    header .titulo-site {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      text-shadow: 2px 2px 4px rgba(123,31,162,0.8), 0 0 10px rgba(233,30,99,0.8);
+      white-space: nowrap;
+    }
+
+    header nav a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      transition: transform 0.3s;
+    }
+
+    header nav a:hover {
+      transform: scale(1.2);
+    }
+
+    .titulo-suspense {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin: 2rem 0 1.5rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+      color: #FFC75F;
+    }
+
+    .encontre-pedido {
+      max-width: 600px;
+      margin: 2rem auto 4rem;
+      padding: 1.5rem 2rem;
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .encontre-pedido p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .encontre-pedido input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .encontre-pedido button {
+      width: 100%;
+      padding: 12px;
+      background: #FF6F91;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .encontre-pedido button:hover {
+      background: #FFC75F;
+    }
+
+    #resultadoPedido {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+
+    .rodape {
+      background-color: #5a2a46;
+      color: #e6d6e8;
+      font-size: 0.9rem;
+      padding: 16px 0;
+      border-top: 0.5px solid #7a4f9a;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .container-rodape {
+      max-width: 1100px;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .container-rodape p { margin: 0; }
+
+    .florzinha {
+      font-size: 1.4rem;
+      line-height: 1;
+      color: #d4a1e8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="titulo-site">Arquivo Feminino: Proibido</h1>
+    <nav>
+      <a href="index.html" title="Início">🏠</a>
+      <a href="favoritos.html" title="Favoritos">🤍</a>
+      <a href="pedidos.html" title="Pedidos">🛒</a>
+      <a href="contato.html" title="Contato">📞</a>
+    </nav>
+  </header>
+
+  <!-- TÍTULO PRINCIPAL -->
+  <h1 class="titulo-suspense">Encontre seu Pedido</h1>
+
+  <!-- ENCONTRE SEU PEDIDO -->
+  <main>
+    <section class="encontre-pedido">
+      <p>Digite o número do seu pedido ou e-mail cadastrado abaixo para localizar o status do seu pedido:</p>
+      <form id="formEncontrePedido">
+        <input type="text" id="pedidoNumero" placeholder="Número do pedido ou e-mail" required>
+        <button type="submit">Buscar</button>
+      </form>
+      <div id="resultadoPedido"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="rodape">
+    <div class="container-rodape">
+      <p><span class="florzinha">✿</span> Criado e mantido por Pamela Marini <span class="florzinha">✿</span></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('formEncontrePedido').addEventListener('submit', function(e){
+      e.preventDefault();
+      const valor = document.getElementById('pedidoNumero').value.trim();
+      if(valor){
+        document.getElementById('resultadoPedido').innerText = 
+          `Pedido "${valor}" localizado! Acompanhe o status na página "Meus Pedidos".`;
+      } else {
+        document.getElementById('resultadoPedido').innerText = 
+          'Por favor, insira um número de pedido ou e-mail válido.';
+      }
+    });
+  </script>
+
+</body>
+</html>
