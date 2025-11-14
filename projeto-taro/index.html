@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tarô das Mulheres Místicas</title>
+<style>
+/* --- seu CSS exatamente como pediu (mantive tudo igual) --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0d0d0d;
+  color: #fff;
+  text-align: center;
+}
+
+/* Tela inicial */
+.tela-inicial {
+  background: url('imagens/fundo-inicial2.png') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tela-inicial::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+.tela-inicial * { position: relative; z-index: 1; }
+.titulo { font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 40px; text-shadow: 0 0 15px #ffb6c1; }
+.botoes { display: flex; flex-direction: column; gap: 20px; }
+.botoes button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffb6c1;
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.botoes button:hover { background: #ffb6c1; color: #000; box-shadow: 0 0 15px #ffb6c1; transform: scale(1.05); }
+
+/* Tela Carta do Dia */
+.tela-carta {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('imagens/fundo-inicial2.png') center/cover no-repeat;
+  position: relative;
+  padding: 20px;
+}
+.tela-carta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 0;
+}
+.tela-carta * { position: relative; z-index: 1; }
+.pergunta-titulo h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 10px #ffb6c1;
+}
+.pergunta-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.pergunta-opcoes button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #ffb6c1;
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 250px;
+}
+.pergunta-opcoes button:hover { background: #ffb6c1; color: #000; }
+
+/* Carta */
+.carta-container {
+  width: 260px;
+  height: 400px;
+  perspective: 1200px;
+  margin-top: 30px;
+  display: none;
+  position: relative;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+.carta {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  cursor: pointer;
+}
+.carta.virada { transform: rotateY(180deg); }
+.frente, .verso {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 8px #ffb6c1;
+}
+.frente {
+  background-image: url('imagens/cartaprincipal.png');
+  animation: flutuar 2.5s ease-in-out infinite;
+  text-shadow: 0 0 12px #ffb6c1, 0 0 24px #ff8fab;
+}
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateY(0deg);
+  }
+}
+
+
+.verso { transform: rotateY(180deg); }
+
+.texto-carta {
+  margin-top: 20px;
+  max-width: 350px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #f0e6ea;
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+
+.interacao {
+  margin-top: 20px;
+  display: none;
+  gap: 15px;
+  justify-content: center;
+}
+.interacao button {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #ffb6c1;
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.interacao button:hover { background: #ffb6c1; color: #000; }
+
+.botao-voltar {
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid #ffb6c1;
+}
+.botao-voltar:hover { background: #ffb6c1; color: #000; }
+
+/* Tela Sobre o Tarô */
+.tela-sobre {
+  display: none;
+  min-height: 100vh;
+  background: url('imagens/fundo-inicial2.png') center/cover no-repeat;
+  position: relative;
+  padding: 40px 20px;
+}
+.tela-sobre::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 0;
+}
+.tela-sobre * { position: relative; z-index: 1; }
+
+.galeria-cartas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  justify-items: center;
+  margin-top: 40px;
+}
+.carta-galeria {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #ffb6c1;
+  border-radius: 15px;
+  width: 180px;
+  padding: 10px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.carta-galeria img {
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.carta-info {
+  opacity: 0;
+  transition: 0.4s;
+  font-size: 0.9rem;
+  color: #ffe4f0;
+  margin-top: 8px;
+}
+.carta-galeria:hover { transform: scale(1.05); box-shadow: 0 0 20px #ffb6c1; }
+.carta-galeria:hover .carta-info { opacity: 1; }
+.btn-like {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ffb6c1;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-like.liked { color: #ff69b4; transform: scale(1.2); }
+</style>
+</head>
+<body>
+
+<div class="tela-inicial" id="telaInicial">
+  <h1 class="titulo">Tarô das Mulheres Místicas</h1>
+  <div class="botoes">
+    <button id="btnCartaDia">🔮 Carta do Dia</button>
+    <button id="btnSobreTaro">🌹 Sobre o Tarô</button>
+  </div>
+</div>
+
+<div class="tela-carta" id="telaCarta">
+  <div class="pergunta-titulo">
+    <h2>O que te traz aqui hoje?</h2>
+  </div>
+  <div class="pergunta-opcoes">
+    <button data-pergunta="Dinheiro">💰 Dinheiro</button>
+    <button data-pergunta="Amor">❤️ Amor</button>
+    <button data-pergunta="Felicidade">✨ Felicidade</button>
+    <button data-pergunta="Trabalho">💼 Trabalho</button>
+    <button data-pergunta="Saúde">🩺 Saúde</button>
+    <button data-pergunta="Família">👨‍👩‍👧 Família</button>
+    <button data-pergunta="Criatividade">🎨 Criatividade</button>
+    <button data-pergunta="Espiritualidade">💫 Espiritualidade</button>
+  </div>
+
+  <div class="carta-container" id="cartaContainer">
+    <div class="carta" id="carta">
+      <div class="frente">GIRE A CARTA</div>
+      <div class="verso" id="versoCarta"></div>
+    </div>
+  </div>
+  <div class="texto-carta" id="textoCarta"></div>
+
+  <div class="interacao" id="interacao">
+    <button id="gostei">👍 Gostei</button>
+  </div>
+
+  <button class="botao-voltar" id="btnVoltarCarta">Voltar</button>
+</div>
+
+<div class="tela-sobre" id="telaSobre">
+  <h2 class="titulo">🌹 Sobre o Tarô</h2>
+  <div class="galeria-cartas" id="galeriaCartas"></div>
+  <button class="botao-voltar" id="btnVoltarSobre">Voltar</button>
+</div>
+
+<script>
+/* --- cartas e significados (usei o seu conteúdo — mantém até Quatro de Ouros) --- */
+const cartasMaiores = [
+  { nome: "O Louco", img: "imagens/carta1.png", significado: "Início, liberdade e salto no desconhecido.", conselho: "Confie na sua intuição e ouse começar." },
+  { nome: "O Mago", img: "imagens/carta2.png", significado: "Habilidade, recursos e manifestação.", conselho: "Use suas ferramentas com intenção clara." },
+  { nome: "A Sacerdotisa", img: "imagens/carta3.png", significado: "Intuição, mistério e sabedoria interior.", conselho: "Escute o silêncio dentro de você." },
+  { nome: "A Imperatriz", img: "imagens/carta4.png", significado: "Fertilidade, abundância e cuidado.", conselho: "Nutra suas ideias e relações com carinho." },
+  { nome: "O Imperador", img: "imagens/carta5.png", significado: "Estrutura, autoridade e estabilidade.", conselho: "Lidere com firmeza e responsabilidade." },
+  { nome: "O Hierofante", img: "imagens/carta6.png", significado: "Tradição, ensino e espiritualidade.", conselho: "Aprenda com quem já caminhou antes." },
+  { nome: "Os Enamorados", img: "imagens/carta7.png", significado: "Escolhas do coração e união.", conselho: "Siga o equilíbrio entre razão e afeto." },
+  { nome: "O Carro", img: "imagens/carta8.png", significado: "Vontade, foco e conquista.", conselho: "Avance com determinação e controle." },
+  { nome: "A Justiça", img: "imagens/carta9.png", significado: "Equilíbrio, verdade e consequência.", conselho: "Seja honesta e assuma resultados." },
+  { nome: "O Eremita", img: "imagens/carta10.png", significado: "Busca interior, reflexão e sabedoria.", conselho: "Reserve tempo para ouvir sua luz." },
+  { nome: "A Roda da Fortuna", img: "imagens/carta11.png", significado: "Ciclos, destino e mudança.", conselho: "Aceite as voltas da vida com flexibilidade." },
+  { nome: "A Força", img: "imagens/carta12.png", significado: "Coragem, compaixão e domínio interior.", conselho: "Use ternura para dominar desafios." },
+  { nome: "O Enforcado", img: "imagens/carta13.png", significado: "Entrega, novo olhar e pausa.", conselho: "Mude a perspectiva antes de agir." },
+  { nome: "A Morte", img: "imagens/carta14.png", significado: "Fim e renascimento, transformação profunda.", conselho: "Liberte o que já não serve para renascer." },
+  { nome: "A Temperança", img: "imagens/carta15.png", significado: "Equilíbrio, moderação e cura.", conselho: "Harmonize extremos com paciência." },
+  { nome: "O Diabo", img: "imagens/carta16.png", significado: "Apego, sombras e tentações.", conselho: "Reconheça suas correntes e liberte-se." },
+  { nome: "A Torre", img: "imagens/carta17.png", significado: "Ruptura, revelação e reconstrução.", conselho: "Aceite a queda para reconstruir mais verdadeiro." },
+  { nome: "A Estrela", img: "imagens/carta18.png", significado: "Esperança, cura e inspiração.", conselho: "Confie no fluxo e recarregue sua fé." },
+  { nome: "A Lua", img: "imagens/carta19.png", significado: "Mistério, sonhos e intuição profunda.", conselho: "Atente-se aos sinais do inconsciente." },
+  { nome: "O Sol", img: "imagens/carta20.png", significado: "Clareza, alegria e vitalidade.", conselho: "Celebre suas conquistas com leveza." },
+  { nome: "O Julgamento", img: "imagens/carta21.png", significado: "Renascimento interior e chamado.", conselho: "Ouça seu chamado e recomece consciente." },
+  { nome: "O Mundo", img: "imagens/carta22.png", significado: "Integração, realização e plenitude.", conselho: "Celebre o ciclo completo e siga em paz." },
+
+  { nome: "Ás de Copas", img: "imagens/copas.png", significado: "Amor, emoção e novos começos.", conselho: "Abra seu coração com confiança." },
+  { nome: "Dois de Paus", img: "imagens/paus.png", significado: "Planejamento e visão do futuro.", conselho: "Trace um plano e ouse dar o primeiro passo." },
+  { nome: "Três de Espadas", img: "imagens/espadas.png", significado: "Dor e cura emocional.", conselho: "Permita-se sentir para depois curar." },
+  { nome: "Quatro de Ouros", img: "imagens/ouros.png", significado: "Segurança e apego material.", conselho: "Equilibre proteção e generosidade." }
+];
+
+// --- Significados e conselhos de cada carta ---
+const significados = {
+  "O Louco": {
+    amor: "Permita-se viver novas experiências amorosas, mesmo que pareçam arriscadas. Às vezes o amor precisa de coragem.",
+    dinheiro: "Momento de arriscar com sabedoria — novas oportunidades podem surgir, mas mantenha os pés no chão.",
+    saude: "Busque leveza e evite o estresse. Cuide da mente tanto quanto do corpo.",
+    familia: "Pode indicar distanciamento ou necessidade de mais liberdade. Respeite seu espaço e o dos outros.",
+    felicidade: "Ela vem quando você se permite viver o novo e soltar o controle.",
+    espiritualidade: "Uma fase de descobertas e experiências espirituais sem julgamentos.",
+    trabalho: "Novos caminhos ou projetos podem surgir; não tema recomeçar.",
+    criatividade: "Inspiração espontânea! Permita-se experimentar sem medo de errar."
+  },
+
+  "O Mago": {
+    amor: "Use sua autoconfiança e charme natural — é um ótimo momento para iniciar algo novo ou reacender uma relação.",
+    dinheiro: "Capacidade de transformar ideias em ganhos. Planeje e aja com inteligência para conquistar estabilidade.",
+    saude: "Energia vital em alta. Cuide para não se sobrecarregar mentalmente — equilíbrio é essencial.",
+    familia: "Use o diálogo e sua habilidade de mediação para resolver pendências familiares.",
+    felicidade: "Ela vem quando você acredita no seu próprio poder e faz acontecer.",
+    espiritualidade: "Perceba os sinais e confie em sua intuição — você é o canal das suas próprias manifestações.",
+    trabalho: "Momento de agir e mostrar seus talentos. Sua criatividade pode abrir portas importantes.",
+    criatividade: "Você está em um momento de alta inspiração. Transforme ideias em algo concreto e original."
+  },
+
+  "A Sacerdotisa": {
+    amor: "Nem tudo precisa ser dito — observe mais e sinta o que está nas entrelinhas. A intuição será sua melhor guia.",
+    dinheiro: "Momento de cautela. Evite decisões impulsivas e mantenha seus planos em segredo até estarem prontos.",
+    saude: "Cuide do equilíbrio emocional e mental. O corpo reflete o que o coração silencia.",
+    familia: "Escute mais do que fala. Sua sabedoria pode trazer paz aos que te cercam.",
+    felicidade: "Está em se conectar com seu interior e respeitar seus próprios tempos.",
+    espiritualidade: "Fase de forte conexão espiritual. Medite, escute seus sonhos e confie em sua intuição.",
+    trabalho: "Analise antes de agir. O sucesso virá através da paciência e da percepção.",
+    criatividade: "As melhores ideias virão no silêncio. Confie nos seus instintos criativos."
+  },
+
+  "A Imperatriz": {
+    amor: "Momento de amor intenso e acolhedor. Expresse seus sentimentos com doçura e confiança — você é digna de ser amada.",
+    dinheiro: "Prosperidade à vista! Seus projetos tendem a crescer, mas lembre-se de cuidar bem do que já conquistou.",
+    saude: "Cuide de si com carinho. Uma boa alimentação e o contato com a natureza te fortalecerão.",
+    familia: "Harmonia e união. Use seu dom de acolher para aproximar quem se afastou.",
+    felicidade: "Vem da autoestima e da gratidão. Quanto mais você se valoriza, mais o universo te recompensa.",
+    espiritualidade: "Conecte-se com a energia da Terra e da feminilidade divina. Confie no poder do seu coração.",
+    trabalho: "Hora de colocar em prática suas ideias com confiança. A criatividade será seu maior talento agora.",
+    criatividade: "Flua livremente — tudo o que você tocar pode florescer. Deixe sua imaginação te guiar."
+  },
+
+  "O Imperador": {
+     amor: "Relacionamentos pedem estrutura e maturidade. Demonstre amor com atitudes firmes e estáveis.",
+    dinheiro: "Boa fase para organizar finanças e assumir o controle dos gastos. Planejamento é poder.",
+    saude: "Cuidado com tensões e excesso de responsabilidade. Mantenha equilíbrio entre corpo e mente.",
+    familia: "Você pode ser visto como o pilar do lar. Use sua autoridade com sabedoria e empatia.",
+    felicidade: "Vem da sensação de segurança e da confiança em si mesma para decidir o próprio caminho.",
+    espiritualidade: "Busque disciplina interior e força de vontade para manter-se firme na fé.",
+    trabalho: "Hora de assumir o comando. Sua liderança e foco trarão reconhecimento.",
+    criatividade: "Organize suas ideias e transforme inspiração em ação concreta — estrutura é o segredo."
+  },
+
+  "O Hierofante": {
+    amor: "Relacionamentos sólidos baseados em respeito e valores compartilhados ganham força. Evite esconder sentimentos.",
+    dinheiro: "Momento de agir com ética e paciência. Busque orientação de quem entende antes de grandes decisões.",
+    saude: "Cuidar do corpo também é um ato espiritual. Mantenha hábitos saudáveis e equilíbrio emocional.",
+    familia: "Tradições familiares ganham destaque. Valorize os conselhos dos mais velhos e mantenha a harmonia.",
+    felicidade: "Vem da conexão com algo maior e da sensação de estar no caminho certo.",
+    espiritualidade: "Aprofunde seus estudos espirituais e confie na sabedoria divina. O aprendizado é sua luz.",
+    trabalho: "Momento favorável para ensino, aconselhamento ou trabalhos em grupo. Seja exemplo de integridade.",
+    criatividade: "Inspire-se em referências clássicas ou antigas — inovação pode nascer da tradição."
+  },
+
+  "Os Enamorados": {
+   amor: "Um grande amor pode surgir ou se fortalecer. Siga o coração, mas mantenha clareza e equilíbrio.",
+    dinheiro: "Escolhas financeiras exigem ponderação. Evite agir por impulso, busque harmonia entre razão e desejo.",
+    saude: "O equilíbrio emocional reflete diretamente na saúde física. Cuide das emoções.",
+    familia: "Momento de união e reconciliação. Busque harmonia e diálogo com quem você ama.",
+    felicidade: "Está em viver o amor de forma sincera — seja por alguém ou por si mesma.",
+    espiritualidade: "Aprenda a ouvir a voz do coração e confiar no que sente. O amor é uma força espiritual poderosa.",
+    trabalho: "Pode haver decisão importante — siga o que faz seu coração vibrar, não apenas o que parece seguro.",
+    criatividade: "As melhores ideias virão da paixão. Trabalhe com aquilo que ama e verá a inspiração fluir."
+  },
+
+  "O Carro": {
+    amor: "É hora de tomar as rédeas da relação. Mostre direção e propósito, mas evite dominar demais.",
+    dinheiro: "Sucesso à vista se agir com foco e estratégia. Controle os impulsos e avance com segurança.",
+    saude: "Atenção ao excesso de esforço. Busque equilíbrio entre corpo e mente durante essa corrida.",
+    familia: "Pode ser necessário assumir o comando para resolver pendências familiares. Faça isso com firmeza e empatia.",
+    felicidade: "Vem ao conquistar algo que parecia difícil — mantenha a disciplina e celebre suas vitórias.",
+    espiritualidade: "A força interior guia seu caminho. Tenha fé no seu poder pessoal e na direção que escolheu.",
+    trabalho: "Grandes avanços! Use sua determinação e confiança para superar desafios e alcançar metas.",
+    criatividade: "Transforme sua energia em criação. O impulso e a vontade de fazer são suas maiores ferramentas agora."
+  },
+
+  "A Justiça": {
+    amor: "Busque equilíbrio e clareza. Relacionamentos precisam de transparência e respeito mútuo neste momento.",
+    dinheiro: "Momento de agir com responsabilidade financeira. Evite riscos e mantenha tudo documentado e justo.",
+    saude: "Cuide do corpo com disciplina. Exames e acompanhamento médico podem trazer respostas importantes.",
+    familia: "Conflitos podem ser resolvidos com diálogo e imparcialidade. Seja justa nas decisões.",
+    felicidade: "Vem quando você se sente em paz com suas escolhas e com o que é certo para você.",
+    espiritualidade: "Conecte-se com a verdade e com o senso de justiça divina — tudo retorna na medida certa.",
+    trabalho: "Avalie contratos, parcerias e decisões com cuidado. A justiça favorece quem age corretamente.",
+    criatividade: "Use a razão para equilibrar emoção e técnica. Estruture suas ideias com sabedoria e ética."
+  },
+
+  "O Eremita": {
+     amor: "Momento de introspecção — talvez seja hora de se afastar um pouco para entender o que realmente sente e deseja.",
+    dinheiro: "Planeje com calma. Evite decisões impulsivas; o momento é de análise e prudência.",
+    saude: "Ouça seu corpo e dê a ele o descanso que pede. Recarregue suas energias em silêncio.",
+    familia: "Pode indicar um período de isolamento necessário para refletir e se reconectar de forma mais madura.",
+    felicidade: "Ela nasce dentro de você, não nas circunstâncias externas. Busque paz interior.",
+    espiritualidade: "Grande momento de iluminação interior. A solidão traz respostas espirituais profundas.",
+    trabalho: "Prefira trabalhar em silêncio e com foco. Sua experiência será sua maior força agora.",
+    criatividade: "Inspiração vem do recolhimento — mergulhe nas próprias ideias antes de compartilhá-las."
+  },
+
+  "A Roda da Fortuna": {
+    amor: "Mudanças à vista — pode ser um recomeço ou uma virada inesperada. Deixe o coração se adaptar ao novo ciclo.",
+    dinheiro: "A sorte pode girar a seu favor, mas mantenha o equilíbrio. Evite riscos impulsivos e aproveite as boas oportunidades.",
+    saude: "Oscilações de energia — cuide-se para manter o bem-estar físico e emocional estáveis.",
+    familia: "Momentos de altos e baixos. Mantenha o diálogo aberto e não se prenda a velhos padrões.",
+    felicidade: "Ela vem quando você aceita que tudo muda e nada é permanente.",
+    espiritualidade: "O destino está em movimento — confie na força divina que conduz os ciclos.",
+    trabalho: "Surpresas no ambiente profissional. Esteja pronta para adaptar-se e aproveitar as viradas positivas.",
+    criatividade: "Inspirações vêm e vão — aproveite o momento certo para criar, sem forçar o fluxo."
+  },
+
+  "A Força": {
+    amor: "A relação exige paciência e compreensão. O verdadeiro poder está em agir com amor e calma, não com imposição.",
+    dinheiro: "Controle os impulsos financeiros e tenha disciplina. A estabilidade vem com constância e confiança.",
+    saude: "Momento de fortalecer corpo e mente. Cuide de si com carinho e não se cobre demais.",
+    familia: "Use a empatia para manter a harmonia. A força emocional é o elo que une todos.",
+    felicidade: "Vem ao reconhecer seu próprio valor e superar desafios com ternura.",
+    espiritualidade: "Sua fé é a fonte do seu poder — confie na luz que vem de dentro.",
+    trabalho: "Momento de demonstrar liderança gentil. Acredite na sua capacidade e siga com firmeza.",
+    criatividade: "Canalize sua energia criadora em algo que te inspire profundamente. A força se transforma em arte."
+  },
+
+  "O Enforcado": {
+    amor: "Talvez seja hora de ver a relação de outro ângulo. Espere o momento certo antes de agir ou decidir.",
+    dinheiro: "Evite impulsos financeiros. Analise a situação com calma — às vezes é preciso esperar para ganhar mais adiante.",
+    saude: "Pequenas pausas são necessárias. O descanso também faz parte da cura.",
+    familia: "Tente compreender o ponto de vista dos outros. A empatia trará reconciliação.",
+    felicidade: "Surge quando você aceita o tempo das coisas e confia no processo.",
+    espiritualidade: "Período de introspecção e entrega. Solte o controle e confie na sabedoria divina.",
+    trabalho: "Pode haver estagnação, mas ela serve para realinhar seus objetivos. Tenha paciência.",
+    criatividade: "As melhores ideias virão quando você desacelerar e observar o mundo de outro jeito."
+  },
+
+  "A Morte": {
+    amor: "Um ciclo chega ao fim para que outro comece. Aceite o encerramento como libertação para um novo amor ou fase.",
+    dinheiro: "Mudanças radicais podem ocorrer — adapte-se e não tema recomeçar de outro modo.",
+    saude: "Momento de renovar hábitos. Abandone vícios e padrões que prejudicam sua vitalidade.",
+    familia: "Transformações podem abalar a estrutura familiar, mas depois trarão mais harmonia.",
+    felicidade: "Ela nasce quando você aceita o que precisa terminar e dá espaço ao novo.",
+    espiritualidade: "Profunda purificação espiritual. Deixe morrer o velho eu para renascer em luz.",
+    trabalho: "Mudanças inevitáveis — talvez um novo emprego, função ou ciclo. Confie no processo.",
+    criatividade: "Use o poder da transformação. Ideias antigas podem renascer com nova força."
+  },
+
+  "A Temperança": {
+    amor: "Busque harmonia nos relacionamentos. Evite extremos e dialogue com paciência e compreensão.",
+    dinheiro: "Administre seus recursos com equilíbrio, sem gastar impulsivamente nem economizar em excesso.",
+    saude: "Mantenha rotina equilibrada entre corpo e mente. Pequenos cuidados fazem grande diferença.",
+    familia: "Promova paz e cooperação em casa, equilibrando atenção e espaço para todos.",
+    felicidade: "Encontre alegria nos pequenos momentos e nas atitudes equilibradas do dia a dia.",
+    espiritualidade: "Integre corpo, mente e alma. Meditação e práticas suaves ajudam na conexão interna.",
+    trabalho: "Equilibre esforços e pausas. Coopere com colegas e organize tarefas com moderação.",
+    criatividade: "Misture técnicas e ideias com equilíbrio. Inspire-se sem exageros."
+  },
+
+  "O Diabo": {
+  amor: "Cuidado com relações que prendem ou controlam. Reflita sobre dependências afetivas.",
+    dinheiro: "Evite gastos impulsivos e armadilhas financeiras; pense antes de ceder às tentações.",
+    saude: "Libere hábitos prejudiciais e busque disciplina para o bem-estar.",
+    familia: "Atente-se a padrões tóxicos ou manipulações; busque diálogo saudável.",
+    felicidade: "A liberdade emocional traz mais leveza; evite se prender a medos ou vícios.",
+    espiritualidade: "Reconheça sombras internas e trabalhe para se libertar de crenças limitantes.",
+    trabalho: "Evite ambiente tóxico e conflitos desnecessários; concentre-se em autonomia e ética.",
+    criatividade: "Use sua energia de forma produtiva, mas cuidado com exageros ou bloqueios internos."
+  },
+
+  "A Torre": {
+    amor: "Mudanças bruscas podem abalar relacionamentos, mas trarão clareza e verdade.",
+    dinheiro: "Revise seus investimentos e gastos; instabilidade pode trazer aprendizado.",
+    saude: "Surpresas ou choques podem exigir atenção; cuide do corpo e da mente.",
+    familia: "Conflitos ou revelações podem ocorrer; encare com honestidade e reconstrução.",
+    felicidade: "Às vezes é preciso perder para reconstruir algo mais sólido e verdadeiro.",
+    espiritualidade: "Crises despertam consciência; aproveite para crescer espiritualmente.",
+    trabalho: "Mudanças inesperadas podem abrir novos caminhos; adapte-se com coragem.",
+    criatividade: "Rompa padrões e experimente novas ideias; o inesperado traz inspiração."
+  },
+
+  "A Estrela": {
+    amor: "Confie no amor que se renova; esperança e fé fortalecem relações.",
+    dinheiro: "Projetos e investimentos tendem a se alinhar positivamente; mantenha a visão clara.",
+    saude: "Momento de recuperação e equilíbrio; cuide do corpo e da mente com carinho.",
+    familia: "Harmonia e compreensão podem ser restauradas; inspire paz ao seu redor.",
+    felicidade: "Renove suas esperanças e busque o que ilumina sua vida.",
+    espiritualidade: "Conexão com sua essência e fé; inspiração espiritual flui naturalmente.",
+    trabalho: "Inspire-se para novos projetos e soluções criativas; confiança é a chave.",
+    criatividade: "A intuição e a inspiração estão em alta; deixe fluir suas ideias."
+  },
+
+  "A Lua": {
+    amor: "Situações ocultas ou confusas podem surgir; siga seu coração e intuição.",
+    dinheiro: "Fique atenta a ilusões financeiras; revise contratos e oportunidades antes de agir.",
+    saude: "Cuidado com ansiedade e fadiga; confie na intuição sobre seu bem-estar.",
+    familia: "Situações delicadas podem exigir paciência; escute o que não é dito.",
+    felicidade: "Permita-se sonhar, mas mantenha os pés no chão para não se iludir.",
+    espiritualidade: "Momento de introspecção e conexão com o inconsciente; medite e reflita.",
+    trabalho: "Projetos podem não estar claros; organize e planeje antes de tomar decisões.",
+    criatividade: "A imaginação está intensa; use-a para criar de maneira intuitiva."
+  },
+
+  "O Sol": {
+    amor: "Momentos de felicidade e harmonia no relacionamento; compartilhe alegria e sinceridade.",
+    dinheiro: "Situação financeira favorável; aproveite oportunidades com confiança.",
+    saude: "Energia e vitalidade em alta; cuide do corpo e da mente para manter o equilíbrio.",
+    familia: "Alegria e união familiar; celebre momentos juntos e fortaleça vínculos.",
+    felicidade: "A felicidade surge ao valorizar conquistas e momentos simples da vida.",
+    espiritualidade: "Conexão clara com sua essência; confiança e luz interior predominam.",
+    trabalho: "Sucesso e reconhecimento em projetos; mantenha disciplina e entusiasmo.",
+    criatividade: "Inspiração radiante! Crie com alegria e otimismo."
+  },
+
+  "O Julgamento": {
+    amor: "Momento de reflexão e decisões no amor; avalie sentimentos e busque a verdade.",
+    dinheiro: "Reavaliação financeira necessária; organize dívidas e planeje novos passos.",
+    saude: "Hora de ouvir o corpo e a mente; renove hábitos para se sentir melhor.",
+    familia: "Possibilidade de reconciliações ou novos entendimentos familiares.",
+    felicidade: "A felicidade vem ao aceitar mudanças e aprender com o passado.",
+    espiritualidade: "Chamado para despertar interior; medite e conecte-se com sua essência.",
+    trabalho: "Recomeços ou julgamentos de projetos; aja com consciência e ética.",
+    criatividade: "Inspire-se em experiências passadas para criar algo significativo."
+  },
+
+  "O Mundo": {
+    amor: "Sentimentos completos e harmonia nas relações; é momento de celebrar o amor que vive em sua vida.",
+    dinheiro: "Estabilidade financeira e conclusão de ciclos; aproveite conquistas e organize o futuro.",
+    saude: "Equilíbrio físico e mental; cuide de corpo e mente de forma integrada.",
+    familia: "Harmonia e união familiar; celebre laços e momentos juntos.",
+    felicidade: "Sentir-se pleno e satisfeito com suas realizações traz verdadeira felicidade.",
+    espiritualidade: "Conexão profunda com o universo e consigo mesmo; sinta-se parte do todo.",
+    trabalho: "Projetos concluídos com sucesso; reconhecimento e senso de realização.",
+    criatividade: "Criatividade em alta; use suas habilidades de forma completa e expressiva."
+  },
+
+  "Ás de Copas": {
+  amor: "Novos sentimentos ou renovação do amor; abra o coração sem medo.",
+  dinheiro: "Pequenas oportunidades podem surgir; valorize o que chega.",
+  saude: "Momento de cuidar das emoções; pratique autocuidado.",
+  familia: "Inicie gestos de carinho e aproximação; boas notícias podem vir.",
+  felicidade: "Alegria surge ao se conectar com seus sentimentos e relações.",
+  espiritualidade: "Conexão emocional profunda; explore a intuição e sensibilidade.",
+  trabalho: "Projetos que inspiram o coração têm mais chance de sucesso.",
+  criatividade: "Siga a intuição para criar algo que toque o coração."
+},
+
+"Dois de Paus": {
+  amor: "Momento de reflexão sobre escolhas no relacionamento; comunique-se com clareza.",
+  dinheiro: "Planeje seus próximos passos financeiros antes de agir; visão estratégica é essencial.",
+  saude: "Organize sua rotina e busque equilíbrio entre corpo e mente.",
+  familia: "Decisões podem impactar os próximos passos familiares; dialogue antes de agir.",
+  felicidade: "A satisfação vem de decisões conscientes e planejamento do futuro.",
+  espiritualidade: "Momento de definir caminhos internos; reflita sobre suas crenças.",
+  trabalho: "Novas oportunidades ou parcerias surgem; seja corajoso, mas analise bem.",
+  criatividade: "Planeje projetos criativos; pensar adiante garante melhores resultados."
+},
+
+"Três de Espadas": {
+  amor: "Momento de lidar com decepções ou mágoas; permita-se sentir e depois perdoar.",
+  dinheiro: "Evite decisões impulsivas; revise contratos e gastos para não se prejudicar.",
+  saude: "Cuide da saúde emocional; tristeza pode afetar o corpo, pratique autocuidado.",
+  familia: "Conflitos podem surgir; busque diálogo e empatia para resolver mágoas.",
+  felicidade: "Aceitar e processar a dor é o caminho para encontrar alegria novamente.",
+  espiritualidade: "Momento de reflexão profunda; aceite lições do coração.",
+  trabalho: "Diferenças ou decepções podem surgir; mantenha a calma e a ética.",
+  criatividade: "Use a arte ou escrita para processar sentimentos e renovar a inspiração."
+},
+
+"Quatro de Ouros": {
+  amor: "Cuidado para não se apegar demais ou controlar demais a relação; abra-se com confiança.",
+  dinheiro: "Hora de equilibrar segurança e generosidade; evite apego excessivo ao dinheiro.",
+  saude: "Evite excesso de rigidez nos hábitos; permita momentos de relaxamento.",
+  familia: "Valorize os recursos familiares, mas não tente controlar tudo; compartilhe com carinho.",
+  felicidade: "Aprecie o que você tem, mas não se prenda ao conforto excessivo.",
+  espiritualidade: "Equilíbrio entre material e espiritual; não negligencie seu crescimento interior.",
+  trabalho: "Organize suas finanças e recursos com disciplina, mas não seja excessivamente rígido.",
+  criatividade: "Libere a criatividade sem se preocupar com resultados imediatos; não se prenda ao controle."
+},
+};
+
+/* elementos DOM */
+const telaInicial = document.getElementById('telaInicial');
+const telaCarta = document.getElementById('telaCarta');
+const telaSobre = document.getElementById('telaSobre');
+const perguntaContainer = document.querySelector('.pergunta-opcoes');
+const cartaContainer = document.getElementById('cartaContainer');
+const cartaEl = document.getElementById('carta');
+const versoCarta = document.getElementById('versoCarta'); // div
+const textoCarta = document.getElementById('textoCarta');
+const interacao = document.getElementById('interacao');
+
+let cartaAtual = null;
+let temaAtual = null;
+
+/* botões iniciais */
+document.getElementById('btnCartaDia').onclick = () => {
+  telaInicial.style.display = 'none';
+  telaCarta.style.display = 'flex';
+};
+document.getElementById('btnSobreTaro').onclick = () => {
+  telaInicial.style.display = 'none';
+  telaSobre.style.display = 'block';
+  montarGaleria();
+};
+document.getElementById('btnVoltarSobre').onclick = () => {
+  telaSobre.style.display = 'none';
+  telaInicial.style.display = 'flex';
+};
+document.getElementById('btnVoltarCarta').onclick = () => {
+  // volta pro início quando clicar em Voltar
+  telaCarta.style.display = 'none';
+  telaInicial.style.display = 'flex';
+  cartaContainer.style.display = 'none';
+  textoCarta.style.opacity = 0;
+  interacao.style.display = 'none';
+  cartaEl.classList.remove('virada');
+  perguntaContainer.style.display = 'flex';
+  cartaAtual = null;
+  temaAtual = null;
+};
+
+/* cada botão de tema */
+perguntaContainer.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    temaAtual = btn.dataset.pergunta.toLowerCase(); // tema em minúsculas: "amor","dinheiro",...
+    cartaAtual = cartasMaiores[Math.floor(Math.random() * cartasMaiores.length)];
+
+    // esconde as opções e mostra só a carta
+    perguntaContainer.style.display = 'none';
+    cartaContainer.style.display = 'block';
+    cartaEl.classList.remove('virada');
+    textoCarta.style.opacity = 0;
+    interacao.style.display = 'none';
+
+    // como verso é uma div com background, usamos style.backgroundImage
+    versoCarta.style.backgroundImage = `url('${cartaAtual.img}')`;
+
+    // configurar clique de virar (removemos handler anterior e configuramos novo)
+    cartaEl.onclick = null;
+    cartaEl.onclick = () => {
+      // evita múltiplos cliques
+      if (cartaEl.classList.contains('virada')) return;
+      cartaEl.classList.add('virada');
+
+      setTimeout(() => {
+        // texto: nome + significado
+        let texto = `<strong>${cartaAtual.nome}</strong><br>${cartaAtual.significado}<br>`;
+
+        // primeiro tenta o conselho específico do tema (se existir no objeto 'significados')
+        const temaKey = temaAtual; // já em lower case
+        if (significados[cartaAtual.nome] && significados[cartaAtual.nome][temaKey]) {
+          texto += `<em>${significados[cartaAtual.nome][temaKey]}</em>`;
+        } else {
+          // fallback pro conselho geral da carta
+          texto += `<em>${cartaAtual.conselho}</em>`;
+        }
+
+        textoCarta.innerHTML = texto;
+        textoCarta.style.opacity = 1;
+        interacao.style.display = 'flex';
+      }, 700);
+    };
+  });
+});
+
+/* botão gostei: só mostra mensagem (não volta à tela inicial) */
+document.getElementById('gostei').onclick = () => {
+  // mostra mensagem temporária sem perder o estado da página
+  const prev = textoCarta.innerHTML;
+  textoCarta.innerHTML = "✨Que a energia da carta te acompanhe!✨";
+  textoCarta.style.opacity = 1;
+
+  // mantém o botão de voltar e a carta na tela. após 3s volta ao texto anterior (se existir)
+  setTimeout(() => {
+    // se já existia um texto de carta (nome/significado), restaura; senão, esconde
+    if (cartaAtual) {
+      // tenta regenerar o texto conforme estado atual (reaplica regra acima)
+      const temaKey = temaAtual;
+      let texto = `<strong>${cartaAtual.nome}</strong><br>${cartaAtual.significado}<br>`;
+      if (significados[cartaAtual.nome] && significados[cartaAtual.nome][temaKey]) {
+        texto += `<em>${significados[cartaAtual.nome][temaKey]}</em>`;
+      } else {
+        texto += `<em>${cartaAtual.conselho}</em>`;
+      }
+      textoCarta.innerHTML = texto;
+      textoCarta.style.opacity = 1;
+    } else {
+      textoCarta.style.opacity = 0;
+    }
+  }, 3000);
+};
+
+/* montar galeria (sobre o tarô) */
+function montarGaleria() {
+  const galeria = document.getElementById('galeriaCartas');
+  galeria.innerHTML = '';
+  cartasMaiores.forEach(carta => {
+    const div = document.createElement('div');
+    div.className = 'carta-galeria';
+    div.innerHTML = `
+      <img src="${carta.img}" alt="${carta.nome}" />
+      <div class="carta-info"><strong>${carta.nome}</strong><br>${carta.significado}</div>
+    `;
+    galeria.appendChild(div);
+  });
+}
+</script>
+</body>
+</html>
